@@ -35,7 +35,12 @@ export function PrivacyContent() {
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Email:</strong> {s.dataController.email}</li>
-              <li><strong>{locale === "es" ? "Teléfono" : "Phone"}:</strong> {s.dataController.phone}</li>
+              <li>
+                <strong>
+                  {locale === "es" ? "Teléfono" : locale === "ca" ? "Telèfon" : "Phone"}:
+                </strong>{" "}
+                {s.dataController.phone}
+              </li>
             </ul>
           </section>
 

@@ -124,4 +124,72 @@ const en: typeof es = {
   },
 }
 
-export const nosotrosTranslations = { es, en }
+const ca: typeof es = {
+  hero: {
+    title1: "Think Problems.",
+    title2: "Bring Solutions.",
+    subtitle:
+      "La missió dels Unnickers és assegurar que organitzacions i persones utilitzin la innovació per augmentar l’impacte que generen al món.",
+  },
+  history: {
+    kicker: "La nostra història",
+    title1: "De la passió per la IA a l’",
+    titleHighlight: "impacte real",
+    p1: "La intel·ligència artificial és la revolució industrial de la nostra generació. Amb aquesta visió neix Unnic AI el 2022. Durant els primers anys ens vam dedicar a aprendre, experimentar i entendre a fons la tecnologia.",
+    p2: "Però el 2024 tot canvia: vam identificar que el veritable dolor del mercat no era només desenvolupar aplicacions d’IA, sinó saber quina estratègia seguir i com aplicar-la correctament.",
+    p3: "Des d’aleshores hem crescut en equip, capacitats i criteri, treballant amb empreses que ens han reptat a oferir un servei cada cop més sòlid, estratègic i orientat a generar impacte real.",
+    p4: "No direm que som la millor consultoria d’IA… però si en coneixeu una de millor que nosaltres, ens encantarà conèixer-la.",
+  },
+  vision: {
+    kicker: "La nostra visió",
+    title1: "Construir tecnologia que ",
+    highlight1: "allibera",
+    titleMid: ", per a ments que ",
+    highlight2: "creen",
+    subtitle:
+      "Volem que la tecnologia faci la feina pesada perquè les persones es puguin centrar en el que realment importa: pensar, crear i generar impacte.",
+  },
+  values: {
+    kicker: "Els nostres valors",
+    title1: "Els ",
+    titleHighlight: "Mandaments",
+    title2: " d’Unnic",
+    subtitle:
+      "Com que som tan innovadors, hem tornat 2.000 anys enrere i els hem convertit en mandaments. Aquí tens els més importants.",
+    items: [
+      { title: "Les persones primer", description: "Posem la tecnologia al servei de les persones, no a l’inrevés" },
+      { title: "Aprenentatge constant", description: "La tecnologia avança ràpid, nosaltres més, TOTS ens formem." },
+      { title: "Impacte mesurable", description: "Mai fem per fer, tot està mesurat i orientat a resultats" },
+      { title: "Comunicació honesta", description: "Comuniquem dins i fora de manera respectuosa, però transparent." },
+      { title: "Win-Win", description: "Només ens va bé si als nostres clients també." },
+      { title: "Fail Fast", description: "Provem ràpid, aprenem dels errors i pivotem sense por" },
+    ],
+  },
+  team: {
+    kicker: "El nostre equip",
+    title1: "Els experts ",
+    titleHighlight: "darrere d’Unnic AI",
+    subtitle:
+      "El nostre equip combina experiència tècnica, visió estratègica i passió per la innovació en IA per oferir resultats excepcionals.",
+    verMas: "Més informació sobre l’equip",
+  },
+  metrics: {
+    items: [
+      { label: "Empreses", description: "Transformades amb IA" },
+      { label: "Professionals", description: "Experts en IA" },
+      { label: "Valoració", description: "Satisfacció de l’equip" },
+    ],
+  },
+  cta: {
+    title1: "Vols ser ",
+    titleHighlight: "Unnicker",
+    title2: "?",
+    subtitle:
+      "Busquem persones apassionades per la IA que comparteixin els nostres valors i vulguin generar impacte real a les empreses.",
+    aplicar: "Aplicar ara",
+    cultura: "Coneix la nostra cultura",
+    dudas: "Tens dubtes? Escriu-nos a ",
+  },
+}
+
+export const nosotrosTranslations = { es, en, ca }

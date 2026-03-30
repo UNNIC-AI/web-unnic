@@ -234,4 +234,122 @@ const en: typeof es = {
   },
 }
 
-export const dataTranslations = { es, en }
+const ca: typeof es = {
+  schema: {
+    name: "Ciència de dades i intel·ligència artificial",
+    description:
+      "Converteix les dades de la teva empresa en decisions estratègiques. Centralització, anàlisi, models predictius i quadres de comandament Power BI.",
+    serviceType: "Ciència de dades i aprenentatge automàtic",
+  },
+  hero: {
+    title1: "L'experiència de la teva empresa ",
+    titleHighlight: "és a les teves dades",
+    subtitle:
+      "Cada operació, cada venda, cada error: la teva empresa fa anys que acumula coneixement. El problema és que ningú no ho està llegint.",
+    cta: "Analitza les teves dades amb nosaltres",
+  },
+  problemSection: {
+    title1: "El problema ",
+    titleHighlight: "real",
+    subtitle:
+      "Decisions preses per intuïció, problemes que es repeteixen sense que ningú els detecti i oportunitats que passen desapercebudes. No és un problema de tecnologia. És un problema d'estructura.",
+  },
+  problems: [
+    {
+      title: "Dades disperses",
+      description: "Múltiples sistemes sense consolidar",
+    },
+    {
+      title: "Intuïció vs evidència",
+      description: "Decisions sense suport en dades",
+    },
+    {
+      title: "Informes sense ús",
+      description: "Ningú no els entén ni els consulta",
+    },
+    {
+      title: "Coneixement fràgil",
+      description: "Depèn d'una sola persona",
+    },
+  ],
+  whatWeBuildSection: {
+    title: "Què construïm amb tu",
+    subtitle:
+      "Des de la centralització fins a la visualització: cobrim tot el cicle de la dada.",
+  },
+  whatWeBuild: [
+    {
+      title: "Centralització i pipelines",
+      description:
+        "Una única font de veritat per a totes les teves dades. Connectem tots els sistemes i automatitzem el flux.",
+    },
+    {
+      title: "Neteja i preparació",
+      description:
+        "Dades ordenades, fiables i llestes per treballar-hi. Sense dades ben estructurades, no hi ha anàlisi útil.",
+    },
+    {
+      title: "Estudis i anàlisi",
+      description:
+        "Respostes concretes a preguntes de negoci reals. No informes genèrics, sinó anàlisi orientada a la decisió.",
+    },
+    {
+      title: "Models predictius / ML",
+      description:
+        "Anticipa demanda, comportament o risc abans que passi. Decisions proactives en lloc de reactives.",
+    },
+    {
+      title: "Quadres de comandament amb Power BI",
+      description:
+        "Visualització que el teu equip entén i fa servir de debò. Dissenyats per a persones de negoci, no per a tècnics.",
+    },
+  ],
+  howSection: {
+    title: "Com treballem",
+    subtitle:
+      "Quatre fases per convertir les teves dades disperses en un avantatge competitiu real.",
+  },
+  steps: [
+    {
+      title: "Diagnòstic de dades",
+      description:
+        "Què tens, on és, en quin estat i quin valor té realment",
+    },
+    {
+      title: "Arquitectura i centralització",
+      description:
+        "Construïm la base perquè tot flueixi cap a un únic punt de veritat",
+    },
+    {
+      title: "Anàlisi / modelatge / visualització",
+      description:
+        "Convertim dades en respostes concretes per al teu negoci",
+    },
+    {
+      title: "Lliurament i acompanyament",
+      description:
+        "Formem el teu equip i mantenim la solució viva al llarg del temps",
+    },
+  ],
+  ctaSection: {
+    title: "Saps realment què et diuen les teves dades?",
+    subtitle:
+      "En una primera sessió de diagnòstic analitzem quines dades tens, en quin estat i quin valor poden generar per al teu negoci.",
+    cta: "Sol·licitar diagnòstic de dades",
+    ctaSecondary: "Veure tots els serveis",
+  },
+  caseStudy: {
+    title: "Cas d'èxit",
+    subtitle:
+      "Descobreix com vam ajudar una cadena de restauració a convertir les seves dades en estalvi real",
+    industryLabel: "Indústria:",
+    yearLabel: "Any:",
+    serviceLabel: "Servei:",
+    challengeTitle: "El repte",
+    solutionTitle: "La solució",
+    resultsTitle: "Els resultats",
+    viewFullCase: "Veure el cas complet",
+  },
+}
+
+export const dataTranslations = { es, en, ca }

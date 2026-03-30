@@ -498,4 +498,270 @@ const en: typeof es = {
   },
 }
 
-export const legalTranslations = { es, en }
+const ca: typeof es = {
+  common: {
+    backToHome: "Tornar a l'inici",
+    lastUpdated: "Última actualització: gener de 2025",
+  },
+
+  privacy: {
+    title: "Política de privacitat",
+    sections: {
+      dataController: {
+        heading: "1. Responsable del tractament",
+        text:
+          'Unnic AI HUB SL (en endavant, "Unnic AI"), amb domicili social al Carrer de Gomis 34, 08023 Barcelona, és el responsable del tractament de les dades personals que ens faciliti.',
+        email: "contacto@unnic.ai",
+        phone: "+34 685 756 630",
+      },
+      dataCollected: {
+        heading: "2. Dades que recopilem",
+        intro: "Podem recopilar i tractar les dades personals següents:",
+        items: [
+          "Dades d'identificació: nom, cognoms, correu electrònic, telèfon",
+          "Dades de l'empresa: raó social, càrrec, sector",
+          "Dades de navegació: adreça IP, galetes, dades d'ús del lloc web",
+          "Dades facilitades mitjançant formularis de contacte i consultes",
+        ],
+      },
+      purpose: {
+        heading: "3. Finalitat del tractament",
+        intro: "Utilitzem les seves dades personals per a:",
+        items: [
+          "Respondre a les seves consultes i sol·licituds d'informació",
+          "Prestar els nostres serveis d'intel·ligència artificial",
+          "Enviar comunicacions comercials sobre els nostres productes i serveis",
+          "Millorar l'experiència d'usuari al nostre lloc web",
+          "Complir obligacions legals i reglamentàries",
+        ],
+      },
+      legalBasis: {
+        heading: "4. Base jurídica",
+        intro: "El tractament de les seves dades es fonamenta en:",
+        items: [
+          { label: "Consentiment:", text: "En facilitar les seves dades mitjançant formularis" },
+          { label: "Execució del contracte:", text: "Per prestar els serveis sol·licitats" },
+          { label: "Interès legítim:", text: "Per millorar els nostres serveis i comunicacions comercials" },
+          { label: "Obligació legal:", text: "Per complir els requisits legals aplicables" },
+        ],
+      },
+      dataRetention: {
+        heading: "5. Conservació de les dades",
+        text:
+          "Conservarem les seves dades personals durant el temps necessari per complir les finalitats descrites i, posteriorment, durant els terminis legals de prescripció aplicables.",
+      },
+      dataRecipients: {
+        heading: "6. Destinataris de les dades",
+        intro: "Les seves dades poden ser comunicades a:",
+        items: [
+          "Proveïdors de serveis tecnològics (allotjament, correu electrònic, CRM)",
+          "Assessors legals i fiscals",
+          "Autoritats públiques quan sigui legalment exigit",
+        ],
+        noSale: "No venem ni cedim les seves dades a tercers amb finalitats comercials.",
+      },
+      rights: {
+        heading: "7. Els seus drets",
+        intro: "Té dret a:",
+        items: [
+          { label: "Accés:", text: "Conèixer quines dades tenim sobre vostè" },
+          { label: "Rectificació:", text: "Corregir dades inexactes" },
+          { label: "Supressió:", text: "Sol·licitar l'eliminació de les seves dades" },
+          { label: "Oposició:", text: "Oposar-se al tractament de les seves dades" },
+          { label: "Limitació:", text: "Sol·licitar la limitació del tractament" },
+          { label: "Portabilitat:", text: "Rebre les seves dades en format estructurat" },
+          { label: "Retirar el consentiment:", text: "Retirar el consentiment en qualsevol moment" },
+        ],
+        contact: "Per exercir els seus drets, pot contactar-nos a",
+      },
+      security: {
+        heading: "8. Seguretat",
+        text:
+          "Apliquem mesures tècniques i organitzatives adequades per protegir les seves dades personals contra l'accés no autoritzat, la pèrdua o la destrucció accidental.",
+      },
+      cookies: {
+        heading: "9. Galetes",
+        text: "Utilitzem galetes per millorar l'experiència d'usuari. Per a més informació, consulti la nostra",
+        linkText: "Política de galetes",
+      },
+      complaints: {
+        heading: "10. Reclamacions",
+        text:
+          "Si considera que els seus drets no han estat atesos adequadament, pot presentar una reclamació davant l'Agència Espanyola de Protecció de Dades (AEPD) a",
+      },
+      modifications: {
+        heading: "11. Modificacions",
+        text:
+          "Ens reservem el dret a modificar aquesta política de privacitat. Qualsevol canvi es publicarà en aquesta pàgina amb la data d'actualització corresponent.",
+      },
+    },
+  },
+
+  legalNotice: {
+    title: "Avís legal",
+    sections: {
+      generalInfo: {
+        heading: "1. Informació general",
+        text:
+          "En compliment de l'article 10 de la Llei 34/2002, d'11 de juliol, de serveis de la societat de la informació i de comerç electrònic (LSSI-CE), s'informa de les dades del titular del lloc web:",
+        companyName: "Denominació social:",
+        companyNameValue: "Unnic AI HUB SL",
+        address: "Domicili social:",
+        addressValue: "Carrer de Gomis 34, 08023 Barcelona",
+        email: "Correu electrònic:",
+        emailValue: "contacto@unnic.ai",
+        phone: "Telèfon:",
+        phoneValue: "+34 610 757 689",
+      },
+      purpose: {
+        heading: "2. Objecte",
+        text:
+          'El present avís legal regula l\'ús del lloc web d\'Unnic AI HUB SL (en endavant, "el lloc web"). L\'accés i l\'ús del lloc web impliquen l\'acceptació plena i sense reserves de totes les disposicions incloses en aquest avís legal.',
+      },
+      termsOfUse: {
+        heading: "3. Condicions d'ús",
+        intro: "L'usuari es compromet a:",
+        items: [
+          "Fer un ús adequat i lícit del lloc web",
+          "No utilitzar el lloc web amb finalitats il·legals o contràries a la bona fe",
+          "No introduir virus, programari maliciós ni cap codi perjudicial",
+          "No realitzar accions que puguin danyar, inutilitzar o sobrecarregar el lloc web",
+          "No suplantar la identitat d'un altre usuari",
+        ],
+      },
+      intellectualProperty: {
+        heading: "4. Propietat intel·lectual i industrial",
+        text1:
+          "Tots els continguts del lloc web, incloent-hi, sense caràcter limitatiu, textos, fotografies, gràfics, imatges, icones, tecnologia, programari, així com el seu disseny gràfic i els codis font, són propietat intel·lectual d'Unnic AI HUB SL o de tercers, sense que pugui entendre's cedit a l'usuari cap dret d'explotació sobre els mateixos.",
+        text2:
+          "Queda prohibida la reproducció, distribució, comunicació pública o transformació de qualsevol contingut sense l'autorització expressa del titular.",
+      },
+      disclaimer: {
+        heading: "5. Exclusió de garanties i responsabilitat",
+        intro: "Unnic AI HUB SL no es fa responsable de:",
+        items: [
+          "La disponibilitat contínua i ininterrompuda del lloc web",
+          "Els errors o inexactituds dels continguts",
+          "Els danys causats per virus o programari maliciós",
+          "L'ús il·lícit o contrari al present avís legal per part dels usuaris",
+          "Els continguts de llocs web de tercers enllaçats",
+        ],
+      },
+      externalLinks: {
+        heading: "6. Enllaços externs",
+        text:
+          "El lloc web pot contenir enllaços a llocs web de tercers. Unnic AI HUB SL no controla ni es fa responsable del contingut d'aquests llocs web. L'accés a aquests llocs és responsabilitat exclusiva de l'usuari.",
+      },
+      dataProtection: {
+        heading: "7. Protecció de dades",
+        text: "Per a informació sobre el tractament de dades personals, consulti la nostra",
+        linkText: "Política de privacitat",
+      },
+      modifications: {
+        heading: "8. Modificacions",
+        text:
+          "Unnic AI HUB SL es reserva el dret a modificar el present avís legal en qualsevol moment. Els canvis seran efectius des de la seva publicació al lloc web.",
+      },
+      jurisdiction: {
+        heading: "9. Legislació aplicable i jurisdicció",
+        text:
+          "El present avís legal es regeix per la legislació espanyola. Per a la resolució de qualsevol controvèrsia, les parts es someten als jutjats i tribunals de Barcelona, renunciant expressament a qualsevol altre fur que els pogués correspondre.",
+      },
+      contact: {
+        heading: "10. Contacte",
+        intro: "Per a qualsevol consulta relacionada amb aquest avís legal, pot contactar-nos a:",
+        email: "Correu electrònic:",
+        phone: "Telèfon:",
+        phoneValue: "+34 610 757 689",
+        addressLabel: "Adreça:",
+        addressValue: "Carrer de Gomis 34, 08023 Barcelona",
+      },
+    },
+  },
+
+  cookiePolicy: {
+    title: "Política de galetes",
+    sections: {
+      whatAreCookies: {
+        heading: "1. Què són les galetes?",
+        text:
+          "Les galetes són petits fitxers de text que es desen al seu dispositiu (ordinador, tauleta o telèfon mòbil) quan visita un lloc web. Les galetes permeten que el lloc web recordi les seves accions i preferències durant un període de temps.",
+      },
+      cookiesWeUse: {
+        heading: "2. Quines galetes utilitzem?",
+        technical: {
+          heading: "Galetes tècniques (necessàries)",
+          text: "Són essencials per al funcionament del lloc web i no poden ser desactivades:",
+          items: [
+            "Galetes de sessió per mantenir la seva navegació",
+            "Galetes de seguretat per protegir el lloc",
+          ],
+        },
+        analytics: {
+          heading: "Galetes analítiques",
+          text: "Ens ajuden a entendre com els visitants interactuen amb el lloc web:",
+          items: [
+            { label: "Google Analytics:", text: "Per a l'anàlisi de trànsit i comportament" },
+            { label: "Vercel Analytics:", text: "Per a mètriques de rendiment" },
+          ],
+        },
+        marketing: {
+          heading: "Galetes de màrqueting",
+          text: "S'utilitzen per mostrar anuncis rellevants:",
+          items: [
+            "Galetes de LinkedIn per a anuncis dirigits",
+            "Galetes de xarxes socials per compartir contingut",
+          ],
+        },
+      },
+      duration: {
+        heading: "3. Durada de les galetes",
+        session: {
+          heading: "Galetes de sessió",
+          text: "S'eliminen automàticament quan tanca el navegador.",
+        },
+        persistent: {
+          heading: "Galetes persistents",
+          text:
+            "Romanen al seu dispositiu durant un període determinat o fins que les elimini manualment. La durada varia segons el tipus de galeta.",
+        },
+      },
+      thirdParty: {
+        heading: "4. Galetes de tercers",
+        intro: "Alguns serveis externs poden instal·lar galetes al seu dispositiu:",
+        googleAnalytics: "Google Analytics:",
+        linkedin: "LinkedIn:",
+        privacyPolicy: "Política de privacitat",
+      },
+      management: {
+        heading: "5. Com gestionar les galetes",
+        intro: "Pot controlar i/o eliminar les galetes com desitgi. Per a més informació, visiti",
+        browserConfig: {
+          heading: "Configuració del navegador",
+          text: "Pot eliminar totes les galetes del seu dispositiu i configurar la majoria dels navegadors per bloquejar-ne la instal·lació:",
+          items: [
+            { label: "Chrome:", text: "Configuració > Privacitat i seguretat > Galetes" },
+            { label: "Firefox:", text: "Opcions > Privacitat i seguretat > Galetes" },
+            { label: "Safari:", text: "Preferències > Privacitat > Galetes" },
+            { label: "Edge:", text: "Configuració > Galetes i permisos del lloc" },
+          ],
+        },
+        warning:
+          "Nota: Si bloqueja totes les galetes, algunes funcions del lloc web poden no estar disponibles.",
+      },
+      policyUpdate: {
+        heading: "6. Actualització de la política",
+        text:
+          "Aquesta política de galetes pot ser actualitzada periòdicament. Li recomanem revisar aquesta pàgina regularment per estar informat sobre com utilitzem les galetes.",
+      },
+      moreInfo: {
+        heading: "7. Més informació",
+        text: "Per a més informació sobre com tractem les seves dades personals, consulti la nostra",
+        privacyLinkText: "Política de privacitat",
+        contactText: "Si té alguna pregunta sobre aquesta política de galetes, pot contactar-nos a",
+      },
+    },
+  },
+}
+
+export const legalTranslations = { es, en, ca }

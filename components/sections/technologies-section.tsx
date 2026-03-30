@@ -229,11 +229,11 @@ export function TechnologiesSection() {
                   className="bg-white border-2 border-[#bbbd26] rounded-2xl p-6 hover:border-[#031d40] hover:scale-105 transition-[transform,border-color,box-shadow] duration-300 shadow-sm hover:shadow-xl flex flex-col items-center justify-center min-h-[160px]"
                 >
                   <div className="w-16 h-16 flex items-center justify-center mb-4 relative">
-                    {item.image ? (
+                    {"image" in item && item.image ? (
                       <Image src={item.image || "/placeholder.svg"} alt={item.title} fill sizes="64px" className="object-contain" />
                     ) : (
                       <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
-                        {item.icon}
+                        {"icon" in item ? item.icon : null}
                       </div>
                     )}
                   </div>

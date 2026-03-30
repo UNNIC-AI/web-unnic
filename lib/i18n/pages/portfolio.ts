@@ -56,4 +56,38 @@ const en: typeof es = {
   },
 }
 
-export const portfolioTranslations = { es, en }
+const ca: typeof es = {
+  list: {
+    title1: "Els nostres ",
+    titleHighlight: "casos d’èxit",
+    subtitle:
+      "Descobreix com hem ajudat empreses de diversos sectors a transformar els seus negocis amb intel·ligència artificial.",
+    verCaso: "Veure el cas complet",
+  },
+  detail: {
+    volver: "Tornar als casos d’èxit",
+    contextoCliente: "Context del client",
+    contextoTexto1: " és una empresa líder en el sector ",
+    contextoTexto2: ", amb presència consolidada al mercat europeu. El ",
+    contextoTexto3:
+      ", van apostar per la transformació digital mitjançant intel·ligència artificial per mantenir el seu avantatge competitiu i optimitzar les operacions clau.",
+    retoSolucion: "El repte i la nostra solució",
+    retoSolucionSub:
+      "Cada projecte comença amb un repte únic. La nostra metodologia combina anàlisi profunda, tecnologia puntera i execució impecable per transformar problemes en oportunitats.",
+    desafio: "El repte",
+    solucion: "La solució",
+    metodologia: "Metodologia aplicada:",
+    metodologiaTexto:
+      "Fem una anàlisi exhaustiva dels processos, dissenyem una solució personalitzada amb les tecnologies més avançades del mercat i la implementem amb acompanyament continu per garantir l’adopció i l’èxit del projecte.",
+    resultados: "Resultats mesurables",
+    resultadosSub1: "L’impacte de la nostra solució va ser immediat i quantificable. Aquests són els resultats clau que ",
+    resultadosSub2: " va obtenir després de la implementació, superant les expectatives inicials del projecte.",
+    ctaTitulo: "La teva empresa és la següent?",
+    ctaTexto1: "Si vols obtenir resultats similars als de ",
+    ctaTexto2:
+      ", estem preparats per ajudar-te. Descobreix com podem transformar el teu negoci amb solucions d’IA adaptades a les teves necessitats específiques.",
+    contactanos: "Contacta’ns",
+  },
+}
+
+export const portfolioTranslations = { es, en, ca }

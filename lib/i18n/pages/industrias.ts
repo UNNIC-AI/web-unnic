@@ -2346,4 +2346,1234 @@ const en: typeof es = {
   },
 }
 
-export const industriasTranslations = { es, en }
+const ca: typeof es = {
+  hero: {
+    titlePrefix: "Què fa la IA al ",
+    titleHighlight: "teu sector",
+    titleSuffix: "?",
+    subtitle:
+      "Selecciona la teva indústria i descobreix com la intel·ligència artificial pot transformar el teu negoci amb casos reals.",
+    scrollIndicator: "Selecciona una indústria",
+  },
+  industries: [
+    "Distribució",
+    "Restauració",
+    "Construcció",
+    "Industrial",
+    "Salut",
+    "Retail",
+    "Finances",
+    "Tecnologia",
+    "Educació",
+    "Energia",
+  ],
+  industryNames: {
+    distribucion: "Distribució",
+    restauracion: "Restauració",
+    construccion: "Construcció",
+    industrial: "Industrial",
+    salud: "Salut",
+    retail: "Retail",
+    finanzas: "Finances",
+    tecnologia: "Tecnologia",
+    educacion: "Educació",
+    energia: "Energia",
+  } as Record<string, string>,
+  common: {
+    useCasesTitlePrefix: "Aplicacions d'IA a ",
+    useCasesSubtitle:
+      "Descobreix les solucions més impactants que estem implementant al sector",
+    successStoryTitlePrefix: "Això podria ser ",
+    successStoryTitleHighlight: "la teva empresa",
+    successStorySubtitle:
+      "Descobreix com empreses del teu sector estan millorant els seus resultats amb IA",
+    challenge: "El repte",
+    solution: "La solució",
+    results: "Els resultats",
+    industryLabel: "Indústria:",
+    yearLabel: "Any:",
+    serviceLabel: "Servei:",
+    viewCase: "Veure més sobre el cas",
+    faqTitlePrefix: "Preguntes ",
+    faqTitleHighlight: "freqüents",
+    pioneerTitlePrefix: "Vols ser el ",
+    pioneerTitleHighlight: "pioner",
+    pioneerTitleSuffix: "?",
+    pioneerButton: "Parlem del teu projecte",
+    ctaButton: "Vull començar",
+    caseStudyAlt: "cas d'estudi",
+    logoAlt: "logotip",
+  },
+  distribucion: {
+    badge: "Distribució i logística",
+    imageAlt: "Optimització de processos en distribució",
+    headline: "Optimitza els teus processos i decisions",
+    description:
+      "La intel·ligència artificial està revolucionant la distribució i la logística. Des de la predicció de demanda fins a l'automatització de magatzems, descobreix com les empreses del sector estan reduint costos i millorant l'eficiència operativa.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 30% menys en costos operatius gràcies a l'optimització intel·ligent de recursos",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza errors humans i detecta anomalies abans que es converteixin en problemes",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Dades en temps real i anàlisi predictiva per prendre decisions estratègiques amb confiança",
+      },
+    ],
+    useCasesHighlight: "Distribució",
+    casosDeUso: [
+      {
+        title: "Predicció de demanda",
+        description:
+          "Models que anticipen les necessitats d'estoc per producte, temporada i ubicació",
+      },
+      {
+        title: "Optimització de rutes",
+        description:
+          "Algoritmes que calculen les rutes més eficients tenint en compte el trànsit i les restriccions",
+      },
+      {
+        title: "Comparacions automàtiques",
+        description:
+          "Coteig intel·ligent de documents, preus i proveïdors per optimitzar compres",
+      },
+      {
+        title: "Detecció d'anomalies",
+        description:
+          "IA que identifica comandes inusuals, fraus o errors abans que passin",
+      },
+      {
+        title: "Validació documental",
+        description:
+          "Coteig automàtic de factures, albarans i comandes amb OCR avançat",
+      },
+      {
+        title: "Atenció automatitzada",
+        description:
+          "Xatbots per gestionar consultes de clients i proveïdors 24/7",
+      },
+    ],
+    ctaTitle: "A punt per transformar la teva ",
+    ctaHighlight: "distribució",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot optimitzar les teves operacions logístiques",
+    faqSubtitle: "Tot el que necessites saber sobre IA en distribució",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en distribució. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en empreses de distribució?",
+        answer:
+          "Podem automatitzar tasques com gestió de comandes, control d'estoc, previsió de demanda, conciliació d'albarans i factures, classificació d'emails, creació de rutes i generació d'informes. L'automatització redueix errors i allibera temps operatiu des del primer mes.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA a la distribució?",
+        answer:
+          "Augmenta la visibilitat de l'inventari, millora la planificació, redueix ruptures d'estoc, optimitza rutes, accelera l'atenció al client i disminueix temps morts al magatzem. En la majoria de casos, s'aconsegueix un ROI en menys de 6 mesos.",
+      },
+      {
+        question: "Cal tenir les dades molt ordenades per implementar IA?",
+        answer:
+          "No. Comencem analitzant les teves dades actuals i avaluant què es pot aprofitar tal com està. Si cal, dissenyem passos per organitzar o estructurar la informació, però mai retardem el projecte per això.",
+      },
+      {
+        question: "Quant de temps porta implantar una solució d'IA o automatització?",
+        answer:
+          "Depèn del projecte, però els quick wins solen estar llestos en 4–8 setmanes. Projectes més amplis, com optimització d'estoc o assistents interns, poden portar entre 6 i 12 mesos.",
+      },
+      {
+        question: "Les solucions s'integren amb els meus sistemes actuals (ERP, WMS, CRM)?",
+        answer:
+          "Sí. Ens integrem amb els sistemes que ja utilitzes (com SAGE, SAP, Odoo, Dynamics, Generix, etc.). Analitzem les teves eines i dissenyem la solució per conviure-hi sense canvis en la teva operativa.",
+      },
+      {
+        question: "Pot la IA millorar la previsió de demanda o la rotació d'inventari?",
+        answer:
+          "Sí. Models predictius analitzen històrics, estacionalitat, categories, clients i tendències per millorar la previsió de demanda i optimitzar compres. Això redueix tant l'excess d'estoc com les ruptures.",
+      },
+      {
+        question: "És segur aplicar IA en processos crítics com la logística o les compres?",
+        answer:
+          "Totalment. Implementem controls, validacions humanes i traçabilitat de totes les decisions automàtiques. Sempre prioritzem fiabilitat i estabilitat abans que velocitat.",
+      },
+      {
+        question: "Quina mida ha de tenir la meva empresa per aplicar aquestes solucions?",
+        answer:
+          "Treballem amb pimes i mitjanes empreses de distribució. No cal ser una gran corporació per beneficiar-te'n: moltes millores es poden aplicar amb dades bàsiques i processos ja existents.",
+      },
+      {
+        question: "Quina inversió inicial cal?",
+        answer:
+          "Depèn del projecte, però la majoria de solucions d'automatització tenen un cost assequible i un retorn ràpid. Busquem que qualsevol proposta tingui un impacte clar en estalvis o productivitat.",
+      },
+      {
+        question: "Com comencem?",
+        answer:
+          "Amb una fase d'anàlisi on entenem la teva operació, les teves dades i les teves necessitats. A partir d'aquí, definim un pla clar d'oportunitats i prioritzem els projectes amb millor retorn per al teu negoci.",
+      },
+    ],
+  },
+  construccion: {
+    badge: "Construcció i obra",
+    imageAlt: "Digitalització i optimització en construcció",
+    headline: "Digitalitza i optimitza la gestió d'obra",
+    description:
+      "La intel·ligència artificial està transformant el sector de la construcció. Des de la validació automàtica de documents fins a la predicció de desviacions en projectes, descobreix com les empreses del sector guanyen eficiència i control.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 25% menys en costos administratius gràcies a l'automatització documental",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza discrepàncies en factures, albarans i comandes amb validació automàtica",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Visibilitat completa de projectes i proveïdors per prendre decisions més informades",
+      },
+    ],
+    useCasesHighlight: "Construcció",
+    casosDeUso: [
+      {
+        title: "Validació de factures",
+        description:
+          "Coteig automàtic de factures amb comandes i albarans mitjançant OCR i IA",
+      },
+      {
+        title: "Gestió documental",
+        description:
+          "Classificació i extracció automàtica de dades de documents d'obra",
+      },
+      {
+        title: "Control de costos",
+        description:
+          "Seguiment en temps real de desviacions pressupostàries per projecte",
+      },
+      {
+        title: "Gestió de proveïdors",
+        description:
+          "Avaluació automàtica de proveïdors basada en històric i rendiment",
+      },
+      {
+        title: "Planificació predictiva",
+        description:
+          "Models que anticipen retards i colls d'ampolla en l'execució",
+      },
+      {
+        title: "Compliment normatiu",
+        description:
+          "Verificació automàtica de documentació legal i certificacions",
+      },
+    ],
+    ctaTitle: "A punt per optimitzar la teva ",
+    ctaHighlight: "construcció",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot millorar l'eficiència de les teves obres.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en construcció",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en construcció. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quins processos es poden automatitzar en una empresa de construcció?",
+        answer:
+          "Podem automatitzar tasques com gestió de documentació d'obra, control d'albarans, seguiment de materials, planificació de recursos, informes d'avanç, control de costos i comunicació entre oficines i obra. L'objectiu és reduir paperam i evitar desviacions.",
+      },
+      {
+        question: "Quins beneficis aporta la IA al sector de la construcció?",
+        answer:
+          "La IA ajuda a preveure desviacions de cost, anticipar retards, millorar la planificació d'obra, optimitzar compres i controlar l'ús real de materials. També permet centralitzar documentació i reduir errors que solen aparèixer en processos manuals.",
+      },
+      {
+        question: "Cal tenir tots els processos digitalitzats per aplicar IA?",
+        answer:
+          "No. Comencem entenent la teva operació actual i els sistemes que utilitzes. A partir d'aquí identifiquem oportunitats aplicables fins i tot si part del procés segueix a Excel, WhatsApp o paper.",
+      },
+      {
+        question: "Pot la IA ajudar a reduir desviacions d'obra?",
+        answer:
+          "Sí. Analitza històrics, ritmes d'obra, consums, partes, costos previstos vs reals i models de planificació. Això permet anticipar retards, detectar sobrecostos i prendre decisions abans que el problema sigui crític.",
+      },
+      {
+        question: "Les solucions s'integren amb el meu programari actual (Presto, Sigrid, SAGE, ERP…)?",
+        answer:
+          "Sí. Ens adaptem al teu stack actual i desenvolupem integracions que funcionen amb les teves eines d'obra, gestió o comptabilitat. No cal canviar de sistema per implementar IA.",
+      },
+      {
+        question: "Puc digitalitzar la gestió d'albarans, partes o certificacions?",
+        answer:
+          "Sí. Automatitzem la recepció, classificació i consolidació de documents mitjançant OCR avançat i fluxos de treball automàtics. Així evites errors, duplicats i pèrdues d'informació.",
+      },
+      {
+        question: "La IA millora la coordinació entre oficina i obra?",
+        answer:
+          "Molt. Podem centralitzar informació, automatitzar l'actualització d'avances, generar informes diaris, enviar avisos automàtics i estructurar la comunicació entre equips sense dependre de trucades o notes.",
+      },
+      {
+        question: "Quina mida mínima ha de tenir l'empresa per beneficiar-se'n?",
+        answer:
+          "Treballem amb constructores, instal·ladores i empreses de reformes de qualsevol mida que gestionin obres, equips i documentació. Les pimes del sector solen obtenir retorns molt ràpids.",
+      },
+      {
+        question: "Quin retorn puc esperar?",
+        answer:
+          "Depèn del projecte, però en construcció el ROI sol ser molt clar: menys errors, menys desviació, menys hores dedicades al paperam i una planificació més fiable. Molts projectes recuperen la inversió en menys de sis mesos.",
+      },
+      {
+        question: "Com comencem?",
+        answer:
+          "Amb una fase d'anàlisi del funcionament de les teves obres, els teus equips, els teus sistemes i les teves dades. Identifiquem on la IA pot generar impacte immediat i definim un pla d'implantació prioritzat.",
+      },
+    ],
+  },
+  restauracion: {
+    badge: "Restauració i hostaleria",
+    imageAlt: "Millora d'experiència i optimització en restauració",
+    headline: "Millora l'experiència i optimitza operacions",
+    description:
+      "La intel·ligència artificial està transformant la restauració i l'hostaleria. Des de l'anàlisi de ressenyes fins a la predicció de demanda, descobreix com els grups de restauració milloren l'experiència del client i redueixen costos operatius.",
+    beneficios: [
+      {
+        title: "Millor experiència de client",
+        description:
+          "Detecta i resol problemes abans que impactin en la satisfacció del client",
+      },
+      {
+        title: "Reducció de costos",
+        description:
+          "Optimitza compres, redueix el malbaratament alimentari i millora l'eficiència operativa",
+      },
+      {
+        title: "Decisions basades en dades",
+        description:
+          "Converteix ressenyes i dades operatives en insights accionables per al teu negoci",
+      },
+    ],
+    useCasesHighlight: "Restauració",
+    casosDeUso: [
+      {
+        title: "Anàlisi de ressenyes amb IA",
+        description:
+          "Classificació automàtica d'opinions per temàtica i sentiment per detectar problemes",
+      },
+      {
+        title: "Predicció de demanda",
+        description:
+          "Models que anticipen l'afluència i el consum per optimitzar personal i compres",
+      },
+      {
+        title: "Gestió intel·ligent d'inventari",
+        description:
+          "Control automàtic d'estoc amb alertes de reposició i caducitat",
+      },
+      {
+        title: "Atenció al client 24/7",
+        description:
+          "Xatbots per a reserves, consultes i gestió d'incidències sense esperes",
+      },
+      {
+        title: "Optimització de menús",
+        description:
+          "Anàlisi de rendibilitat i preferències per dissenyar cartes més efectives",
+      },
+      {
+        title: "Planificació de torns",
+        description:
+          "Assignació intel·ligent de personal basada en previsió de demanda",
+      },
+    ],
+    ctaTitle: "A punt per optimitzar la teva ",
+    ctaHighlight: "restauració",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot millorar l'experiència i l'eficiència del teu negoci.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en restauració",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en restauració. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quins processos es poden automatitzar en restauració?",
+        answer:
+          "Podem automatitzar anàlisi de ressenyes, gestió de reserves, control d'inventari, predicció de demanda, planificació de torns, gestió de proveïdors i generació d'informes operatius. L'automatització redueix errors i allibera temps per centrar-se en l'experiència del client.",
+      },
+      {
+        question: "Com pot la IA millorar l'experiència del client?",
+        answer:
+          "La IA analitza ressenyes i feedback en temps real, detecta problemes abans que escalin, personalitza recomanacions i permet respostes més ràpides a incidències. Això es tradueix en major satisfacció i fidelització.",
+      },
+      {
+        question: "Cal tenir moltes dades per començar?",
+        answer:
+          "No necessàriament. Podem començar amb les dades que ja tens: ressenyes de Google, històric de vendes, dades del TPV. Analitzem quina informació és disponible i dissenyem solucions adaptades a la teva situació actual.",
+      },
+      {
+        question: "Quant de temps porta implementar una solució?",
+        answer:
+          "Depèn del projecte. Solucions com l'anàlisi de ressenyes poden estar operatives en 4-6 setmanes. Projectes més complexos com predicció de demanda o gestió integral d'inventari poden portar de 2 a 4 mesos.",
+      },
+      {
+        question: "S'integra amb el meu TPV i sistemes actuals?",
+        answer:
+          "Sí. Ens integrem amb els principals TPV del mercat (Revo, Last, Agora, etc.) i amb plataformes de reserves, delivery i gestió. Analitzem les teves eines i dissenyem la integració òptima.",
+      },
+      {
+        question: "Pot la IA reduir el malbaratament alimentari?",
+        answer:
+          "Absolutament. Amb predicció de demanda precisa, ajustem les compres al consum real. Els nostres clients han reduït el malbaratament entre un 20% i un 35%, amb impacte directe en costos i sostenibilitat.",
+      },
+      {
+        question: "Com funciona l'anàlisi de ressenyes?",
+        answer:
+          "Ens connectem amb Google My Business i altres plataformes per importar ressenyes automàticament. La IA classifica cada opinió per temàtica (servei, menjar, ambient, preu) i sentiment, generant quadres de comandament amb alertes en temps real.",
+      },
+      {
+        question: "És útil per a una sola ubicació o només per a cadenes?",
+        answer:
+          "És útil per a tots dos. Un restaurant individual pot beneficiar-se de l'anàlisi de ressenyes i la predicció de demanda. Les cadenes a més aprofiten la comparativa entre locals i l'estandardització de processos.",
+      },
+      {
+        question: "Quin és el retorn d'inversió esperat?",
+        answer:
+          "El ROI típic en restauració inclou reducció del 20-30% en malbaratament, millora del 15-25% en eficiència operativa i augment de satisfacció del client. La majoria de clients recuperen la inversió en menys de 6 mesos.",
+      },
+      {
+        question: "Com comencem?",
+        answer:
+          "Agendem una trucada de diagnòstic gratuïta per entendre la teva operativa, identificar oportunitats i proposar-te un pla amb quick wins d'alt impacte. Sense compromís i amb total transparència.",
+      },
+    ],
+  },
+  industrial: {
+    badge: "Industrial i fabricació",
+    imageAlt: "Impuls de la producció industrial amb IA",
+    headline: "Impulsa la teva producció amb IA",
+    description:
+      "La intel·ligència artificial està transformant la indústria manufacturera. Des de l'optimització de processos fins al manteniment predictiu, descobreix com les empreses industrials augmenten la productivitat i redueixen costos operatius.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 35% menys en costos operatius gràcies a l'optimització de processos i recursos",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza defectes de producció i detecta fallades abans que afectin la qualitat",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Dades en temps real de producció per prendre decisions estratègiques amb confiança",
+      },
+    ],
+    useCasesHighlight: "Indústria",
+    casosDeUso: [
+      {
+        title: "Manteniment predictiu",
+        description:
+          "Models que anticipen fallades en maquinària abans que passin aturades no planificades",
+      },
+      {
+        title: "Optimització de producció",
+        description:
+          "Algoritmes que maximitzen el rendiment de línies de producció i recursos",
+      },
+      {
+        title: "Control de qualitat automàtic",
+        description:
+          "Visió artificial per detectar defectes en productes de manera instantània",
+      },
+      {
+        title: "Gestió del coneixement",
+        description:
+          "Assistents RAG que centralitzen i faciliten l'accés al coneixement tècnic intern",
+      },
+      {
+        title: "Generació d'ofertes",
+        description:
+          "Automatització de cotitzacions i propostes basades en històrics i regles de negoci",
+      },
+      {
+        title: "Coteig de comandes",
+        description:
+          "Validació automàtica entre comandes, ofertes i especificacions tècniques",
+      },
+    ],
+    ctaTitle: "A punt per impulsar la teva ",
+    ctaHighlight: "producció",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot optimitzar els teus processos industrials.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en indústria",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en indústria. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en empreses industrials?",
+        answer:
+          "Podem automatitzar tasques com control de qualitat visual, manteniment predictiu, planificació de producció, gestió de coneixement tècnic, generació d'ofertes, coteig de comandes i documentació tècnica. L'automatització redueix errors i allibera temps operatiu des del primer mes.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA a la indústria?",
+        answer:
+          "Augmenta l'eficiència de producció, redueix temps d'aturada no planificats, millora la qualitat del producte, optimitza l'ús de matèries primeres i accelera la presa de decisions. En la majoria de casos, s'aconsegueix un ROI en menys de 6 mesos.",
+      },
+      {
+        question: "Cal tenir les dades molt ordenades per implementar IA?",
+        answer:
+          "No. Comencem analitzant les teves dades actuals i avaluant què es pot aprofitar tal com està. Si cal, dissenyem passos per organitzar o estructurar la informació, però mai retardem el projecte per això.",
+      },
+      {
+        question: "Quant de temps porta implantar una solució d'IA en producció?",
+        answer:
+          "Depèn del projecte, però els quick wins solen estar llestos en 4–8 setmanes. Projectes més amplis, com manteniment predictiu o control de qualitat automatitzat, poden portar entre 3 i 9 mesos.",
+      },
+      {
+        question: "Les solucions s'integren amb els meus sistemes actuals (ERP, MES, SCADA)?",
+        answer:
+          "Sí. Ens integrem amb els sistemes que ja utilitzes (com SAP, SAGE, Odoo, sistemes MES, SCADA, etc.). Analitzem les teves eines i dissenyem la solució per conviure-hi sense canvis en la teva operativa.",
+      },
+      {
+        question: "La IA pot ajudar amb la formulació de productes?",
+        answer:
+          "Sí. Desenvolupem models predictius que aprenen d'històrics de formulació per suggerir composicions òptimes, reduint proves de laboratori i accelerant el temps de desenvolupament de nous productes.",
+      },
+      {
+        question: "Com centralitzar el coneixement tècnic d'empleats clau?",
+        answer:
+          "Creem assistents RAG (Retrieval-Augmented Generation) que indexen documentació tècnica, històrics i coneixement tàcit, permetent consultes en llenguatge natural i reduint la dependència de persones concretes.",
+      },
+      {
+        question: "Què passa si la meva empresa és petita o mitjana?",
+        answer:
+          "Les nostres solucions són escalables i s'adapten a la mida de la teva empresa. Comencem amb projectes petits i d'alt impacte per demostrar valor abans d'escalar.",
+      },
+      {
+        question: "Quina és la inversió inicial necessària?",
+        answer:
+          "Depèn de l'abast del projecte. Oferim des de consultories estratègiques fins a desenvolupaments complets. Sempre busquem que el ROI sigui clar i mesurable des del primer projecte.",
+      },
+      {
+        question: "Com puc començar?",
+        answer:
+          "Agenda una trucada de diagnòstic gratuïta. En 30 minuts entenem la teva situació, identifiquem oportunitats i et proposem un pla d'acció concret sense compromís.",
+      },
+    ],
+  },
+  salud: {
+    badge: "Salut i sanitat",
+    imageAlt: "Transformació de l'atenció sanitària amb IA",
+    headline: "Transforma l'atenció sanitària",
+    description:
+      "La intel·ligència artificial està revolucionant el sector salut, des del diagnòstic fins a la gestió hospitalària. Descobreix com podem ajudar-te a millorar l'atenció al pacient i optimitzar les teves operacions.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 30% menys en costos operatius gràcies a l'automatització de processos administratius",
+      },
+      {
+        title: "Reducció d'errors",
+        description:
+          "Minimitza errors en diagnòstics, prescripcions i gestió d'històrics clínics",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Dades clíniques en temps real per prendre decisions mèdiques amb més precisió i rapidesa",
+      },
+    ],
+    useCasesHighlight: "Salut",
+    casosDeUso: [
+      {
+        title: "Assistents de diagnòstic",
+        description:
+          "IA que ajuda els professionals a interpretar símptomes i suggerir diagnòstics diferencials",
+      },
+      {
+        title: "Automatització administrativa",
+        description:
+          "Gestió automàtica de cites, històrics, informes i documentació clínica",
+      },
+      {
+        title: "Xatbots de triatge",
+        description:
+          "Atenció 24/7 per orientar pacients i derivar segons urgència i especialitat",
+      },
+      {
+        title: "Anàlisi d'històrics",
+        description:
+          "Extracció intel·ligent d'informació clau d'històrics clínics extensos",
+      },
+      {
+        title: "Predicció de demanda",
+        description:
+          "Models que anticipen pics de demanda per optimitzar recursos i personal",
+      },
+      {
+        title: "Coaching i benestar",
+        description:
+          "Aplicacions d'IA conversacional per a suport emocional i seguiment d'hàbits",
+      },
+    ],
+    ctaTitle: "A punt per transformar la teva ",
+    ctaHighlight: "sanitat",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot millorar l'atenció al pacient i optimitzar les teves operacions.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en salut",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en salut. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en el sector salut?",
+        answer:
+          "Podem automatitzar gestió de cites, triatge inicial, documentació clínica, informes mèdics, seguiment de pacients, recordatoris de medicació i anàlisi d'històrics. L'automatització redueix la càrrega administrativa i permet als professionals centrar-se en l'atenció.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA a la salut?",
+        answer:
+          "Millora la precisió diagnòstica, redueix temps d'espera, optimitza la gestió de recursos, facilita el seguiment de pacients crònics i millora l'experiència del pacient. En la majoria de casos, s'aconsegueix un ROI en menys de 12 mesos.",
+      },
+      {
+        question: "Com es garanteix la privacitat de les dades dels pacients?",
+        answer:
+          "Complim estrictament el GDPR, HIPAA i normatives sanitàries locals. Implementem xifratge d'extrem a extrem, anonimització de dades i, quan cal, despleguem models en infraestructura pròpia del client.",
+      },
+      {
+        question: "Quant de temps porta implantar una solució d'IA en salut?",
+        answer:
+          "Depèn del projecte. Xatbots de triatge o automatització administrativa poden estar llestos en 4-8 setmanes. Projectes més complexos com assistents de diagnòstic poden portar entre 3 i 6 mesos.",
+      },
+      {
+        question: "Les solucions s'integren amb sistemes de gestió hospitalària (HIS)?",
+        answer:
+          "Sí. Ens integrem amb els sistemes que ja utilitzes (Epic, Cerner, SAP Healthcare, etc.). Analitzem les teves eines i dissenyem la solució per conviure-hi sense canvis en la teva operativa.",
+      },
+      {
+        question: "La IA pot ajudar amb l'atenció emocional i el coaching?",
+        answer:
+          "Sí. Desenvolupem aplicacions d'IA conversacional amb veu i text que proporcionen suport emocional, seguiment d'hàbits i coaching personalitzat, sempre com a complement a l'atenció professional.",
+      },
+      {
+        question: "Com ajuda la IA en la gestió de documentació clínica?",
+        answer:
+          "Automatitzem la transcripció de consultes, generació d'informes, extracció de dades d'històrics i classificació de documents, reduint fins a un 70% el temps administratiu dels professionals.",
+      },
+      {
+        question: "Què passa si el meu centre és petit?",
+        answer:
+          "Les nostres solucions són escalables i s'adapten a la mida de la teva organització. Comencem amb projectes petits i d'alt impacte per demostrar valor abans d'escalar.",
+      },
+      {
+        question: "Quina és la inversió inicial necessària?",
+        answer:
+          "Depèn de l'abast del projecte. Oferim des de consultories estratègiques fins a desenvolupaments complets. Sempre busquem que el ROI sigui clar i mesurable des del primer projecte.",
+      },
+      {
+        question: "Com puc començar?",
+        answer:
+          "Agenda una trucada de diagnòstic gratuïta. En 30 minuts entenem la teva situació, identifiquem oportunitats i et proposem un pla d'acció concret sense compromís.",
+      },
+    ],
+  },
+  retail: {
+    badge: "Retail i comerç",
+    imageAlt: "Transformació del comerç amb IA",
+    headline: "Transforma el teu comerç amb IA",
+    description:
+      "La intel·ligència artificial està revolucionant el retail. Des de la personalització de l'experiència del client fins a l'optimització de l'inventari, descobreix com les empreses del sector augmenten vendes i fidelitzen clients.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 25% menys en costos operatius gràcies a l'optimització d'inventari i processos",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza ruptures d'estoc, errors en comandes i problemes d'atenció al client",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Dades de vendes i comportament del client en temps real per a decisions estratègiques",
+      },
+    ],
+    useCasesHighlight: "Retail",
+    casosDeUso: [
+      {
+        title: "Personalització d'experiència",
+        description:
+          "Recomanacions de productes basades en comportament i preferències del client",
+      },
+      {
+        title: "Predicció de demanda",
+        description:
+          "Models que anticipen tendències de vendes per optimitzar estoc i compres",
+      },
+      {
+        title: "Atenció al client 24/7",
+        description:
+          "Xatbots intel·ligents que resolen dubtes, gestionen comandes i fidelitzen clients",
+      },
+      {
+        title: "Anàlisi de comportament",
+        description:
+          "Insights sobre patrons de compra per optimitzar distribució, promocions i preus",
+      },
+      {
+        title: "Gestió automatitzada d'inventari",
+        description:
+          "Control intel·ligent d'estoc amb alertes predictives i reposició automàtica",
+      },
+      {
+        title: "Optimització de preus",
+        description:
+          "Pricing dinàmic basat en demanda, competència i marges objectiu",
+      },
+    ],
+    ctaTitle: "A punt per transformar el teu ",
+    ctaHighlight: "retail",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot augmentar les teves vendes i fidelitzar els teus clients.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en retail",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en retail. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en retail?",
+        answer:
+          "Podem automatitzar atenció al client, gestió d'inventari, recomanacions de productes, anàlisi de vendes, predicció de demanda, pricing dinàmic i gestió de comandes. L'automatització millora l'experiència del client i optimitza operacions des del primer mes.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA al comerç?",
+        answer:
+          "Augmenta les vendes mitjançant personalització, redueix ruptures d'estoc, millora la satisfacció del client, optimitza l'inventari i facilita la presa de decisions. En la majoria de casos, s'aconsegueix un ROI en menys de 6 mesos.",
+      },
+      {
+        question: "Cal tenir botiga online per beneficiar-me de la IA?",
+        answer:
+          "No. La IA aporta valor tant en comerç físic com online. A botigues físiques optimitzem inventari, analitzem comportament i millorem l'atenció. A l'ecommerce a més personalitzem l'experiència digital.",
+      },
+      {
+        question: "Quant de temps porta implantar una solució d'IA en retail?",
+        answer:
+          "Depèn del projecte. Xatbots d'atenció o sistemes de recomanació bàsics poden estar llestos en 4-8 setmanes. Projectes més complexos com predicció de demanda poden portar entre 3 i 6 mesos.",
+      },
+      {
+        question: "Les solucions s'integren amb el meu sistema de gestió (ERP, TPV)?",
+        answer:
+          "Sí. Ens integrem amb els sistemes que ja utilitzes (Shopify, WooCommerce, SAP, SAGE, etc.). Analitzem les teves eines i dissenyem la solució per conviure-hi sense canvis en la teva operativa.",
+      },
+      {
+        question: "La IA pot ajudar a fidelitzar clients?",
+        answer:
+          "Sí. Desenvolupem sistemes de recomanació personalitzats, programes de fidelització intel·ligents i comunicacions automatitzades que augmenten la recurrència i el ticket mitjà dels teus clients.",
+      },
+      {
+        question: "Com ajuda la IA en la gestió d'inventari?",
+        answer:
+          "Preveiem demanda per producte i ubicació, generem alertes de reposició, identifiquem productes de baixa rotació i optimitzem l'espai al magatzem i a la botiga. Reduïm fins a un 30% el capital immobilitzat en estoc.",
+      },
+      {
+        question: "Què passa si el meu negoci és petit?",
+        answer:
+          "Les nostres solucions són escalables i s'adapten a la mida del teu negoci. Comencem amb projectes petits i d'alt impacte per demostrar valor abans d'escalar.",
+      },
+      {
+        question: "Quina és la inversió inicial necessària?",
+        answer:
+          "Depèn de l'abast del projecte. Oferim des de consultories estratègiques fins a desenvolupaments complets. Sempre busquem que el ROI sigui clar i mesurable des del primer projecte.",
+      },
+      {
+        question: "Com puc començar?",
+        answer:
+          "Agenda una trucada de diagnòstic gratuïta. En 30 minuts entenem la teva situació, identifiquem oportunitats i et proposem un pla d'acció concret sense compromís.",
+      },
+    ],
+  },
+  finanzas: {
+    badge: "Finances i assegurances",
+    imageAlt: "Optimització de processos financers amb IA",
+    headline: "Optimitza els teus processos financers",
+    description:
+      "La intel·ligència artificial està transformant el sector financer. Des de la detecció de frau fins a l'automatització d'anàlisis, descobreix com les empreses financeres milloren l'eficiència i redueixen riscos.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 40% menys en costos operatius gràcies a l'automatització de processos financers",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza errors en transaccions, informes i compliment normatiu",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Anàlisi predictiva i dades en temps real per a decisions d'inversió i risc més precises",
+      },
+    ],
+    useCasesHighlight: "Finances",
+    casosDeUso: [
+      {
+        title: "Detecció de frau",
+        description:
+          "Models que identifiquen patrons sospitosos i transaccions fraudulentes en temps real",
+      },
+      {
+        title: "Anàlisi predictiva de riscos",
+        description:
+          "Avaluació automàtica de riscos crediticis i d'inversió amb més precisió",
+      },
+      {
+        title: "Automatització d'informes",
+        description:
+          "Generació automàtica d'informes financers, regulatoris i de compliment",
+      },
+      {
+        title: "Atenció al client 24/7",
+        description:
+          "Xatbots especialitzats per a consultes de comptes, productes i operacions bancàries",
+      },
+      {
+        title: "Anàlisi de documentació",
+        description:
+          "Extracció intel·ligent de dades de contractes, pòlisses i documentació legal",
+      },
+      {
+        title: "Conciliació automàtica",
+        description:
+          "Coteig i validació automàtica de transaccions, factures i moviments bancaris",
+      },
+    ],
+    ctaTitle: "A punt per optimitzar les teves ",
+    ctaHighlight: "finances",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot millorar l'eficiència i reduir riscos al teu negoci financer.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en finances",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en finances. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en finances?",
+        answer:
+          "Podem automatitzar conciliació bancària, detecció de frau, anàlisi de riscos, generació d'informes, atenció al client, extracció de dades de documents i compliment normatiu. L'automatització redueix errors i allibera temps operatiu des del primer mes.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA al sector financer?",
+        answer:
+          "Millora la detecció de frau, redueix temps d'anàlisi, optimitza la gestió de riscos, automatitza el compliment regulatori i millora l'experiència del client. En la majoria de casos, s'aconsegueix un ROI en menys de 6 mesos.",
+      },
+      {
+        question: "Com es garanteix la seguretat de les dades financeres?",
+        answer:
+          "Complim estrictament el GDPR, PCI-DSS i normatives financeres. Implementem xifratge d'extrem a extrem, auditoria d'accés i, quan cal, despleguem models en infraestructura pròpia del client.",
+      },
+      {
+        question: "Quant de temps porta implantar una solució d'IA en finances?",
+        answer:
+          "Depèn del projecte. Xatbots d'atenció o automatització d'informes poden estar llestos en 4-8 setmanes. Projectes més complexos com detecció de frau poden portar entre 3 i 6 mesos.",
+      },
+      {
+        question: "Les solucions s'integren amb sistemes bancaris i ERPs?",
+        answer:
+          "Sí. Ens integrem amb core bancaris, ERPs financers (SAP, Oracle, SAGE), plataformes de trading i sistemes de gestió de riscos. Analitzem les teves eines i dissenyem la solució per conviure-hi.",
+      },
+      {
+        question: "La IA pot ajudar amb el compliment normatiu?",
+        answer:
+          "Sí. Automatitzem la generació d'informes regulatoris, monitorització d'operacions sospitoses (AML), verificació d'identitat (KYC) i auditoria de compliment, reduint riscos i costos.",
+      },
+      {
+        question: "Com ajuda la IA en la gestió de documentació financera?",
+        answer:
+          "Automatitzem l'extracció de dades de contractes, factures, pòlisses i documentació legal, classifiquem documents automàticament i facilitem cerques intel·ligents en grans volums d'informació.",
+      },
+      {
+        question: "Què passa si la meva empresa financera és petita?",
+        answer:
+          "Les nostres solucions són escalables i s'adapten a la mida de la teva organització. Comencem amb projectes petits i d'alt impacte per demostrar valor abans d'escalar.",
+      },
+      {
+        question: "Quina és la inversió inicial necessària?",
+        answer:
+          "Depèn de l'abast del projecte. Oferim des de consultories estratègiques fins a desenvolupaments complets. Sempre busquem que el ROI sigui clar i mesurable des del primer projecte.",
+      },
+      {
+        question: "Com puc començar?",
+        answer:
+          "Agenda una trucada de diagnòstic gratuïta. En 30 minuts entenem la teva situació, identifiquem oportunitats i et proposem un pla d'acció concret sense compromís.",
+      },
+    ],
+  },
+  tecnologia: {
+    badge: "Tecnologia i programari",
+    imageAlt: "Acceleració del desenvolupament tecnològic amb IA",
+    headline: "Accelera el teu desenvolupament amb IA",
+    description:
+      "La intel·ligència artificial està transformant el sector tecnològic. Des de l'automatització del desenvolupament fins a l'optimització d'infraestructura, descobreix com les empreses tech milloren la productivitat i la qualitat del programari.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 40% menys en costos de desenvolupament gràcies a l'automatització i l'optimització",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza bugs, vulnerabilitats i problemes de rendiment abans de producció",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Anàlisi de codi i mètriques en temps real per prendre decisions tècniques amb confiança",
+      },
+    ],
+    useCasesHighlight: "Tecnologia",
+    casosDeUso: [
+      {
+        title: "Assistents de codi",
+        description:
+          "Copilots d'IA que acceleren el desenvolupament, suggereixen solucions i documenten codi automàticament",
+      },
+      {
+        title: "Detecció de bugs",
+        description:
+          "Anàlisi automàtica de codi per identificar errors, vulnerabilitats i code smells",
+      },
+      {
+        title: "Generació de tests",
+        description:
+          "Creació automàtica de tests unitaris i d'integració basats en el codi existent",
+      },
+      {
+        title: "Documentació automàtica",
+        description:
+          "Generació de documentació tècnica, APIs i comentaris de codi amb IA",
+      },
+      {
+        title: "Monitorització predictiva",
+        description:
+          "Predicció de fallades en infraestructura i aplicacions abans que passin",
+      },
+      {
+        title: "Code reviews automàtics",
+        description:
+          "Revisió intel·ligent de pull requests amb suggeriments de millora i detecció de problemes",
+      },
+    ],
+    ctaTitle: "A punt per accelerar el teu ",
+    ctaHighlight: "desenvolupament",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot potenciar el teu equip de desenvolupament i la qualitat del programari.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en tecnologia",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en tecnologia. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en empreses de tecnologia?",
+        answer:
+          "Podem automatitzar generació de codi, revisió de PRs, testing, documentació, desplegaments, monitorització d'infraestructura i atenció al client tècnic. L'automatització accelera el desenvolupament i millora la qualitat des del primer dia.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA al desenvolupament de programari?",
+        answer:
+          "Augmenta la velocitat de desenvolupament, redueix bugs en producció, millora la qualitat del codi, facilita l'onboarding de nous desenvolupadors i optimitza el rendiment de les aplicacions. En la majoria de casos, s'aconsegueix un ROI en menys de 3 mesos.",
+      },
+      {
+        question: "Els assistents d'IA substitueixen els desenvolupadors?",
+        answer:
+          "No. Els assistents d'IA potencien els desenvolupadors, alliberant-los de tasques repetitives perquè puguin centrar-se a resoldre problemes complexos i dissenyar arquitectures. Són eines, no substituts.",
+      },
+      {
+        question: "Quant de temps porta implantar solucions d'IA en desenvolupament?",
+        answer:
+          "Assistents de codi i eines de revisió poden estar llestos en 1-2 setmanes. Projectes més complexos com sistemes de testing automàtic o monitorització predictiva poden portar entre 4 i 12 setmanes.",
+      },
+      {
+        question: "Les solucions s'integren amb el nostre stack tecnològic actual?",
+        answer:
+          "Sí. Ens integrem amb Git, pipelines CI/CD, IDEs, eines de testing i plataformes cloud que ja utilitzeu. Analitzem el vostre stack i dissenyem la solució per encaixar-hi perfectament.",
+      },
+      {
+        question: "Com es garanteix la seguretat del codi i la propietat intel·lectual?",
+        answer:
+          "Treballem amb models privats quan cal, implementem anàlisi local de codi i garantim que el vostre codi mai s'utilitza per entrenar models públics. Complim les polítiques de seguretat més estrictes.",
+      },
+      {
+        question: "La IA pot ajudar amb codi legacy?",
+        answer:
+          "Sí. Desenvolupem eines per documentar codi legacy, identificar dependències crítiques, suggerir refactoritzacions i facilitar la migració a noves tecnologies. Reduïm el risc de treballar amb codi antic.",
+      },
+      {
+        question: "Què passa si el meu equip de desenvolupament és petit?",
+        answer:
+          "Les nostres solucions són escalables i especialment valuoses per a equips petits que necessiten multiplicar la productivitat. Comencem amb eines d'alt impacte que s'integren fàcilment al vostre flux de treball.",
+      },
+      {
+        question: "Quina és la inversió inicial necessària?",
+        answer:
+          "Depèn de l'abast del projecte. Oferim des de consultories per identificar oportunitats fins a implementació completa d'eines. Sempre busquem que el ROI sigui clar i mesurable des del primer sprint.",
+      },
+      {
+        question: "Com puc començar?",
+        answer:
+          "Agenda una trucada de diagnòstic gratuïta. En 30 minuts entenem el vostre stack, identifiquem oportunitats d'automatització i us proposem un pla d'acció concret sense compromís.",
+      },
+    ],
+  },
+  educacion: {
+    badge: "Educació i formació",
+    imageAlt: "Revolució de l'aprenentatge amb IA",
+    headline: "Revoluciona l'aprenentatge amb IA",
+    description:
+      "La intel·ligència artificial està transformant l'educació. Des de la personalització de l'aprenentatge fins a l'automatització de tasques administratives, descobreix com les institucions educatives milloren els resultats i l'experiència dels estudiants.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 30% menys en costos operatius gràcies a l'automatització de processos administratius",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza errors en avaluacions, gestió acadèmica i seguiment d'estudiants",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Dades de rendiment i progrés en temps real per a decisions pedagògiques més efectives",
+      },
+    ],
+    useCasesHighlight: "Educació",
+    casosDeUso: [
+      {
+        title: "Personalització de l'aprenentatge",
+        description:
+          "Sistemes que adapten continguts i ritme segons el nivell i l'estil de cada estudiant",
+      },
+      {
+        title: "Tutors virtuals 24/7",
+        description:
+          "Assistents d'IA que resolen dubtes, expliquen conceptes i guien l'aprenentatge",
+      },
+      {
+        title: "Correcció automàtica",
+        description:
+          "Avaluació intel·ligent d'exàmens, treballs i exercicis amb feedback personalitzat",
+      },
+      {
+        title: "Anàlisi de rendiment",
+        description:
+          "Detecció primerenca de dificultats i predicció de risc d'abandonament escolar",
+      },
+      {
+        title: "Gestió de continguts",
+        description:
+          "Organització intel·ligent de materials didàctics i generació de recursos personalitzats",
+      },
+      {
+        title: "Traducció i accessibilitat",
+        description:
+          "Traducció automàtica de materials i adaptació per a estudiants amb necessitats especials",
+      },
+    ],
+    ctaTitle: "A punt per revolucionar la teva ",
+    ctaHighlight: "educació",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot millorar l'experiència educativa i optimitzar la gestió de la teva institució.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en educació",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en educació. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en institucions educatives?",
+        answer:
+          "Podem automatitzar correcció d'exàmens, atenció a consultes d'estudiants, generació de materials didàctics, seguiment de progrés, gestió de matrícules, comunicació amb famílies i anàlisi de rendiment. L'automatització allibera temps perquè el docent es centri en l'ensenyament.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA a l'educació?",
+        answer:
+          "Millora els resultats d'aprenentatge mitjançant personalització, redueix la càrrega administrativa del professorat, facilita la detecció primerenca de dificultats, augmenta l'engagement dels estudiants i optimitza la gestió de recursos. En la majoria de casos, s'aconsegueix un ROI en menys de 12 mesos.",
+      },
+      {
+        question: "La IA pot substituir els professors?",
+        answer:
+          "No. La IA és una eina que complementa i potencia la feina del docent, automatitzant tasques repetitives i proporcionant insights, però el rol humà a l'educació és insubstituïble per a la motivació, l'empatia i la guia pedagògica.",
+      },
+      {
+        question: "Quant de temps porta implantar una solució d'IA en educació?",
+        answer:
+          "Depèn del projecte. Tutors virtuals o sistemes de correcció automàtica poden estar llestos en 4-8 setmanes. Projectes més complexos com plataformes d'aprenentatge adaptatiu poden portar entre 3 i 6 mesos.",
+      },
+      {
+        question: "Les solucions s'integren amb plataformes educatives (LMS, Moodle)?",
+        answer:
+          "Sí. Ens integrem amb les plataformes que ja utilitzes (Moodle, Canvas, Blackboard, Google Classroom, etc.). Analitzem les teves eines i dissenyem la solució per conviure-hi sense canvis en la teva operativa.",
+      },
+      {
+        question: "Com es garanteix la privacitat de les dades dels estudiants?",
+        answer:
+          "Complim estrictament el GDPR i normatives de protecció de menors. Implementem xifratge, anonimització de dades sensibles i, quan cal, despleguem models en infraestructura pròpia de la institució.",
+      },
+      {
+        question: "La IA pot ajudar estudiants amb necessitats especials?",
+        answer:
+          "Sí. Desenvolupem eines d'accessibilitat com transcripció automàtica, lectura de textos, traducció a llengua de signes i adaptació de continguts segons necessitats individuals, facilitant la inclusió educativa.",
+      },
+      {
+        question: "Què passa si el meu centre educatiu és petit?",
+        answer:
+          "Les nostres solucions són escalables i s'adapten a la mida de la teva institució. Comencem amb projectes petits i d'alt impacte per demostrar valor abans d'escalar.",
+      },
+      {
+        question: "Quina és la inversió inicial necessària?",
+        answer:
+          "Depèn de l'abast del projecte. Oferim des de consultories estratègiques fins a desenvolupaments complets. Sempre busquem que el ROI sigui clar i mesurable des del primer projecte.",
+      },
+      {
+        question: "Com puc començar?",
+        answer:
+          "Agenda una trucada de diagnòstic gratuïta. En 30 minuts entenem la teva situació, identifiquem oportunitats i et proposem un pla d'acció concret sense compromís.",
+      },
+    ],
+  },
+  energia: {
+    badge: "Energia i utilities",
+    imageAlt: "Optimització de la gestió energètica amb IA",
+    headline: "Optimitza la teva gestió energètica",
+    description:
+      "La intel·ligència artificial està transformant el sector energètic. Des de la predicció de consum fins a l'optimització de xarxes, descobreix com les empreses del sector redueixen costos i milloren l'eficiència operativa.",
+    beneficios: [
+      {
+        title: "Reducció de costos",
+        description:
+          "Fins a un 30% menys en costos operatius gràcies a l'optimització del consum i la producció",
+      },
+      {
+        title: "Reducció d'errors i incidències",
+        description:
+          "Minimitza fallades a la xarxa, detecta anomalies i prevé interrupcions del servei",
+      },
+      {
+        title: "Millors decisions",
+        description:
+          "Dades en temps real de producció i consum per a decisions estratègiques amb confiança",
+      },
+    ],
+    useCasesHighlight: "Energia",
+    casosDeUso: [
+      {
+        title: "Predicció de consum",
+        description:
+          "Models que anticipen la demanda energètica per zona, horari i condicions climàtiques",
+      },
+      {
+        title: "Optimització de xarxes",
+        description:
+          "Algoritmes que equilibren la distribució d'energia i redueixen pèrdues a la xarxa",
+      },
+      {
+        title: "Manteniment predictiu",
+        description:
+          "Detecció primerenca de fallades en infraestructura per evitar interrupcions del servei",
+      },
+      {
+        title: "Gestió de renovables",
+        description:
+          "Optimització de producció solar i eòlica basada en prediccions meteorològiques",
+      },
+      {
+        title: "Facturació intel·ligent",
+        description:
+          "Automatització de lectures, càlculs i emissió de factures amb detecció d'anomalies",
+      },
+      {
+        title: "Atenció al client 24/7",
+        description:
+          "Xatbots per gestionar consultes sobre consum, tarifes i avaries en temps real",
+      },
+    ],
+    ctaTitle: "A punt per optimitzar la teva ",
+    ctaHighlight: "gestió energètica",
+    ctaTitleSuffix: "?",
+    ctaSubtitle:
+      "Agenda una consulta gratuïta i descobreix com la IA pot millorar l'eficiència de la teva xarxa i reduir costos.",
+    faqSubtitle: "Tot el que necessites saber sobre IA en energia",
+    pioneerText:
+      "Encara no tenim un cas d'èxit publicat en energia. Sigues el primer i obté condicions especials.",
+    faqs: [
+      {
+        question: "Quin tipus de processos es poden automatitzar en el sector energètic?",
+        answer:
+          "Podem automatitzar predicció de demanda, gestió de xarxes, manteniment d'infraestructura, facturació, atenció al client, monitorització de consum i optimització de producció renovable. L'automatització millora l'eficiència i redueix interrupcions des del primer mes.",
+      },
+      {
+        question: "Quins beneficis concrets aporta la IA a l'energia?",
+        answer:
+          "Millora l'estabilitat de la xarxa, redueix pèrdues de distribució, optimitza la producció renovable, anticipa fallades d'infraestructura i millora l'experiència del client. En la majoria de casos, s'aconsegueix un ROI en menys de 12 mesos.",
+      },
+      {
+        question: "Cal tenir dades històriques per implementar IA?",
+        answer:
+          "És recomanable, però no imprescindible. Comencem analitzant les teves dades actuals i, si cal, dissenyem una fase de recollida d'informació abans d'entrenar models predictius.",
+      },
+      {
+        question: "Quant de temps porta implantar una solució d'IA en energia?",
+        answer:
+          "Depèn del projecte. Xatbots d'atenció o automatització de facturació poden estar llestos en 4-8 setmanes. Projectes més complexos com predicció de demanda poden portar entre 3 i 9 mesos.",
+      },
+      {
+        question: "Les solucions s'integren amb sistemes SCADA i de gestió energètica?",
+        answer:
+          "Sí. Ens integrem amb sistemes SCADA, sistemes de gestió de xarxa, ERPs energètics i plataformes de monitorització. Analitzem les teves eines i dissenyem la solució per conviure-hi sense canvis en la teva operativa.",
+      },
+      {
+        question: "La IA pot ajudar amb la gestió d'energies renovables?",
+        answer:
+          "Sí. Desenvolupem models de predicció de producció solar i eòlica, algoritmes d'optimització d'emmagatzematge i sistemes de gestió intel·ligent de microxarxes per maximitzar l'ús de renovables.",
+      },
+      {
+        question: "Com ajuda la IA en el manteniment d'infraestructura?",
+        answer:
+          "Implementem manteniment predictiu que analitza dades de sensors, històrics d'avaries i condicions operatives per anticipar fallades en transformadors, línies i equips, reduint fins a un 40% les interrupcions no planificades.",
+      },
+      {
+        question: "Què passa si la meva empresa energètica és petita o mitjana?",
+        answer:
+          "Les nostres solucions són escalables i s'adapten a la mida de la teva organització. Comencem amb projectes petits i d'alt impacte per demostrar valor abans d'escalar.",
+      },
+      {
+        question: "Quina és la inversió inicial necessària?",
+        answer:
+          "Depèn de l'abast del projecte. Oferim des de consultories estratègiques fins a desenvolupaments complets. Sempre busquem que el ROI sigui clar i mesurable des del primer projecte.",
+      },
+      {
+        question: "Com puc començar?",
+        answer:
+          "Agenda una trucada de diagnòstic gratuïta. En 30 minuts entenem la teva situació, identifiquem oportunitats i et proposem un pla d'acció concret sense compromís.",
+      },
+    ],
+  },
+}
+
+export const industriasTranslations = { es, en, ca }

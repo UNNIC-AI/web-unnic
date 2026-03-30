@@ -194,4 +194,102 @@ const en: typeof es = {
   },
 }
 
-export const desarrolloTranslations = { es, en }
+const ca: typeof es = {
+  hero: {
+    titlePrefix: "El teu programari, ",
+    titleHighlight: "exactament com el necessites",
+    subtitle:
+      "Quan la solució requereix codi a mida, construïm exactament el que la teva empresa necessita. Sense plantilles, sense limitacions.",
+    ctaPrimary: "Explica'ns-ho",
+    ctaSecondary: "Veure portfolio",
+  },
+  noLockIn: {
+    title: "Sense lligams ",
+    titleHighlight: "tecnològics",
+    subtitle:
+      "Treballem amb l'stack que millor s'adapta al problema, no a l'inrevés. Triem la tecnologia segons les necessitats reals del client: infraestructura, equip, pressupost i escalabilitat.",
+    cards: [
+      { label: "Infraestructura", desc: "Cloud, on-premise o híbrid segons les teves necessitats" },
+      { label: "Equip", desc: "Ens adaptem al teu stack actual o proposem el més adequat" },
+      { label: "Escalabilitat", desc: "Arquitectures que creixen amb tu sense reescriure-ho tot" },
+    ],
+  },
+  techCarousel: {
+    subtitle: "Treballem amb les millors tecnologies del mercat",
+  },
+  whatWeBuild: {
+    title: "Què construïm?",
+    subtitle:
+      "Quatre línies de desenvolupament on tenim experiència provada i resultats reals.",
+    items: [
+      {
+        title: "SaaS escalable",
+        description:
+          "Aplicacions web amb milers d'usuaris concurrents i arquitectura preparada per créixer.",
+      },
+      {
+        title: "APIs i microserveis",
+        description:
+          "Backends robustos, segurs i documentats que el teu frontend o tercers poden consumir.",
+      },
+      {
+        title: "Integracions complexes",
+        description:
+          "Connectem els teus sistemes interns amb plataformes externes: sincronització, webhooks, ETL.",
+      },
+      {
+        title: "Aplicacions en temps real",
+        description:
+          "Xats, col·laboració en viu, notificacions i panells que reaccionen a l'instant.",
+      },
+    ],
+  },
+  howWeWork: {
+    title: "Com treballem",
+    subtitle:
+      "Un procés estructurat perquè cada euro invertit en desenvolupament tingui retorn mesurable.",
+    steps: [
+      {
+        title: "Anàlisi de requisits",
+        description: "Entenem el problema real abans d'escriure una línia de codi",
+      },
+      {
+        title: "Arquitectura tècnica",
+        description: "Triem l'stack adequat al problema, no a l'inrevés",
+      },
+      {
+        title: "Desenvolupament àgil",
+        description: "Sprints amb demos periòdiques perquè el client validi a cada pas",
+      },
+      {
+        title: "Desplegament",
+        description: "On premise, cloud o híbrid segons les teves necessitats",
+      },
+      {
+        title: "Suport i evolució",
+        description: "Mantenim i escalem la solució a mesura que creix la teva empresa",
+      },
+    ],
+  },
+  cta: {
+    title: "Tens un projecte en ment?",
+    subtitle:
+      "Explica'ns-ho. En una primera trucada et direm si té sentit tècnic i quant costaria construir-ho.",
+    ctaPrimary: "Explica'ns-ho",
+    ctaSecondary: "Veure tots els serveis",
+  },
+  caseStudy: {
+    title: "Cas d'èxit",
+    subtitle:
+      "Descobreix com vam ajudar Catalonia Ceramic a transformar les seves operacions amb desenvolupament a mida",
+    industryLabel: "Indústria:",
+    yearLabel: "Any:",
+    serviceLabel: "Servei:",
+    challengeTitle: "El repte",
+    solutionTitle: "La solució",
+    resultsTitle: "Els resultats",
+    viewFullCase: "Veure el cas complet",
+  },
+}
+
+export const desarrolloTranslations = { es, en, ca }

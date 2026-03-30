@@ -240,4 +240,125 @@ const en: typeof es = {
   ],
 }
 
-export const consultoriaTranslations = { es, en }
+const ca: typeof es = {
+  meta: {
+    serviceName: "Consultoria estratègica en IA",
+    serviceDescription:
+      "Consultoria experta en intel·ligència artificial per transformar la teva empresa. Estratègia, casos d'ús i full de ruta personalitzat per implementar IA amb ROI garantit.",
+    serviceType: "Consultoria en intel·ligència artificial",
+  },
+  hero: {
+    titlePrefix: "Comença amb ",
+    titleHighlight: "Estratègia",
+    subtitle:
+      "La IA sense estratègia és només tecnologia. Dissenyem el camí perquè generi impacte real al teu negoci.",
+    scrollCta: "Veure com",
+  },
+  plan: {
+    titleHighlight: "Un pla Únnic",
+    titleSuffix: "per a la teva empresa",
+    subtitle:
+      "Identifiquem on la IA pot generar impacte real al teu negoci i traçem el camí per aconseguir-ho",
+  },
+  cta: {
+    line1: "La IA és aquí per quedar-se...",
+    line2: "No és qüestió de fer-ho,",
+    line3: "Sinó de quan.",
+    button: "Vull començar",
+  },
+  methodology: {
+    kicker: "La nostra metodologia",
+    titlePrefix: "El mètode",
+    titleHighlight: "OptimIA",
+    subtitle:
+      "Un procés provat en més de 50 empreses per implementar IA amb èxit. Cinc fases que garanteixen resultats mesurables i sostenibles.",
+  },
+  phaseLabel: "Fase",
+  deliverablesLabel: "Lliurables",
+  timelineSteps: [
+    {
+      title: "Anàlisi",
+      description: "Explorem els teus processos, sistemes i manera de treballar per detectar oportunitats reals",
+    },
+    {
+      title: "Diagnòstic",
+      description: "Convertim els problemes en projectes realitzables amb viabilitat tècnica i de negoci",
+    },
+    {
+      title: "Disseny",
+      description: "Creem el teu pla d'implementació a mida amb fases, temps i pressupostos tancats",
+    },
+    {
+      title: "Implantació",
+      description: "Desenvolupem i integrem les teves solucions amb metodologia àgil i comunicació contínua",
+    },
+    {
+      title: "Seguiment",
+      description: "Mesurem, optimitzem i escalem la IA a tota la teva organització",
+    },
+  ],
+  phases: [
+    {
+      title: "Anàlisi",
+      subtitle: "Coneixem el teu negoci de debò",
+      description:
+        "Realitzem una exploració profunda dels teus processos, sistemes i manera de treballar. Entenem què et frena, on es perd temps i quines oportunitats hi ha perquè la IA generi impacte real des del primer dia.",
+      deliverables: [
+        "Informes detallats per departament",
+        "Avaluació de sistemes i eines actuals",
+        "Inventari de dades i fonts disponibles",
+        "Identificació d'oportunitats reals de millora",
+      ],
+    },
+    {
+      title: "Diagnòstic",
+      subtitle: "Convertim els problemes en projectes realitzables",
+      description:
+        "Transformem tot l'analitzat en oportunitats concretes d'IA i automatització. Avaluem la viabilitat tècnica i de negoci de cada iniciativa, prioritzant les de major impacte i menor complexitat.",
+      deliverables: [
+        "Llista prioritzada de projectes d'IA",
+        "Viabilitat tècnica i operativa per projecte",
+        "Viabilitat de negoci i retorn estimat",
+        "Matriu d'impacte–benefici",
+      ],
+    },
+    {
+      title: "Disseny",
+      subtitle: "Creem el teu pla d'implementació a mida",
+      description:
+        "Definim com s'executaran els projectes seleccionats. Ordenem fases, estimem temps, tanquem pressupostos i establim els recursos necessaris per dur-ho a terme amb èxit.",
+      deliverables: [
+        "Full de ruta d'implantació per fases",
+        "Pressupost tancat i planificat",
+        "Pla de recursos, rols i equip necessari",
+        "Cronograma detallat d'execució",
+      ],
+    },
+    {
+      title: "Implantació",
+      subtitle: "Construïm i integrem les teves solucions",
+      description:
+        "Desenvolupem i despleguem les solucions definides, amb metodologia àgil i comunicació contínua. Ens integrem amb els teus sistemes actuals perquè la transició sigui fluida i sense interrupcions.",
+      deliverables: [
+        "Desenvolupament iteratiu amb demos periòdiques",
+        "Integració amb els teus sistemes actuals",
+        "Testing avançat i validació funcional",
+        "Formació per al teu equip intern",
+      ],
+    },
+    {
+      title: "Seguiment",
+      subtitle: "Mesurem, optimitzem i escalem la teva IA",
+      description:
+        "Monitoritzem el rendiment de les solucions implementades i t'acompanyem per seguir millorant. Ajustem models, optimitzem processos i t'ajudem a escalar la IA a tota l'organització.",
+      deliverables: [
+        "Panell de KPIs i resultats en temps real",
+        "Informes mensuals d'evolució",
+        "Propostes de millora contínua",
+        "Suport tècnic i acompanyament",
+      ],
+    },
+  ],
+}
+
+export const consultoriaTranslations = { es, en, ca }

@@ -263,4 +263,140 @@ const en: typeof es = {
   },
 }
 
-export const serviciosTranslations = { es, en }
+const ca: typeof es = {
+  hero: {
+    titleWord1: "Rendible",
+    separator1: ", ",
+    titleWord2: "Segura",
+    separator2: " i ",
+    titleWord3: "Escalable",
+    subtitle:
+      "Apliquem IA de forma pràctica a la teva empresa: ajudem el teu equip a millorar processos, reduir costos i veure resultats reals de manera segura",
+    scrollCta: "Veure com",
+  },
+  consultoria: {
+    badge: "CONSULTORIA",
+    titleHighlight: "Primer,",
+    titleRest: "la teva Estratègia",
+    subtitle:
+      "Identifiquem on la IA pot generar impacte real al teu negoci i traçem el camí per aconseguir-ho",
+    timelineSteps: [
+      {
+        title: "Anàlisi",
+        description: "Comprendem els teus objectius, processos i dades per detectar àrees de millora",
+      },
+      {
+        title: "Diagnòstic",
+        description: "Transformem aquestes àrees en projectes d'IA viables, definits tècnica i econòmicament",
+      },
+      {
+        title: "Disseny",
+        description: "Validem els projectes, tanquem pressupostos i creem el pla d'implementació",
+      },
+    ],
+    actionPlanTitle: "Crea el teu ",
+    actionPlanHighlight: "pla d'acció",
+    actionPlanSubtitle: "Amb projectes definits, prioritzats i pressupostats llestos per executar",
+    deliverablesLabel: "El que obtens",
+    deliverables: [
+      { title: "Diagnòstic complet", desc: "Anàlisi detallada de la teva situació actual" },
+      { title: "Projectes d'alt impacte", desc: "Oportunitats prioritzades per ROI" },
+      { title: "Inversió clara", desc: "Pressupost i cronograma definits" },
+    ],
+    ctaButton: "Agendar anàlisi",
+    moreLink: "Més sobre consultoria",
+  },
+  implementacion: {
+    badge: "IMPLEMENTACIÓ",
+    titlePrefix: "Projectes ",
+    titleHighlight: "100 % a mida",
+    subtitle: "Un procés provat que garanteix resultats des de la primera fase",
+    steps: [
+      { title: "Anàlisi", desc: "Entenem el teu negoci i els teus objectius" },
+      { title: "Disseny", desc: "Arquitectura tècnica i prototipatge" },
+      { title: "Desenvolupament", desc: "Sprints amb lliuraments freqüents" },
+      { title: "Desplegament", desc: "Producció i integració" },
+      { title: "Suport", desc: "Manteniment i evolució contínua" },
+    ],
+    areas: [
+      { title: "IA generativa", desc: "Agents d'IA, trucades amb IA, sistemes RAG" },
+      { title: "Automatitzacions", desc: "N8n, PowerAutomate, RPA a mida" },
+      { title: "Data i BI", desc: "Power BI, estudis de dades, models predictius" },
+      { title: "Desenvolupament", desc: "Apps web, programari ad hoc, integracions" },
+    ],
+    learnMore: "Saber-ne més",
+    ctaButton: "Explica'ns el teu projecte",
+  },
+  bannerCta: {
+    title: "Tens un projecte en ment?",
+    subtitle: "Deixa'ns el teu contacte i et respondrem en menys de 24 h",
+    placeholder: "El teu correu o telèfon",
+    sending: "Enviant...",
+    submitButton: "Et contactem",
+    consentText: "Autoritzo el tractament de dades segons la ",
+    consentLink: "política de privacitat",
+    successMessage: "Missatge enviat! Et contactarem aviat.",
+    genericError: "S'ha produït un error. Si us plau, torna-ho a intentar.",
+    footerText: "Sense compromís. Volem conèixer el teu projecte.",
+    consentError: "Has d'acceptar el tractament de dades per continuar",
+    submitError: "Error en enviar el missatge. Si us plau, torna-ho a intentar.",
+    connectionError: "Error de connexió. Si us plau, torna-ho a intentar.",
+    formSubject: "Nou contacte des de Serveis - Unnic AI",
+    formConsent: "Sí, autoritzo el tractament de dades",
+  },
+  formacion: {
+    badge: "FORMACIÓ",
+    titlePrefix: "Forma el teu equip ",
+    titleHighlight: "amb experts",
+    imageAlt: "Formació en IA per a equips",
+    imageCaption: "Formació pràctica i adaptada al teu negoci",
+    features: [
+      { title: "Enfocament pràctic", desc: "Casos reals i exercicis aplicables des del primer dia" },
+      { title: "Orientat al teu negoci", desc: "Contingut adaptat al teu sector i als teus objectius" },
+      { title: "Visió estratègica", desc: "No només eines, sinó com aplicar-les amb impacte" },
+    ],
+    coursesTitle: "Els nostres cursos",
+    courses: [
+      {
+        name: "Introducció a la IA",
+        desc: "Fonaments d'intel·ligència artificial per a qualsevol perfil professional",
+      },
+      { name: "IA per a directius", desc: "Presa de decisions estratègiques amb intel·ligència artificial" },
+      { name: "IA per a comercials", desc: "Potencia les teves vendes amb eines d'IA" },
+      { name: "IA per a màrqueting", desc: "Automatitza i optimitza les teves campanyes de màrqueting" },
+      { name: "IA per a RRHH", desc: "Gestió del talent i processos de selecció amb IA" },
+      { name: "IA per a finances", desc: "Anàlisi financera i predicció amb machine learning" },
+      {
+        name: "IA per a desenvolupadors",
+        desc: "Integració de models i APIs d'IA als teus projectes",
+      },
+      { name: "Ad hoc", desc: "Formació personalitzada segons les teves necessitats específiques" },
+    ],
+    learnMore: "Saber-ne més",
+    ctaButton: "Sol·licita una formació",
+    ctaButtonAlt: "Formació personalitzada",
+  },
+  ria: {
+    badge: "COMPLIMENT RIA",
+    titlePrefix: "Transformació ",
+    titleHighlight: "segura i legal",
+    subtitle: "Impulsa la IA a la teva empresa complint el Reglament Europeu",
+    timelineSteps: [
+      { title: "Diagnòstic i formació directiva", desc: "Identificació dels usos actuals i alineació estratègica" },
+      { title: "Responsables i control", desc: "Estructura de governança i registre centralitzat" },
+      { title: "Avaluació de riscos", desc: "Anàlisi legal, ètica i de protecció de dades" },
+      { title: "Guia interna i formació", desc: "Polítiques documentades i capacitació operativa" },
+      { title: "Supervisió contínua", desc: "Manteniment actualitzat i millora progressiva" },
+    ],
+    benefitsTitle: "Què aconsegueixes?",
+    benefits: [
+      { title: "Compliment total", desc: "Alineació amb el Reglament Europeu d'IA" },
+      { title: "Reducció de riscos", desc: "Mitigació de sancions i problemes legals" },
+      { title: "Cultura i confiança", desc: "Genera confiança en l'ús responsable de la IA" },
+    ],
+    ctaButton: "Vull protegir la meva empresa",
+    moreLink: "Més sobre la RIA",
+  },
+}
+
+export const serviciosTranslations = { es, en, ca }

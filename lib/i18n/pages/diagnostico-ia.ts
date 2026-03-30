@@ -718,4 +718,380 @@ const en: typeof es = {
   ],
 }
 
-export const diagnosticoIaTranslations = { es, en }
+const ca: typeof es = {
+  hero: {
+    badge: "Completa en ~6 minuts",
+    title: "Diagnòstic inicial d'IA",
+    ctaButton: "Començar el diagnòstic",
+    privacyNote: "Les teves dades estan protegides i no es compartiran amb tercers.",
+  },
+  benefits: [
+    {
+      title: "Coneix el teu nivell de maduresa",
+      description:
+        "Descobreix en quin punt està la teva empresa respecte a l'adopció d'IA i compara't amb el teu sector.",
+    },
+    {
+      title: "Identifica oportunitats",
+      description:
+        "Detecta les àrees del teu negoci on la IA pot generar més impacte i ROI.",
+    },
+    {
+      title: "Rep recomanacions",
+      description:
+        "Obtén un pla d'acció amb els propers passos concrets per a la teva transformació.",
+    },
+    {
+      title: "Informe executiu gratuït",
+      description:
+        "Descarrega un document professional que pots compartir amb el teu equip directiu.",
+    },
+  ],
+  faq: {
+    title1: "Preguntes",
+    titleHighlight: "freqüents",
+    subtitle:
+      "Tot el que necessites saber abans de fer el diagnòstic de maduresa en IA.",
+    ctaButton: "Començar el diagnòstic",
+    items: [
+      {
+        question: "Quant de temps triga el diagnòstic?",
+        answer:
+          "El qüestionari es completa en aproximadament 5 minuts. Les preguntes són de selecció múltiple i estan pensades per respondre-les amb agilitat sense necessitat de consultar dades.",
+      },
+      {
+        question: "Quina informació necessito per completar-lo?",
+        answer:
+          "No cal preparar cap document. Les preguntes tracten la situació general de la teva empresa: estratègia, processos, tecnologia i cultura organitzativa respecte a la IA.",
+      },
+      {
+        question: "Les meves dades estan segures?",
+        answer:
+          "Absolutament. Les teves respostes es tracten de manera confidencial i només s'utilitzen per generar el teu diagnòstic personalitzat. Complim el RGPD i no compartim informació amb tercers.",
+      },
+      {
+        question: "El diagnòstic té algun cost?",
+        answer:
+          "No, el diagnòstic inicial és completament gratuït. És la nostra manera d'ajudar-te a fer el primer pas en la teva transformació amb IA.",
+      },
+      {
+        question: "Què inclou l'informe que rebré?",
+        answer:
+          "L'informe inclou: la teva puntuació de maduresa en IA, anàlisi per cada àrea avaluada (estratègia, governança, operativa, tecnologia i cultura), i recomanacions prioritzades amb els següents passos.",
+      },
+    ],
+  },
+  overlay: {
+    closeAriaLabel: "Tancar el formulari",
+    prevButton: "Anterior",
+    pressEnter: "Prem",
+    enterKey: "Retorn",
+    toContinue: "per continuar",
+  },
+  intro: {
+    kicker: "Diagnòstic de maduresa en IA",
+    title: "Aquest diagnòstic val el que tu hi posis.",
+    description:
+      "Darrere de cada pregunta hi ha anys d'experiència ajudant empreses a integrar la intel·ligència artificial de manera real i rendible. No és un qüestionari genèric: cada resposta alimenta una anàlisi feta pel nostre equip.",
+    bullet1Title: "Sigues honest.",
+    bullet1Text:
+      "No hi ha respostes correctes ni incorrectes. Com més reflecteixi la teva situació real, més útil serà l'informe.",
+    bullet2Title: "Pren-te el teu temps.",
+    bullet2Text:
+      "Són preguntes sobre la realitat de la teva empresa. Val la pena pensar cada resposta.",
+    bullet3Title: "El resultat és accionable.",
+    bullet3Text:
+      "Rebràs un informe amb el teu nivell de maduresa, àrees de millora prioritàries i passos concrets.",
+    startButton: "Començar el diagnòstic",
+  },
+  nombre: {
+    kicker: "Comencem",
+    title: "Com et dius?",
+    subtitle: "Ho farem servir per personalitzar el teu informe.",
+    placeholder: "Ex.: Steve Jobs",
+    continueButton: "Continuar",
+    error: "El nom és obligatori",
+  },
+  empresa: {
+    kicker: "Sobre la teva empresa",
+    title: "Com es diu la teva empresa?",
+    subtitleTemplate: "El diagnòstic es personalitzarà per a {name}.",
+    subtitleFallback: "la teva empresa",
+    placeholder: "Ex.: Apple Inc.",
+    continueButton: "Continuar",
+    error: "El nom de l'empresa és obligatori",
+  },
+  empleados: {
+    kicker: "Mida",
+    titleTemplate: "Quantes persones treballen a {company}?",
+    titleFallback: "la teva empresa",
+    error: "Selecciona el nombre d'empleats",
+    options: [
+      { value: "1-10", label: "1-10 empleats" },
+      { value: "11-50", label: "11-50 empleats" },
+      { value: "51-200", label: "51-200 empleats" },
+      { value: "201-500", label: "201-500 empleats" },
+      { value: "500+", label: "Més de 500 empleats" },
+    ],
+  },
+  email: {
+    kicker: "Gairebé llest",
+    title: "On t'enviem l'informe?",
+    subtitle: "Rebràs el teu diagnòstic complet en un màxim de 30 minuts.",
+    placeholder: "tu@empresa.com",
+    sendButton: "Enviar diagnòstic",
+    sending: "Enviant...",
+    privacyNote: "Les teves dades estan protegides i no es compartiran amb tercers.",
+    errorRequired: "El correu electrònic és obligatori",
+    errorInvalid: "Introdueix un correu electrònic vàlid",
+  },
+  question: {
+    error: "Selecciona una opció per continuar",
+  },
+  success: {
+    title: "Diagnòstic enviat",
+    messageTemplate:
+      "Gràcies, <strong>{name}</strong>. El teu informe personalitzat arribarà a <strong>{email}</strong> en un màxim de 30 minuts.",
+    ctaTitle: "Vols que el revisem junts?",
+    ctaDescription:
+      "Agenda una trucada gratuïta amb el nostre equip i t'ajudem a interpretar el teu diagnòstic i a traçar els propers passos.",
+    ctaButton: "Agendar trucada gratuïta",
+    backButton: "Tornar a la pàgina",
+  },
+  formSteps: [
+    {
+      title: "Dades de la teva empresa",
+      subtitle: "Explica'ns una mica sobre tu i la teva organització",
+    },
+    {
+      title: "Estratègia i inversió",
+      subtitle: "Avaluem la integració de la IA en la teva planificació estratègica",
+      questions: [
+        {
+          text: "En quina mesura la IA està integrada en la planificació estratègica de l'empresa?",
+          options: [
+            "Forma part del pla estratègic amb objectius i mètriques definides",
+            "Està inclosa com a línia estratègica, però sense mètriques clares",
+            "Existeixen iniciatives aïllades sense alineació estratègica",
+            "No forma part de la planificació actual",
+          ],
+        },
+        {
+          text: "Existeixen objectius mesurables associats a iniciatives d'IA o automatització?",
+          options: [
+            "Sí, amb mètriques clares i seguiment periòdic",
+            "Sí, definits però sense seguiment sistemàtic",
+            "Objectius generals sense mètriques concretes",
+            "No existeixen objectius definits",
+          ],
+        },
+        {
+          text: "Hi ha una persona clara responsable de l'estratègia digital/IA amb pressupost i capacitat de decisió?",
+          options: [
+            "Sí, amb autoritat formal i pressupost assignat",
+            "Sí, però amb capacitat limitada",
+            "Existeix una figura informal sense responsabilitat clara",
+            "No hi ha responsable definit",
+          ],
+        },
+        {
+          text: "Quin és el pressupost anual destinat a digitalització/IA?",
+          options: [
+            "Més de 150.000 €",
+            "Entre 50.000 € i 150.000 €",
+            "Entre 10.000 € i 50.000 €",
+            "Menys de 10.000 €",
+          ],
+        },
+        {
+          text: "El pressupost de digitalització/IA és estructural o puntual?",
+          options: [
+            "Partida anual recurrent integrada en la planificació",
+            "Pressupost anual revisable",
+            "Pressupost per projectes puntuals",
+            "No existeix pressupost específic",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Governança i seguretat",
+      subtitle: "Analitzem les teves polítiques de control i protecció de dades",
+      questions: [
+        {
+          text: "Existeix una política formal sobre l'ús d'eines d'IA?",
+          options: [
+            "Política formal documentada i comunicada",
+            "Directrius internes no formalitzades",
+            "Recomanacions informals",
+            "No existeix cap política",
+          ],
+        },
+        {
+          text: "Està definit quines eines es poden utilitzar i en quins contextos?",
+          options: [
+            "Sí, amb criteris clars i documentació interna",
+            "Parcialment definit",
+            "Decentralitzada per equips",
+            "No està definit",
+          ],
+        },
+        {
+          text: "S'utilitzen dades sensibles o estratègiques en eines externes d'IA?",
+          options: [
+            "No s'utilitzen dades sensibles",
+            "S'utilitzen sota criteris i control formal",
+            "S'utilitzen ocasionalment sense protocol clar",
+            "Es desconeix quines dades s'estan utilitzant",
+          ],
+        },
+        {
+          text: "Existeix classificació formal de dades (sensibles, estratègiques, internes)?",
+          options: [
+            "Sí, amb nivells definits i documentats",
+            "Parcialment estructurada",
+            "Definició informal",
+            "No existeix classificació",
+          ],
+        },
+        {
+          text: "Hi ha control sobre quines dades s'introdueixen en eines externes?",
+          options: [
+            "Sí, amb revisió i traçabilitat",
+            "Control parcial",
+            "Recomanacions sense seguiment",
+            "Sense control definit",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Ús d'IA",
+      subtitle: "Avaluem com s'utilitza la IA a la teva organització",
+      questions: [
+        {
+          text: "Els empleats utilitzen eines públiques d'IA per iniciativa pròpia?",
+          options: [
+            "No, l'ús està centralitzat i autoritzat",
+            "Ús limitat i supervisat",
+            "Ús freqüent sense supervisió clara",
+            "Ús estès sense control",
+          ],
+        },
+        {
+          text: "L'organització té visibilitat sobre aquest ús informal d'IA?",
+          options: [
+            "Visibilitat total i seguiment",
+            "Visibilitat parcial",
+            "Visibilitat molt limitada",
+            "Cap visibilitat",
+          ],
+        },
+        {
+          text: "En quantes àrees s'utilitza actualment IA o automatització de manera oficial?",
+          options: [
+            "En múltiples àrees clau integrades en processos",
+            "En diverses àrees amb impacte parcial",
+            "En una o dues àrees de manera experimental",
+            "No s'utilitza actualment",
+          ],
+        },
+        {
+          text: "Les iniciatives actuals d'IA estan integrades en processos operatius?",
+          options: [
+            "Totalment integrades i estandarditzades",
+            "Integració parcial",
+            "Proves pilot aïllades",
+            "No existeixen iniciatives",
+          ],
+        },
+        {
+          text: "S'ha format el personal en l'ús professional d'eines d'IA?",
+          options: [
+            "Formació estructurada i recurrent",
+            "Formació puntual en alguns equips",
+            "Formació informal o autodidacta",
+            "No s'ha realitzat formació",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Tecnologia i processos",
+      subtitle: "Analitzem la teva infraestructura tecnològica i operativa",
+      questions: [
+        {
+          text: "Quin nivell d'integració hi ha entre ERP, CRM i sistemes operatius?",
+          options: [
+            "Sistemes plenament integrats",
+            "Integració parcial",
+            "Sistemes en silos amb intercanvis manuals",
+            "Sistemes completament aïllats",
+          ],
+        },
+        {
+          text: "Amb quina freqüència es fan transcripcions manuals de dades?",
+          options: [
+            "Rarament o mai",
+            "Ocasionalment",
+            "Freqüentment",
+            "És pràctica habitual diària",
+          ],
+        },
+        {
+          text: "Estan documentats els processos crítics de negoci?",
+          options: [
+            "Totalment documentats i actualitzats",
+            "Parcialment documentats",
+            "Documentació informal",
+            "No estan documentats",
+          ],
+        },
+        {
+          text: "Existeixen mètriques de rendiment associades a aquests processos?",
+          options: [
+            "Mètriques clares i seguiment periòdic",
+            "Mètriques parcials",
+            "Indicadors no estructurats",
+            "No existeixen mètriques",
+          ],
+        },
+        {
+          text: "Tens identificats els principals colls d'ampolla operatius?",
+          options: [
+            "Clarament identificats i prioritzats",
+            "Identificats parcialment",
+            "Intuïts però no analitzats",
+            "No s'han analitzat",
+          ],
+        },
+      ],
+    },
+    {
+      title: "Cultura i contacte",
+      subtitle: "Última secció: cultura organitzativa i dades de contacte",
+      questions: [
+        {
+          text: "Com reacciona l'equip davant noves eines digitals?",
+          options: [
+            "Proactiu i orientat a la millora contínua",
+            "Generalment receptiu",
+            "Resistència freqüent",
+            "Alta resistència estructural",
+          ],
+        },
+        {
+          text: "S'ha executat amb èxit algun projecte de transformació tecnològica en els últims 3 anys?",
+          options: [
+            "Sí, amb impacte mesurable",
+            "Sí, amb resultats mixtos",
+            "Intents sense consolidació",
+            "No",
+          ],
+        },
+      ],
+    },
+  ],
+}
+
+export const diagnosticoIaTranslations = { es, en, ca }

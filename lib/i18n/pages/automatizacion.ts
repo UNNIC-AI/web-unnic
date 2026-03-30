@@ -223,4 +223,115 @@ const en: typeof es = {
   },
 }
 
-export const automatizacionTranslations = { es, en }
+const ca: typeof es = {
+  schema: {
+    name: "Automatització amb IA",
+    description:
+      "Automatitza processos empresarials amb intel·ligència artificial. Xatbots intel·ligents, anàlisi de documents, RPA i més. Estalvia més de 200 hores mensuals.",
+    serviceType: "Automatització de processos amb IA",
+  },
+  hero: {
+    title1: "Processos manuals? ",
+    titleHighlight: "Automatitza'ls",
+    subtitle:
+      "Oblida les tasques que es poden fer automàticament i centra el teu equip en allò que realment importa.",
+  },
+  processSection: {
+    title: "Quins processos automatitzar?",
+    subtitle:
+      "No tots els processos són ideals per automatitzar. Aquests són els que generen major ROI:",
+  },
+  processTypes: [
+    {
+      title: "Alta repetició",
+      description: "Tasques que es fan una vegada i una altra amb els mateixos passos",
+    },
+    {
+      title: "Baix nivell d'habilitats",
+      description:
+        "Processos operatius que no requereixen experiència especialitzada",
+    },
+    {
+      title: "Múltiples sistemes",
+      description:
+        "Operacions que connecten diferents plataformes o eines",
+    },
+    {
+      title: "Propensos a l'error",
+      description:
+        "Tasques on l'error humà té alt impacte o freqüència",
+    },
+    {
+      title: "Validacions de dades",
+      description:
+        "Processos de verificació, conciliació o revisió d'informació",
+    },
+    {
+      title: "Alt volum de treball",
+      description: "Processos que consumeixen hores del teu equip cada setmana",
+    },
+  ],
+  howSection: {
+    title: "Com automatitzar processos?",
+    subtitle:
+      "El nostre procés pas a pas per automatitzar les teves operacions de manera efectiva",
+  },
+  timelineSteps: [
+    {
+      title: "Definició de requeriments",
+      description:
+        "Mapejem el procés actual i els requisits tècnics i de negoci",
+    },
+    {
+      title: "Elecció d'eines",
+      description:
+        "Triem l'eina que s'adapta als teus requisits i pressupost",
+    },
+    {
+      title: "Desenvolupament del flux",
+      description:
+        "Construïm l'automatització de manera àgil i adaptada a tu",
+    },
+    {
+      title: "Producció",
+      description:
+        "Despleguem la solució de manera gradual i ajustem si cal",
+    },
+    {
+      title: "Formació i adopció",
+      description: "Capacitem el teu equip i assegurem un ús correcte",
+    },
+  ],
+  cta: {
+    title: "A punt per fer més amb menys?",
+    subtitle:
+      "Explica'ns quin procés t'agradaria automatitzar i t'ajudem a descobrir el potencial d'estalvi i eficiència.",
+    emailButton: "Enviar correu",
+    callButton: "Trucar ara",
+  },
+  chatbot: {
+    avatarAlt: "Assistent d'automatització",
+    headerTitle: "Parla amb un expert en automatització",
+    headerSubtitle: "Joan Navarro AI",
+    initialMessage: "Vols que t'ajudi a automatitzar un procés?",
+    autoReply:
+      "Perdona, aquest servei no està disponible ara, però si vols automatitzar un procés, agenda una trucada amb l'equip perquè t'ajudin de la millor manera possible",
+    inputPlaceholder: "Escriu el teu procés a automatitzar...",
+    demoNote:
+      "Aquest és un xat de demostració. Per parlar amb el nostre equip, utilitza els botons de contacte.",
+  },
+  caseStudy: {
+    sectionTitle: "Cas d'èxit",
+    sectionSubtitle:
+      "Descobreix com vam ajudar Catalonia Ceramic a automatitzar els seus processos operatius",
+    industryLabel: "Indústria:",
+    yearLabel: "Any:",
+    serviceLabel: "Servei:",
+    challengeTitle: "El repte",
+    solutionTitle: "La solució",
+    resultsTitle: "Els resultats",
+    viewFullCase: "Veure el cas complet",
+  },
+}
+
+export const automatizacionTranslations = { es, en, ca }

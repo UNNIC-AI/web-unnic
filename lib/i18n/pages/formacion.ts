@@ -198,4 +198,104 @@ const en: typeof es = {
   },
 }
 
-export const formacionTranslations = { es, en }
+const ca: typeof es = {
+  meta: {
+    serviceName: "Formació en IA per a empreses",
+    serviceDescription:
+      "Formació en intel·ligència artificial impartida per professionals que apliquen IA en projectes reals. Tallers intensius i programes continus, subvencionables mitjançant FUNDAE.",
+    serviceType: "Formació empresarial en IA",
+  },
+  hero: {
+    titlePrefix: "Forma el teu equip amb ",
+    titleHighlight: "experts",
+    subtitle:
+      "Els nostres formadors no són docents: són professionals que apliquen IA en empreses reals cada dia.",
+    fundaeBadge:
+      "Tota la nostra formació és subvencionable a través de FUNDAE",
+  },
+  models: {
+    title: "Dos models de formació",
+    subtitle:
+      "Tria el format que millor encaixi amb la maduresa i les necessitats del teu equip.",
+    workshops: {
+      title: "Tallers",
+      description:
+        "Sessions intensives de 3 hores, enfocades en una eina o perfil concret. Pràctiques, directes i aplicables des del primer dia.",
+      features: [
+        "Durada: 3 hores",
+        "Perfil o eina específica",
+        "Aplicable des del dia 1",
+        "Subvencionable FUNDAE",
+      ],
+    },
+    continuous: {
+      title: "Formació contínua",
+      description:
+        "Programa dissenyat a mida per a la teva empresa. Adaptem contingut, ritme i objectius al teu equip i al teu sector. Sense rigidesa, sense temaris genèrics.",
+      features: [
+        "Programa a mida",
+        "Ritme adaptat a la teva empresa",
+        "Contingut actualitzat mensualment",
+        "Subvencionable FUNDAE",
+      ],
+    },
+  },
+  companies: {
+    title: "Empreses que ja han format els seus equips amb nosaltres",
+  },
+  workshopsByProfile: {
+    title: "Tallers per perfil",
+    subtitle: "Contingut adaptat al rol real de cada persona a l'empresa.",
+    learnMore: "Saber-ne més",
+    items: [
+      { title: "Introducció a la IA", desc: "Fonaments per a qualsevol perfil professional" },
+      { title: "IA per a directius", desc: "Presa de decisions estratègiques amb IA" },
+      { title: "IA per a comercials", desc: "Potencia les teves vendes amb eines d'IA" },
+      { title: "IA per a màrqueting", desc: "Automatitza i optimitza les teves campanyes" },
+      { title: "IA per a RRHH", desc: "Gestió del talent i selecció amb IA" },
+      { title: "IA per a finances", desc: "Anàlisi financera i predicció amb ML" },
+      { title: "IA per a desenvolupadors", desc: "Integració de models i APIs d'IA" },
+      { title: "Ad hoc", desc: "Formació personalitzada segons les teves necessitats específiques" },
+    ],
+  },
+  workshopsByTech: {
+    title: "Tallers per tecnologia",
+    subtitle: "Domina les eines que el mercat ja està fent servir.",
+    items: [
+      { name: "ChatGPT", brand: "OpenAI", desc: "Prompt engineering i casos d'ús pràctics" },
+      { name: "Copilot", brand: "Microsoft", desc: "Integració amb Microsoft 365 i productivitat" },
+      { name: "Gemini", brand: "Google", desc: "Anàlisi multimodal i generació de contingut" },
+      { name: "Claude", brand: "Anthropic", desc: "Raonament avançat i tasques complexes" },
+    ],
+  },
+  continuousDetail: {
+    title: "Formació contínua",
+    subtitle:
+      "La IA evoluciona cada mes. El teu equip també hauria de fer-ho. Dissenyem un programa formatiu continu adaptat a la teva empresa, el teu sector i el teu nivell de maduresa. Ajustem el ritme i el contingut segons les vostres necessitats, i tot plegat subvencionable a través de FUNDAE.",
+    features: [
+      "Contingut actualitzat amb les últimes novetats del mercat",
+      "Formadors que treballen amb IA en projectes reals, no en teoria",
+      "Subvencionable a través de FUNDAE",
+    ],
+  },
+  cta: {
+    title: "Vols saber quina formació necessita el teu equip?",
+    subtitle:
+      "Analitzem el nivell de maduresa de la teva empresa i et proposem el programa més adequat, incloent-hi la tramitació FUNDAE si cal.",
+    primaryButton: "Parlem del teu equip",
+    secondaryButton: "Veure tots els serveis",
+  },
+  caseStudy: {
+    title: "Cas d'èxit",
+    subtitle: "Descobreix com un programa de formació va transformar un equip",
+    industryLabel: "Indústria:",
+    yearLabel: "Any:",
+    serviceLabel: "Servei:",
+    challengeTitle: "El repte",
+    solutionTitle: "La solució",
+    resultsTitle: "Els resultats",
+    viewFullCase: "Veure el cas complet",
+  },
+}
+
+export const formacionTranslations = { es, en, ca }

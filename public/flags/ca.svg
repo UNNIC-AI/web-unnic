@@ -1,0 +1,12 @@
+<!-- Senyera: 9 franges alternes (groc / vermell) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <rect width="24" height="2.667" y="0" fill="#FCDD09"/>
+  <rect width="24" height="2.667" y="2.667" fill="#DA121A"/>
+  <rect width="24" height="2.667" y="5.333" fill="#FCDD09"/>
+  <rect width="24" height="2.667" y="8" fill="#DA121A"/>
+  <rect width="24" height="2.667" y="10.667" fill="#FCDD09"/>
+  <rect width="24" height="2.667" y="13.333" fill="#DA121A"/>
+  <rect width="24" height="2.667" y="16" fill="#FCDD09"/>
+  <rect width="24" height="2.667" y="18.667" fill="#DA121A"/>
+  <rect width="24" height="2.666" y="21.333" fill="#FCDD09"/>
+</svg>

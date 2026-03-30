@@ -44,4 +44,75 @@ const en: typeof es = {
   ],
 }
 
-export const faqPageTranslations = { es, en }
+const ca: typeof es = {
+  volver: "Tornar a l’inici",
+  titulo: "Preguntes freqüents",
+  subtitulo: "Troba respostes a les preguntes més habituals sobre els nostres serveis d’IA",
+  noEncuentras: "No trobes el que busques?",
+  noEncuentrasSub: "Som aquí per ajudar-te. Contacta’ns i resoldrem tots els teus dubtes.",
+  contactar: "Contactar",
+  items: [
+    {
+      question: "Quins serveis ofereix Unnic AI?",
+      answer:
+        "Oferim serveis de consultoria estratègica en IA, desenvolupament de solucions personalitzades amb IA, automatització de processos empresarials, integració de sistemes amb IA i formació especialitzada per a equips.",
+    },
+    {
+      question: "Quant de temps triga un projecte d’IA?",
+      answer:
+        "La durada varia segons la complexitat del projecte. Un projecte de consultoria pot trigar 2-4 setmanes, mentre que el desenvolupament d’una solució completa pot requerir 2-6 mesos. Fem una avaluació inicial per donar un calendari específic.",
+    },
+    {
+      question: "Quins sectors atenen?",
+      answer:
+        "Treballem amb múltiples sectors, incloent finances, salut, retail, manufactura, logística, educació i serveis professionals. Cada solució es personalitza segons les necessitats específiques de cada indústria.",
+    },
+    {
+      question: "Cal tenir coneixements tècnics previs?",
+      answer:
+        "No cal. Ens encarreguem de tot el procés tècnic i oferim la formació necessària perquè el vostre equip pugui utilitzar les solucions d’IA de manera efectiva. Traduïm la complexitat tècnica en resultats empresarials clars.",
+    },
+    {
+      question: "Com garantiu la seguretat de les nostres dades?",
+      answer:
+        "Apliquem les millors pràctiques de seguretat, incloent xifrat de dades, accés controlat, auditories regulars i compliment del GDPR. Treballem amb infraestructures cloud segures com AWS i Azure, i signem acords de confidencialitat amb tots els clients.",
+    },
+    {
+      question: "Quin és el cost d’implementar IA a la meva empresa?",
+      answer:
+        "El cost varia segons l’abast i la complexitat del projecte. Oferim des de consultories inicials assequibles fins a solucions enterprise completes. Després d’una reunió inicial gratuïta, proporcionem un pressupost detallat adaptat a les vostres necessitats.",
+    },
+    {
+      question: "Oferiu suport postimplementació?",
+      answer:
+        "Sí, oferim diferents plans de suport que inclouen manteniment tècnic, actualitzacions, resolució d’incidències i millores contínues. També proporcionem formació addicional quan cal.",
+    },
+    {
+      question: "Quines tecnologies d’IA utilitzeu?",
+      answer:
+        "Treballem amb les tecnologies líders del mercat, incloent OpenAI (GPT), Anthropic (Claude), models open source, frameworks com TensorFlow i PyTorch, i plataformes cloud com AWS, Azure i Google Cloud. Seleccionem la tecnologia més adequada per a cada projecte.",
+    },
+    {
+      question: "Puc integrar la IA amb els meus sistemes actuals?",
+      answer:
+        "Sí, dissenyem solucions que s’integren perfectament amb els vostres sistemes existents, incloent ERPs (SAP, Odoo), CRMs, bases de dades i altres aplicacions empresarials. La integració es fa de manera gradual per minimitzar disrupcions.",
+    },
+    {
+      question: "Com miren el ROI d’un projecte d’IA?",
+      answer:
+        "Establim KPIs clars a l’inici del projecte que poden incloure reducció de costos operatius, augment de productivitat, millora en la precisió de prediccions, temps estalviat en processos i augment d’ingressos. Proporcionem informes regulars amb mètriques mesurables.",
+    },
+    {
+      question: "Feu projectes pilot?",
+      answer:
+        "Sí, recomanem començar amb un projecte pilot o PoC (Proof of Concept) per validar la viabilitat i els beneficis abans d’una implementació completa. Això permet avaluar resultats amb una inversió inicial controlada.",
+    },
+    {
+      question: "Com començo a treballar amb Unnic AI?",
+      answer:
+        "El primer pas és agendar una consulta inicial gratuïta. En aquesta reunió analitzem les vostres necessitats, objectius i situació actual. Després preparem una proposta personalitzada amb pla d’acció, calendari i pressupost. Contacteu-nos a contacto@unnic.ai o al +34 685 756 630.",
+    },
+  ],
+}
+
+export const faqPageTranslations = { es, en, ca }

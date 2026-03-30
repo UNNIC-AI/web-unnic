@@ -250,4 +250,129 @@ const en: typeof es = {
   },
 }
 
-export const cumplimientoRiaTranslations = { es, en }
+const ca: typeof es = {
+  hero: {
+    title1: "IA ",
+    titleHighlight: "sense riscos",
+    subtitle:
+      "El Reglament europeu d'IA ja està en vigor. No es tracta de deixar d'usar IA, sinó de documentar que la fas servir bé.",
+    cta: "Sol·licitar diagnòstic RIA",
+    scrollLabel: "Veure el problema real",
+  },
+  problem: {
+    title: "El problema ",
+    titleAccent: "real",
+    description:
+      "La majoria d'empreses ja fa servir IA: ChatGPT per redactar, eines de RRHH, xatbots d'atenció al client. El problema no és usar-la, sinó no tenir cap control documentat sobre com s'usa.",
+    highlight: "Si demà hi ha una inspecció, què demostres?",
+  },
+  risks: [
+    {
+      title: "Sancions",
+      description: "Fins a 35 M€ o el 7% de la facturació global",
+    },
+    {
+      title: "Dades sense control",
+      description: "Ús de dades de clients o empleats sense documentació",
+    },
+    {
+      title: "Sense polítiques",
+      description: "Cap norma interna sobre quina IA es pot fer servir i com",
+    },
+  ],
+  howSection: {
+    title: "Com ho fem",
+    subtitle:
+      "Set passos per passar de l'exposició legal a la tranquil·litat documentada.",
+  },
+  steps: [
+    {
+      title: "Descobriment",
+      description:
+        "Mapatgem totes les eines d'IA que fa servir la teva empresa, visibles i ocultes",
+    },
+    {
+      title: "Avaluació de riscos",
+      description:
+        "Classifiquem cada ús segons el Reglament: prohibit, alt risc, limitat o mínim",
+    },
+    {
+      title: "Diagnòstic",
+      description:
+        "Et mostrem les vostres llacunes de compliment abans de prendre cap decisió",
+    },
+    {
+      title: "Sessió directiva",
+      description:
+        "Amb la direcció, decidiu què es permet, què es limita i qui és responsable",
+    },
+    {
+      title: "Marc normatiu",
+      description:
+        "Redactem la vostra política d'ús responsable d'IA i el protocol per a noves eines",
+    },
+    {
+      title: "Formació a l'equip",
+      description:
+        "Expliquem les normes a tota la plantilla i ho deixem documentat legalment",
+    },
+    {
+      title: "Manteniment",
+      description:
+        "Us deixem el sistema perquè pugueu actualitzar el compliment soles cada 6 mesos",
+    },
+  ],
+  deliverables: {
+    title: "Què obteniu en acabar",
+    subtitle:
+      "Un sistema de compliment complet i operatiu des del primer dia.",
+    items: [
+      {
+        title: "Acta de decisions",
+        desc: "Signada per Direcció",
+      },
+      {
+        title: "Inventari de sistemes v1.0",
+        desc: "Signat pel responsable d'IA",
+      },
+      {
+        title: "Política d'ús responsable",
+        desc: "Distribuïda a tota la plantilla",
+      },
+      {
+        title: "Protocol de noves eines",
+        desc: "Per aprovar futures incorporacions sense trucar-nos",
+      },
+      {
+        title: "Registre de formació",
+        desc: "Signat pels empleats, amb valor com a evidència legal",
+      },
+      {
+        title: "Pla de manteniment semestral",
+        desc: "Perquè el compliment no caduqui",
+      },
+    ],
+  },
+  cta: {
+    badge: "Gratuït · Sense compromís",
+    title: "Saps quina IA fa servir la teva empresa avui mateix?",
+    description:
+      "A la majoria d'empreses, la resposta sorprèn. Comença pel diagnòstic: és gratuït i sense compromís.",
+    primaryButton: "Sol·licitar diagnòstic RIA",
+    secondaryButton: "Veure tots els serveis",
+  },
+  caseStudy: {
+    sectionTitle: "Cas d'èxit",
+    sectionSubtitle:
+      "Descobreix com vam ajudar a implementar un sistema de compliment RIA",
+    industryLabel: "Indústria:",
+    yearLabel: "Any:",
+    serviceLabel: "Servei:",
+    challengeTitle: "El repte",
+    solutionTitle: "La solució",
+    resultsTitle: "Els resultats",
+    viewFullCase: "Veure el cas complet",
+  },
+}
+
+export const cumplimientoRiaTranslations = { es, en, ca }

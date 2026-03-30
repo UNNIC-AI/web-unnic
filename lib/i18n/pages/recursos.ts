@@ -214,4 +214,126 @@ const en: typeof es = {
   ],
 }
 
-export const recursosTranslations = { es, en }
+const ca: typeof es = {
+  hero: {
+    title: "Recursos per a la teva empresa",
+    subtitle:
+      "Descobreix automatitzacions, guies i eines gratuïtes per optimitzar el teu negoci amb intel·ligència artificial.",
+  },
+  categories: [
+    { label: "Diagnòstic", description: "Avalua la teva empresa" },
+    { label: "Automatitzacions", description: "Llestes per usar" },
+    { label: "Cursos", description: "Aprèn pas a pas" },
+    { label: "Eines", description: "Gratuïtes i premium" },
+    { label: "Prompts", description: "Plantilles llestes" },
+    { label: "Altres", description: "Més recursos útils" },
+  ],
+  sidebar: {
+    searchPlaceholder: "Cercar recurs",
+    categoriesTitle: "Categories",
+  },
+  card: {
+    featured: "Destacat",
+    comingSoon: "Properament",
+    free: "Gratuït",
+    premium: "Premium",
+    viewResource: "Veure el recurs",
+    notAvailable: "No disponible actualment",
+  },
+  noResults: "No s'han trobat recursos amb aquests filtres.",
+  resources: [
+    {
+      category: "Diagnòstic",
+      title: "Diagnòstic inicial d'IA",
+      description:
+        "Formulari interactiu que analitza l'estat actual de la teva empresa en matèria d'IA: processos, dades, equip i tecnologia. Obtén un informe personalitzat amb el teu nivell de maduresa i un pla d'acció amb els propers passos per accelerar la teva transformació.",
+      tags: ["#diagnostic", "#maduresa-ia", "#estrategia", "#gratuit"],
+    },
+    {
+      category: "Automatitzacions",
+      title: "Classificació automàtica de correus amb IA",
+      description:
+        "Automatitza la classificació dels correus entrants segons prioritat, departament i acció requerida. Integra amb Gmail o Outlook i connecta amb el teu CRM.",
+      tags: ["#correu", "#classificacio", "#automatitzacio"],
+    },
+    {
+      category: "Cursos",
+      title: "Com implementar un agent d'IA en atenció al client",
+      description:
+        "Guia pas a pas per desplegar un agent conversacional que gestioni consultes freqüents, escali incidències i redueixi els temps de resposta.",
+      tags: ["#agent", "#atencio-client", "#chatbot"],
+    },
+    {
+      category: "Eines",
+      title: "Plantilla d'avaluació de maduresa en IA",
+      description:
+        "Qüestionari i matriu d'avaluació per conèixer en quin punt d'adopció d'IA es troba la teva empresa i quins passos cal donar a continuació.",
+      tags: ["#maduresa", "#avaluacio", "#estrategia"],
+    },
+    {
+      category: "Altres",
+      title: "Pack de prompts per generar contingut de LinkedIn",
+      description:
+        "50 prompts optimitzats per crear publicacions, articles i carrusels de LinkedIn orientats a empreses B2B que volen posicionar-se com a referents.",
+      tags: ["#linkedin", "#contingut", "#b2b"],
+    },
+    {
+      category: "Altres",
+      title: "Automatitza la generació d'informes setmanals",
+      description:
+        "Connecta les teves fonts de dades amb un flux n8n per generar i enviar informes de negoci automàticament cada setmana sense intervenció manual.",
+      tags: ["#informes", "#n8n", "#dades"],
+    },
+    {
+      category: "Altres",
+      title: "Prompts per qualificar leads amb IA generativa",
+      description:
+        "Conjunt de prompts per analitzar converses, perfilar leads i prioritzar oportunitats comercials mitjançant ChatGPT o Claude.",
+      tags: ["#leads", "#vendes", "#crm"],
+    },
+    {
+      category: "Prompts",
+      title: "Plantilles de prompts per a l'anàlisi de documents",
+      description:
+        "Extreu informació clau de contractes, factures i pressupostos amb aquestes plantilles de prompts llestes per usar en qualsevol LLM.",
+      tags: ["#documents", "#extraccio", "#prompts"],
+    },
+    {
+      category: "Altres",
+      title: "Llista de verificació d'automatització de processos amb IA",
+      description:
+        "Llista de verificació completa per auditar, prioritzar i implementar automatitzacions amb IA en empreses mitjanes i grans.",
+      tags: ["#llista", "#processos", "#implementacio"],
+    },
+    {
+      category: "Altres",
+      title: "Prompts per al screening de candidats amb IA",
+      description:
+        "Redueix el temps de selecció amb prompts que analitzen CV, generen preguntes d'entrevista i avaluen competències automàticament.",
+      tags: ["#rrhh", "#seleccio", "#ia"],
+    },
+    {
+      category: "Altres",
+      title: "Cas real: IA en la gestió d'estoc retail",
+      description:
+        "Anàlisi detallada de com una empresa retail va reduir l'excés d'estoc un 34% utilitzant models predictius i automatització de comandes.",
+      tags: ["#retail", "#estoc", "#prediccio"],
+    },
+    {
+      category: "Cursos",
+      title: "Guia de compliment del Reglament europeu d'IA",
+      description:
+        "Tot el que necessites saber per adaptar la teva empresa a la normativa europea d'IA: classificació de riscos, documentació requerida i terminis.",
+      tags: ["#ria", "#compliment", "#regulacio"],
+    },
+    {
+      category: "Automatitzacions",
+      title: "Automatitza les respostes a ressenyes de Google",
+      description:
+        "Plantilla Make llesta per respondre ressenyes de 4-5 estrelles automàticament i rebre alertes per correu davant valoracions negatives.",
+      tags: ["#google", "#ressenyes", "#reputacio"],
+    },
+  ],
+}
+
+export const recursosTranslations = { es, en, ca }

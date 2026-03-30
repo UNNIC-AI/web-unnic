@@ -190,4 +190,100 @@ const en: typeof es = {
   },
 }
 
-export const iaGenerativaTranslations = { es, en }
+const ca: typeof es = {
+  schema: {
+    name: "IA generativa: agents, veu i RAG",
+    description:
+      "Construïm solucions d'IA generativa que resolen problemes reals: agents d'IA, trucades amb veu i sistemes RAG per a atenció al client, suport intern i automatització.",
+    serviceType: "IA generativa i agents intel·ligents",
+  },
+  hero: {
+    titlePrefix: "IA que ",
+    titleHighlight: "genera resultats",
+    subtitle:
+      "Construïm solucions d'IA generativa que resolen problemes reals: atenen clients, gestionen coneixement i automatitzen decisions complexes.",
+    ctaButton: "Tens un cas d'ús?",
+  },
+  solutions: {
+    title: "Què construïm",
+    subtitle:
+      "Tres línies de solucions d'IA generativa amb casos d'ús provats en empreses reals.",
+    items: [
+      {
+        title: "Agents d'IA",
+        description:
+          "Assistents intel·ligents que actuen: responen, consulten sistemes, executen tasques i escalen quan cal. Per a atenció al client, suport intern, vendes o qualsevol flux que avui depèn d'una persona.",
+      },
+      {
+        title: "Trucades amb IA",
+        description:
+          "Agents de veu que atenen i fan trucades de manera autònoma. Cites, confirmacions, suport bàsic, qualificació de leads: disponibles 24/7, sense esperes ni cost per volum.",
+      },
+      {
+        title: "Sistemes RAG",
+        description:
+          "La teva empresa sap molt més del que sembla. Construïm sistemes que converteixen documents, manuals i procediments en una base de coneixement consultable a l'instant.",
+      },
+    ],
+  },
+  tryIt: {
+    badge: "Prova-ho ara",
+    title: "Vols saber com sona un agent de veu real?",
+    description1: "Truca al",
+    description2:
+      "i parla amb l'agent d'Unnic AI. Sense formularis, sense esperes: experiència directa.",
+  },
+  process: {
+    title: "Com treballem",
+    subtitle:
+      "Cinc fases per construir solucions d'IA que funcionen en producció, no només en demos.",
+    steps: [
+      {
+        title: "Definició del cas d'ús",
+        description:
+          "Quin problema resol i com es mesura l'èxit des del primer dia",
+      },
+      {
+        title: "Disseny conversacional",
+        description:
+          "Fluxos, context i integracions necessàries perquè funcioni de debò",
+      },
+      {
+        title: "Desenvolupament i iteració",
+        description:
+          "Construcció amb proves reals des del principi, sense teoria",
+      },
+      {
+        title: "Desplegament i integració",
+        description: "Al teu stack, amb els teus sistemes, sense interrupcions",
+      },
+      {
+        title: "Millora contínua",
+        description:
+          "Monitoritzem, ajustem i escalem la solució amb el temps",
+      },
+    ],
+  },
+  cta: {
+    badge: "Resposta en 24 h · Sense compromís",
+    title: "Tens un cas d'ús al cap?",
+    subtitle:
+      "Et diem en 24 h si té sentit tècnic i quant costaria construir-ho. Sense compromisos.",
+    primaryButton: "Explica'ns-ho",
+    secondaryButton: "Veure tots els serveis",
+  },
+  caseStudy: {
+    sectionTitle: "Cas d'èxit",
+    sectionSubtitle:
+      "Descobreix com vam ajudar a implementar IA generativa en projectes reals",
+    industryLabel: "Indústria:",
+    yearLabel: "Any:",
+    serviceLabel: "Servei:",
+    challengeTitle: "El repte",
+    solutionTitle: "La solució",
+    resultsTitle: "Els resultats",
+    viewFullCase: "Veure el cas complet",
+  },
+}
+
+export const iaGenerativaTranslations = { es, en, ca }
