@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation, type Locale } from '@/lib/i18n'
-import { Globe, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 
 const languages: { code: Locale; label: string; flag: string }[] = [
   { code: 'es', label: 'Español', flag: '🇪🇸' },
@@ -33,8 +33,9 @@ export function LanguageSwitcher() {
         className="flex items-center gap-1.5 text-sm font-medium text-foreground/70 hover:text-primary transition-colors px-2 py-1.5 rounded-md hover:bg-muted/50"
         aria-label="Change language"
       >
-        <Globe className="w-4 h-4" />
-        <span className="hidden sm:inline">{current.flag}</span>
+        <span className="text-lg leading-none" aria-hidden>
+          {current.flag}
+        </span>
         <ChevronDown className={`w-3 h-3 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
