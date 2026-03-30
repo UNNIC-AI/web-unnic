@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import { services } from "@/lib/data"
+import { useTranslation } from "@/lib/i18n"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -48,6 +49,8 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 
 export function ServicesSection() {
   const [activeService, setActiveService] = useState(0)
+  const { t } = useTranslation()
+  const serviceItems = t.services.items
 
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-gray-50">
@@ -55,14 +58,13 @@ export function ServicesSection() {
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#031d40] mb-4">
-            Así es{" "}
+            {t.services.title}
             <UnderlinedText>
-              <span className="text-[#031d40]">cómo lo hacemos</span>
+              <span className="text-[#031d40]">{t.services.titleHighlight}</span>
             </UnderlinedText>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2 sm:px-0">
-            Nuestra metodología está diseñada para que haya un impacto en tus procesos, decisiones, y Cuenta de
-            Resultados
+            {t.services.subtitle}
           </p>
         </div>
 
@@ -81,13 +83,13 @@ export function ServicesSection() {
                 priority
               />
 
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pt-12 sm:pt-24 pb-6 sm:pb-24 px-5 sm:px-8">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pt-12 sm:pt-24 pb-6 sm:pb-24 px-5 sm:px-8">
                 <div className="space-y-2 sm:space-y-3 transition-all duration-400">
                   <p className="text-[#bbbd26] text-xs sm:text-sm font-bold uppercase tracking-wider">
-                    {services[activeService].kicker}
+                    {serviceItems[activeService].kicker}
                   </p>
-                  <h3 className="text-white text-xl sm:text-2xl lg:text-4xl font-bold">{services[activeService].title}</h3>
-                  <p className="text-gray-200 text-sm sm:text-base lg:text-lg leading-relaxed hidden sm:block">{services[activeService].description}</p>
+                  <h3 className="text-white text-xl sm:text-2xl lg:text-4xl font-bold">{serviceItems[activeService].title}</h3>
+                  <p className="text-gray-200 text-sm sm:text-base lg:text-lg leading-relaxed hidden sm:block">{serviceItems[activeService].description}</p>
                 </div>
 
                 <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 hidden sm:block">
@@ -97,7 +99,7 @@ export function ServicesSection() {
                     asChild
                   >
                     <Link href="/servicios">
-                      Saber más
+                      {t.services.saberMas}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -123,14 +125,14 @@ export function ServicesSection() {
                         activeService === index ? "text-[#031d40]" : "text-gray-500"
                       }`}
                     >
-                      {service.kicker}
+                      {serviceItems[index].kicker}
                     </p>
                     <h4
                       className={`text-lg sm:text-xl lg:text-3xl font-bold transition-colors ${
                         activeService === index ? "text-[#031d40]" : "text-gray-700"
                       }`}
                     >
-                      {service.title}
+                      {serviceItems[index].title}
                     </h4>
                   </div>
                 </div>

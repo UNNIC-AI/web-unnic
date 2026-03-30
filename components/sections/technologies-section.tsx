@@ -4,6 +4,7 @@ import Image from "next/image"
 import { techPartners } from "@/lib/data"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
+import { useTranslation } from "@/lib/i18n"
 
 interface TechnologiesSectionProps {
   className?: string
@@ -51,13 +52,15 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 export function TechnologiesSection() {
   const [activeTab, setActiveTab] = useState(0)
   const duplicatedPartners = [...techPartners, ...techPartners, ...techPartners]
+  const { t } = useTranslation()
+  const catTranslations = t.technologies.categories
 
   const categories = [
     {
-      title: "IA Generativa",
+      title: catTranslations[0].title,
       items: [
         {
-          title: "Agentes de IA",
+          title: catTranslations[0].items[0],
           icon: (
             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -70,7 +73,7 @@ export function TechnologiesSection() {
           ),
         },
         {
-          title: "Llamadas con IA",
+          title: catTranslations[0].items[1],
           icon: (
             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -83,7 +86,7 @@ export function TechnologiesSection() {
           ),
         },
         {
-          title: "Sistemas RAG",
+          title: catTranslations[0].items[2],
           icon: (
             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -98,27 +101,27 @@ export function TechnologiesSection() {
       ],
     },
     {
-      title: "Automatizaciones",
+      title: catTranslations[1].title,
       items: [
         {
-          title: "N8n",
-          image: "/images/design-mode/Dise%C3%B1o%20sin%20t%C3%ADtulo%20%283%29.png",
+          title: catTranslations[1].items[0],
+          image: "/placeholder.svg",
         },
         {
-          title: "PowerAutomate RPA",
-          image: "/images/design-mode/Dise%C3%B1o%20sin%20t%C3%ADtulo%20%281%29.png",
+          title: catTranslations[1].items[1],
+          image: "/placeholder.svg",
         },
       ],
     },
     {
-      title: "BI y ML",
+      title: catTranslations[2].title,
       items: [
         {
-          title: "Power BI",
-          image: "/images/design-mode/Dise%C3%B1o%20sin%20t%C3%ADtulo%20%282%29.png",
+          title: catTranslations[2].items[0],
+          image: "/placeholder.svg",
         },
         {
-          title: "Estudios de datos",
+          title: catTranslations[2].items[1],
           icon: (
             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -131,7 +134,7 @@ export function TechnologiesSection() {
           ),
         },
         {
-          title: "Modelos predictivos",
+          title: catTranslations[2].items[2],
           icon: (
             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -146,10 +149,10 @@ export function TechnologiesSection() {
       ],
     },
     {
-      title: "Desarrollo de Software",
+      title: catTranslations[3].title,
       items: [
         {
-          title: "Aplicaciones Web",
+          title: catTranslations[3].items[0],
           icon: (
             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -162,7 +165,7 @@ export function TechnologiesSection() {
           ),
         },
         {
-          title: "Software Ad Hoc",
+          title: catTranslations[3].items[1],
           icon: (
             <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -185,9 +188,9 @@ export function TechnologiesSection() {
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#031d40] mb-4">
-            Expertos en{" "}
+            {t.technologies.title}
             <UnderlinedText>
-              <span className="text-[#031d40]">Tecnología</span>
+              <span className="text-[#031d40]">{t.technologies.titleHighlight}</span>
             </UnderlinedText>
           </h2>
         </div>
@@ -246,7 +249,7 @@ export function TechnologiesSection() {
       <div className="mt-10 sm:mt-16 w-full">
         <div className="container mx-auto px-4 mb-6 sm:mb-10">
           <p className="text-center text-gray-600 font-medium text-base sm:text-lg">
-            Trabajamos con las mejores tecnologías del mercado
+            {t.technologies.carouselText}
           </p>
         </div>
         <div className="relative overflow-hidden w-full">

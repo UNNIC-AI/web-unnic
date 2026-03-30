@@ -1,8 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from 'lucide-react'
 import Link from "next/link"
+import { useTranslation } from "@/lib/i18n"
 
 export function CTASection() {
+  const { t } = useTranslation()
   return (
     <section className="py-10 sm:py-16 relative overflow-hidden bg-[#031d40]">
       {/* Grid texture overlay */}
@@ -37,11 +41,11 @@ export function CTASection() {
           {/* Text */}
           <div className="mb-8 sm:mb-10">
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance">
-              La IA está aquí para quedarse...
+              {t.cta.line1}
               <br />
-              <span className="text-white">No es cuestión de hacerlo,</span>
+              <span className="text-white">{t.cta.line2}</span>
               <br />
-              <span className="text-white">Sino de cuándo.</span>
+              <span className="text-white">{t.cta.line3}</span>
             </h2>
           </div>
 
@@ -54,7 +58,7 @@ export function CTASection() {
               asChild
             >
               <Link href="/contacto">
-                Quiero empezar
+                {t.cta.button}
                 <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>

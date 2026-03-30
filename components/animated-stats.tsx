@@ -1,8 +1,10 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "@/lib/i18n"
 
 export default function AnimatedStats() {
+  const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
   const [retentionCount, setRetentionCount] = useState(0)
   const [satisfactionCount, setSatisfactionCount] = useState(0)
@@ -67,8 +69,7 @@ export default function AnimatedStats() {
             <span className="text-5xl sm:text-6xl md:text-8xl font-bold text-[#031d40]">{retentionCount.toFixed(0)}%</span>
           </div>
           <p className="text-base sm:text-xl md:text-2xl text-gray-700 leading-relaxed">
-            de los clientes con los que hemos trabajado <span className="font-bold text-[#031d40]">siguen haciendolo</span> a
-            día de hoy
+            {t.stats.retentionText1}<span className="font-bold text-[#031d40]">{t.stats.retentionBold}</span>{t.stats.retentionText2}
           </p>
           {/* Decorative element */}
           <div className="absolute top-4 right-4 w-12 h-12 sm:w-16 sm:h-16 bg-[#bbbd26]/20 rounded-full blur-xl group-hover:blur-2xl transition-all" />
@@ -83,8 +84,7 @@ export default function AnimatedStats() {
             <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-600">/10</span>
           </div>
           <p className="text-base sm:text-xl md:text-2xl text-gray-700 leading-relaxed">
-            es el <span className="font-bold text-[#031d40]">índice de satisfacción medio</span> de todos nuestros
-            servicios
+            {t.stats.satisfactionText1}<span className="font-bold text-[#031d40]">{t.stats.satisfactionBold}</span>{t.stats.satisfactionText2}
           </p>
           {/* Decorative element */}
           <div className="absolute top-4 right-4 w-12 h-12 sm:w-16 sm:h-16 bg-[#031d40]/20 rounded-full blur-xl group-hover:blur-2xl transition-all" />

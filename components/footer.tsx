@@ -1,10 +1,14 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Linkedin, Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { CookieSettingsButton } from "@/components/cookie-settings-button"
+import { useTranslation } from "@/lib/i18n"
 
 export function Footer() {
+  const { t } = useTranslation()
   return (
     <footer className="relative bg-[#031d40] text-white pt-16 pb-8 overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]">
@@ -61,7 +65,7 @@ export function Footer() {
             />
           </Link>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-5xl leading-tight px-2 sm:px-0">
-            Mejoramos los resultados de tu empresa con <span className="text-[#bbbd26]">Inteligencia Artificial</span>
+            {t.footer.headline}<span className="text-[#bbbd26]">{t.footer.headlineHighlight}</span>
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4 sm:pt-6 items-center">
             {/* Updated LinkedIn button to match CTA section style */}
@@ -89,7 +93,7 @@ export function Footer() {
               asChild
             >
               <Link href="/contacto">
-                Empecemos
+                {t.footer.empecemos}
                 <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
@@ -100,18 +104,18 @@ export function Footer() {
           {/* Columna 1: Explorar */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h3 className="text-lg font-semibold mb-6 relative inline-block">
-              Explorar
+              {t.footer.explorar}
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-12 h-1 bg-[#bbbd26] rounded-full"></span>
             </h3>
             <ul className="space-y-4">
               {[
-                { name: "Servicios", href: "/servicios" },
-                { name: "Industrias", href: "/industrias" },
-                { name: "Casos de Éxito", href: "/portfolio" },
-                { name: "Unnickers", href: "/nosotros" },
-                { name: "Recursos", href: "/recursos" },
+                { name: t.footer.links.servicios, href: "/servicios" },
+                { name: t.footer.links.industrias, href: "/industrias" },
+                { name: t.footer.links.casosExito, href: "/portfolio" },
+                { name: t.footer.links.unnickers, href: "/nosotros" },
+                { name: t.footer.links.recursos, href: "/recursos" },
               ].map((item) => (
-                <li key={item.name}>
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     className="text-gray-200 hover:text-[#bbbd26] transition-colors duration-300"
@@ -126,17 +130,17 @@ export function Footer() {
           {/* Columna 2: Legal */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <h3 className="text-lg font-semibold mb-6 relative inline-block">
-              Legal
+              {t.footer.legal}
               <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-12 h-1 bg-[#bbbd26] rounded-full"></span>
             </h3>
             <ul className="space-y-4">
               {[
-                { name: "Política de Privacidad", href: "/politica-privacidad" },
-                { name: "Aviso Legal", href: "/aviso-legal" },
-                { name: "Política de Cookies", href: "/cookies" },
-                { name: "Preguntas Frecuentes", href: "/preguntas-frecuentes" },
+                { name: t.footer.legalLinks.privacidad, href: "/politica-privacidad" },
+                { name: t.footer.legalLinks.avisoLegal, href: "/aviso-legal" },
+                { name: t.footer.legalLinks.cookies, href: "/cookies" },
+                { name: t.footer.legalLinks.faq, href: "/preguntas-frecuentes" },
               ].map((item) => (
-                <li key={item.name}>
+                <li key={item.href}>
                   <Link href={item.href} className="text-gray-300 hover:text-[#bbbd26] transition-colors duration-300">
                     {item.name}
                   </Link>
@@ -148,10 +152,10 @@ export function Footer() {
 
         {/* Barra Inferior */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-          <p>© 2026 Unnic AI. Todos los derechos reservados.</p>
+          <p>{t.footer.derechos}</p>
           <div className="flex gap-6 items-center">
             <Link href="/aviso-legal" className="hover:text-[#bbbd26] transition-colors">
-              Aviso Legal
+              {t.footer.avisoLegal}
             </Link>
             <CookieSettingsButton />
           </div>

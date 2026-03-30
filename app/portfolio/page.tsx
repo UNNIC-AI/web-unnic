@@ -9,6 +9,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { successStories } from "@/lib/data"
 import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "@/lib/i18n"
+import { portfolioTranslations } from "@/lib/i18n/pages/portfolio"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -51,6 +53,8 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 }
 
 export default function PortfolioPage() {
+  const { locale } = useTranslation()
+  const t = portfolioTranslations[locale]
   return (
     <>
       <Navigation />
@@ -59,14 +63,13 @@ export default function PortfolioPage() {
         <section className="container mx-auto px-4 mb-12 sm:mb-20">
           <div className="max-w-4xl mx-auto text-center space-y-4 sm:space-y-6">
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#031d40] animate-in fade-in slide-in-from-bottom-4 duration-500">
-              Nuestros{" "}
+              {t.list.title1}
               <UnderlinedText>
-                <span className="text-[#bbbd26] text-foreground">Casos de Éxito</span>
+                <span className="text-[#bbbd26] text-foreground">{t.list.titleHighlight}</span>
               </UnderlinedText>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100 px-2 sm:px-0">
-              Descubre cómo hemos ayudado a empresas de diversos sectores a transformar sus negocios mediante
-              Inteligencia Artificial.
+              {t.list.subtitle}
             </p>
           </div>
         </section>
@@ -127,7 +130,7 @@ export default function PortfolioPage() {
 
                   <div className="mt-auto pt-4 border-t border-gray-100">
                     <span className="w-full flex justify-between items-center text-[#031d40] group-hover:text-[#bbbd26] transition-colors p-0 font-bold">
-                      Ver caso completo
+                      {t.list.verCaso}
                       <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>

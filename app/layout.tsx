@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { GoogleAnalytics } from "@/components/google-analytics"
 import { CookieConsentBanner } from "@/components/cookie-consent-banner"
 import { DiagnosticPopup } from "@/components/diagnostic-popup"
+import { LanguageProvider } from "@/lib/i18n"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -67,11 +68,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
       <body className={`${montserrat.variable} ${poppins.variable} font-sans antialiased`}>
-        <GoogleAnalytics />
-        {children}
-        <Footer />
-        <CookieConsentBanner />
-        <DiagnosticPopup />
+        <LanguageProvider>
+          <GoogleAnalytics />
+          {children}
+          <Footer />
+          <CookieConsentBanner />
+          <DiagnosticPopup />
+        </LanguageProvider>
       </body>
     </html>
   )

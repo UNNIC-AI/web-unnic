@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from 'lucide-react'
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "@/lib/i18n"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -42,6 +43,7 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 }
 
 export function HeroSection() {
+  const { t } = useTranslation()
   return (
     <section className="relative pt-24 pb-10 sm:pt-32 sm:pb-14 md:pt-40 md:pb-22 overflow-hidden bg-gradient-to-br from-white via-gray-50 to-gray-100">
       {/* Grid texture overlay */}
@@ -111,19 +113,19 @@ export function HeroSection() {
             
 
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-balance leading-[1.05] tracking-tight">
-              <span className="text-[#031d40]">Somos tu </span>
+              <span className="text-[#031d40]">{t.hero.titlePart1}</span>
               <UnderlinedText>
-                <span className="text-[#031d40]">Partner</span>
+                <span className="text-[#031d40]">{t.hero.titleHighlight1}</span>
               </UnderlinedText>
-              <span className="text-[#031d40]"> en</span>
+              <span className="text-[#031d40]">{t.hero.titlePart2}</span>
               <br />
               <UnderlinedText delay={200}>
-                <span className="text-[#031d40]">Inteligencia Artificial</span>
+                <span className="text-[#031d40]">{t.hero.titleHighlight2}</span>
               </UnderlinedText>
             </h1>
 
             <p className="text-base sm:text-lg md:text-2xl text-gray-600 text-balance max-w-4xl mx-auto leading-relaxed font-light px-2 sm:px-0">
-              Diseñamos un plan de transformación único para tu empresa y te acompañamos durante todo el proceso
+              {t.hero.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4 sm:pt-6 px-4 sm:px-0">
@@ -133,7 +135,7 @@ export function HeroSection() {
                 asChild
               >
                 <Link href="/contacto">
-                  Agendar una Reunion
+                  {t.hero.ctaPrimary}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -143,7 +145,7 @@ export function HeroSection() {
                 className="text-base sm:text-lg px-6 sm:px-10 py-6 sm:py-8 border-2 border-[#031d40] text-[#031d40] hover:bg-[#031d40] hover:text-white transition-all bg-transparent"
                 asChild
               >
-                <Link href="/servicios">Aprender mas</Link>
+                <Link href="/servicios">{t.hero.ctaSecondary}</Link>
               </Button>
             </div>
           </div>

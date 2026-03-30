@@ -11,6 +11,7 @@ import { ArrowRight, MessageCircle, Bot } from 'lucide-react'
 import Link from "next/link"
 import { faqs } from "@/lib/data"
 import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "@/lib/i18n"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -52,6 +53,8 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 }
 
 export function FAQSection() {
+  const { t } = useTranslation()
+  const faqItems = t.faq.items
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-gray-50/50 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -67,14 +70,14 @@ export function FAQSection() {
             
             
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#031d40] mb-4 sm:mb-6 leading-tight">
-              Preguntas{" "}
+              {t.faq.title}
               <UnderlinedText>
-                <span className="text-[#031d40]">Frecuentes</span>
+                <span className="text-[#031d40]">{t.faq.titleHighlight}</span>
               </UnderlinedText>
             </h2>
             
             <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-              Resolvemos las dudas más habituales sobre cómo la Inteligencia Artificial puede transformar tu negocio. ¿Tienes otra pregunta?
+              {t.faq.subtitle}
             </p>
 
             <div className="flex flex-col gap-4 w-full sm:max-w-xs">
@@ -83,7 +86,7 @@ export function FAQSection() {
                 asChild
               >
                 <Link href="/contacto">
-                  Contactar
+                  {t.faq.contactar}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -94,7 +97,7 @@ export function FAQSection() {
                 asChild
               >
                 <Link href="/contacto">
-                  Chat con IA
+                  {t.faq.chatIA}
                   <Bot className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                 </Link>
               </Button>
@@ -104,7 +107,7 @@ export function FAQSection() {
           {/* Right Column: Accordion */}
           <div className="lg:col-span-7">
             <Accordion type="single" collapsible className="w-full space-y-4">
-              {faqs.map((faq, index) => (
+              {faqItems.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}

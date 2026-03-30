@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import Link from "next/link"
-import { ExternalLink, Search, Zap, Video, Wrench, TrendingUp, Building2, ShoppingCart, Terminal, Settings, Users, Lightbulb, ClipboardList } from "lucide-react"
+import { ExternalLink, Search, Zap, Video, Wrench, Terminal, Lightbulb, ClipboardList } from "lucide-react"
+import { useTranslation } from "@/lib/i18n"
+import { recursosTranslations } from "@/lib/i18n/pages/recursos"
 
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -22,124 +24,25 @@ type Resource = {
   featured?: boolean
 }
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// ─── Static data (non-translatable) ──────────────────────────────────────────
 
-const CATEGORIES = [
-  { label: "Diagnóstico", description: "Evalúa tu empresa", icon: ClipboardList, color: "bg-[#031d40]/10 text-[#031d40]" },
-  { label: "Automatizaciones", description: "Listas para usar", icon: Zap, color: "bg-[#031d40]/10 text-[#031d40]" },
-  { label: "Cursos", description: "Aprende paso a paso", icon: Video, color: "bg-[#031d40]/10 text-[#031d40]" },
-  { label: "Herramientas", description: "Gratuitas y premium", icon: Wrench, color: "bg-[#031d40]/10 text-[#031d40]" },
-  { label: "Prompts", description: "Plantillas listas", icon: Terminal, color: "bg-[#031d40]/10 text-[#031d40]" },
-  { label: "Otros", description: "Más recursos útiles", icon: Lightbulb, color: "bg-[#031d40]/10 text-[#031d40]" },
-]
+const CATEGORY_ICONS = [ClipboardList, Zap, Video, Wrench, Terminal, Lightbulb]
+const CATEGORY_COLOR = "bg-[#031d40]/10 text-[#031d40]"
 
-const RESOURCES: Resource[] = [
-  {
-    id: 0,
-    category: "Diagnóstico",
-    title: "Diagnóstico Inicial de IA",
-    description: "Formulario interactivo que analiza el estado actual de tu empresa en materia de IA: procesos, datos, equipo y tecnología. Obtén un informe personalizado con tu nivel de madurez y un plan de acción con los próximos pasos para acelerar tu transformación.",
-    tags: ["#diagnostico", "#madurez-ia", "#estrategia", "#gratuito"],
-    free: true,
-    href: "/recursos/diagnostico-ia",
-    featured: true,
-  },
-  {
-    id: 1,
-    category: "Automatizaciones",
-    title: "Clasificación automática de correos con IA",
-    description: "Automatiza la clasificación de emails entrantes según prioridad, departamento y acción requerida. Integra con Gmail o Outlook y conecta con tu CRM.",
-    tags: ["#email", "#clasificación", "#automatización"],
-    free: true,
-  },
-  {
-    id: 2,
-    category: "Cursos",
-    title: "Cómo implementar un agente de IA en atención al cliente",
-    description: "Guía paso a paso para desplegar un agente conversacional que gestione consultas frecuentes, escale incidencias y reduzca tiempos de respuesta.",
-    tags: ["#agente", "#atencion-cliente", "#chatbot"],
-    free: true,
-  },
-  {
-    id: 3,
-    category: "Herramientas",
-    title: "Plantilla de evaluación de madurez en IA",
-    description: "Cuestionario y matriz de evaluación para conocer en qué punto de adopción de IA se encuentra tu empresa y qué pasos dar a continuación.",
-    tags: ["#madurez", "#evaluacion", "#estrategia"],
-    free: true,
-  },
-  {
-    id: 4,
-    category: "Otros",
-    title: "Pack de prompts para generar contenido de LinkedIn",
-    description: "50 prompts optimizados para crear posts, artículos y carruseles de LinkedIn orientados a empresas B2B que quieren posicionarse como referentes.",
-    tags: ["#linkedin", "#contenido", "#b2b"],
-    free: true,
-  },
-  {
-    id: 5,
-    category: "Otros",
-    title: "Automatiza la generación de informes semanales",
-    description: "Conecta tus fuentes de datos con un flujo n8n para generar y enviar informes de negocio automáticamente cada semana sin intervención manual.",
-    tags: ["#informes", "#n8n", "#datos"],
-    free: true,
-  },
-  {
-    id: 6,
-    category: "Otros",
-    title: "Prompts para cualificar leads con IA generativa",
-    description: "Conjunto de prompts para analizar conversaciones, perfilar leads y priorizar oportunidades comerciales usando ChatGPT o Claude.",
-    tags: ["#leads", "#ventas", "#crm"],
-    free: true,
-  },
-  {
-    id: 7,
-    category: "Prompts",
-    title: "Plantillas de prompts para análisis de documentos",
-    description: "Extrae información clave de contratos, facturas y presupuestos con estas plantillas de prompts listas para usar en cualquier LLM.",
-    tags: ["#documentos", "#extraccion", "#prompts"],
-    free: true,
-  },
-  {
-    id: 8,
-    category: "Otros",
-    title: "Checklist de automatización de procesos con IA",
-    description: "Lista de verificación completa para auditar, priorizar e implementar automatizaciones con IA en empresas medianas y grandes.",
-    tags: ["#checklist", "#procesos", "#implementacion"],
-    free: false,
-  },
-  {
-    id: 9,
-    category: "Otros",
-    title: "Prompts para screening de candidatos con IA",
-    description: "Reduce el tiempo de selección con prompts que analizan CVs, generan preguntas de entrevista y evalúan competencias automáticamente.",
-    tags: ["#rrhh", "#seleccion", "#ia"],
-    free: true,
-  },
-  {
-    id: 10,
-    category: "Otros",
-    title: "Caso real: IA en gestión de inventario retail",
-    description: "Análisis detallado de cómo una empresa retail redujo el exceso de stock un 34% utilizando modelos predictivos y automatización de pedidos.",
-    tags: ["#retail", "#inventario", "#prediccion"],
-    free: true,
-  },
-  {
-    id: 11,
-    category: "Cursos",
-    title: "Guía de Cumplimiento con el Reglamento IA Europeo",
-    description: "Todo lo que necesitas saber para adaptar tu empresa a la normativa europea de IA: clasificación de riesgos, documentación requerida y plazos.",
-    tags: ["#ria", "#cumplimiento", "#regulacion"],
-    free: true,
-  },
-  {
-    id: 12,
-    category: "Automatizaciones",
-    title: "Automatiza respuestas a reseñas de Google",
-    description: "Plantilla Make lista para responder reseñas de 4-5 estrellas automáticamente y recibir alertas por email ante valoraciones negativas.",
-    tags: ["#google", "#reseñas", "#reputacion"],
-    free: true,
-  },
+const RESOURCE_META: { free: boolean; href?: string; featured?: boolean }[] = [
+  { free: true, href: "/recursos/diagnostico-ia", featured: true },
+  { free: true },
+  { free: true },
+  { free: true },
+  { free: true },
+  { free: true },
+  { free: true },
+  { free: true },
+  { free: false },
+  { free: true },
+  { free: true },
+  { free: true },
+  { free: true },
 ]
 
 // ─── UnderlinedText Component ─────────────────────────────────────────────────
@@ -186,6 +89,25 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function RecursosPage() {
+  const { locale } = useTranslation()
+  const t = recursosTranslations[locale]
+
+  const CATEGORIES = t.categories.map((cat, i) => ({
+    label: cat.label,
+    description: cat.description,
+    icon: CATEGORY_ICONS[i],
+    color: CATEGORY_COLOR,
+  }))
+
+  const RESOURCES: Resource[] = t.resources.map((r, i) => ({
+    id: i,
+    category: r.category,
+    title: r.title,
+    description: r.description,
+    tags: r.tags,
+    ...RESOURCE_META[i],
+  }))
+
   const [search, setSearch] = useState("")
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
@@ -196,7 +118,6 @@ export default function RecursosPage() {
     setSelectedCategories((prev) =>
       prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
     )
-    // Si seleccionas una categoría en sidebar, deselecciona el hero
     setActiveCategory(null)
   }
 
@@ -206,7 +127,7 @@ export default function RecursosPage() {
         search === "" ||
         r.title.toLowerCase().includes(search.toLowerCase()) ||
         r.description.toLowerCase().includes(search.toLowerCase()) ||
-        r.tags.some((t) => t.toLowerCase().includes(search.toLowerCase()))
+        r.tags.some((tag) => tag.toLowerCase().includes(search.toLowerCase()))
 
       const matchesCategory =
         selectedCategories.length === 0 ||
@@ -216,7 +137,7 @@ export default function RecursosPage() {
 
       return matchesSearch && matchesCategory && matchesActive
     })
-  }, [search, selectedCategories, activeCategory])
+  }, [search, selectedCategories, activeCategory, RESOURCES])
 
   const handleCategoryClick = (label: string) => {
     setActiveCategory((prev) => (prev === label ? null : label))
@@ -274,12 +195,11 @@ export default function RecursosPage() {
             <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#031d40] mb-4 text-balance">
                 <UnderlinedText>
-                  <span className="text-[#031d40]">Recursos para tu Empresa</span>
+                  <span className="text-[#031d40]">{t.hero.title}</span>
                 </UnderlinedText>
               </h1>
               <p className="text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-                Descubre automatizaciones, guías y herramientas gratuitas para
-                optimizar tu negocio con inteligencia artificial.
+                {t.hero.subtitle}
               </p>
             </div>
 
@@ -319,7 +239,7 @@ export default function RecursosPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
-                  placeholder="Buscar recurso"
+                  placeholder={t.sidebar.searchPlaceholder}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="pl-9 rounded-full border-gray-200 bg-white focus-visible:ring-[#bbbd26]"
@@ -328,7 +248,7 @@ export default function RecursosPage() {
 
               {/* Categories */}
               <div>
-                <p className="font-bold text-[#031d40] mb-3">Categorías</p>
+                <p className="font-bold text-[#031d40] mb-3">{t.sidebar.categoriesTitle}</p>
                 <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
                   {uniqueCategories.map((cat) => (
                     <label
@@ -353,12 +273,12 @@ export default function RecursosPage() {
             <div className="flex-1">
               {filteredResources.length === 0 ? (
                 <div className="text-center py-20 text-gray-400">
-                  No se encontraron recursos con esos filtros.
+                  {t.noResults}
                 </div>
               ) : (
                 <div className="grid sm:grid-cols-2 gap-5">
                   {filteredResources.map((resource) => (
-                    <ResourceCard key={resource.id} resource={resource} />
+                    <ResourceCard key={resource.id} resource={resource} t={t} />
                   ))}
                 </div>
               )}
@@ -372,7 +292,7 @@ export default function RecursosPage() {
 
 // ─── Resource Card ────────────────────────────────────────────────────────────
 
-function ResourceCard({ resource }: { resource: Resource }) {
+function ResourceCard({ resource, t }: { resource: Resource; t: typeof recursosTranslations.es }) {
   const isFeatured = resource.featured === true
   const isAvailable = !!resource.href
 
@@ -390,19 +310,19 @@ function ResourceCard({ resource }: { resource: Resource }) {
       {isFeatured && (
         <div className="absolute -top-3 left-5">
           <span className="bg-[#bbbd26] text-[#031d40] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-            Destacado
+            {t.card.featured}
           </span>
         </div>
       )}
 
-      {/* Próximamente label */}
+      {/* Coming soon label */}
       {!isAvailable && (
         <div className="absolute -top-3 left-5">
           <span className="bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
-            Próximamente
+            {t.card.comingSoon}
           </span>
         </div>
       )}
@@ -429,7 +349,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
               : "bg-gray-200 text-gray-600"
           }`}
         >
-          {resource.free ? "Gratuito" : "Premium"}
+          {resource.free ? t.card.free : t.card.premium}
         </span>
       </div>
 
@@ -479,7 +399,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
                 : "bg-[#031d40] hover:bg-[#031d40]/90 text-white"
             }`}
           >
-            Ver Recurso
+            {t.card.viewResource}
             <ExternalLink className="w-4 h-4" />
           </Button>
         </Link>
@@ -488,7 +408,7 @@ function ResourceCard({ resource }: { resource: Resource }) {
           disabled
           className="w-full bg-gray-200 text-gray-400 rounded-xl gap-2 mt-1 cursor-not-allowed hover:bg-gray-200"
         >
-          No disponible actualmente
+          {t.card.notAvailable}
         </Button>
       )}
     </div>

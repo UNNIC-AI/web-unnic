@@ -5,6 +5,8 @@ import React from "react"
 import type { ReactNode } from "react"
 
 import { Navigation } from "@/components/navigation"
+import { useTranslation } from "@/lib/i18n"
+import { serviciosTranslations } from "@/lib/i18n/pages/servicios"
 import { Button } from "@/components/ui/button"
 import {
   ArrowRight,
@@ -72,30 +74,9 @@ function AnimatedSection({ children, className = "" }: { children: ReactNode; cl
   )
 }
 
-function SimpleTimeline() {
+function SimpleTimeline({ steps }: { steps: { number: string; icon: React.ElementType; title: string; description: string }[] }) {
   const timelineRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-
-  const steps = [
-    {
-      number: "01",
-      icon: Search,
-      title: "Análisis",
-      description: "Comprendemos tus objetivos, procesos y datos para detectar áreas de mejora",
-    },
-    {
-      number: "02",
-      icon: Lightbulb,
-      title: "Diagnóstico",
-      description: "Transformamos esas áreas en proyectos de IA viables, definidos técnica y económicamente",
-    },
-    {
-      number: "03",
-      icon: Target,
-      title: "Diseño",
-      description: "Validamos los proyectos, cerramos presupuestos y creamos el plan de implementación",
-    },
-  ]
 
   useEffect(() => the_observer(timelineRef.current, setIsVisible, { threshold: 0.2 }), [])
 
@@ -235,38 +216,10 @@ function AnimatedDesarrolloSteps({ steps }: { steps: { icon: React.ElementType; 
   )
 }
 
-function AnimatedRIATimeline() {
+function AnimatedRIATimeline({ steps }: { steps: { num: string; title: string; desc: string }[] }) {
   const [isVisible, setIsVisible] = useState(false)
   const [activeSteps, setActiveSteps] = useState<number[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
-
-  const steps = [
-    {
-      num: "01",
-      title: "Diagnóstico y formación directiva",
-      desc: "Identificación de usos actuales y alineación estratégica",
-    },
-    {
-      num: "02",
-      title: "Responsables y control",
-      desc: "Estructura de gobernanza y registro centralizado",
-    },
-    {
-      num: "03",
-      title: "Evaluación de riesgos",
-      desc: "Análisis legal, ético y de protección de datos",
-    },
-    {
-      num: "04",
-      title: "Guía interna y formación",
-      desc: "Políticas documentadas y capacitación operativa",
-    },
-    {
-      num: "05",
-      title: "Supervisión continua",
-      desc: "Mantenimiento actualizado y mejora progresiva",
-    },
-  ]
 
   useEffect(() => the_observer(containerRef.current, setIsVisible, { threshold: 0.2 }), [])
 
@@ -339,6 +292,8 @@ function AnimatedRIATimeline() {
 }
 
 export default function ServiciosPage() {
+  const { locale } = useTranslation()
+  const t = serviciosTranslations[locale]
   const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
   const [consentChecked, setConsentChecked] = useState(false)
@@ -348,7 +303,7 @@ export default function ServiciosPage() {
     e.preventDefault()
     
     if (!consentChecked) {
-      setErrorMessage("Debes aceptar el tratamiento de datos para continuar")
+      setErrorMessage(t.bannerCta.consentError)
       return
     }
 
@@ -357,8 +312,8 @@ export default function ServiciosPage() {
 
     const form = e.currentTarget
     const formData = new FormData(form)
-    formData.append("_subject", "Nuevo contacto desde Servicios - Unnic AI")
-    formData.append("_consent", "Sí, autorizo el tratamiento de datos")
+    formData.append("_subject", t.bannerCta.formSubject)
+    formData.append("_consent", t.bannerCta.formConsent)
 
     try {
       const response = await fetch("https://formspree.io/f/meelpapo", {
@@ -375,11 +330,11 @@ export default function ServiciosPage() {
         formRef.current?.reset()
       } else {
         setFormState("error")
-        setErrorMessage("Error al enviar el mensaje. Por favor, inténtalo de nuevo.")
+        setErrorMessage(t.bannerCta.submitError)
       }
     } catch (error) {
       setFormState("error")
-      setErrorMessage("Error de conexión. Por favor, inténtalo de nuevo.")
+      setErrorMessage(t.bannerCta.connectionError)
     }
   }
 
@@ -424,20 +379,20 @@ export default function ServiciosPage() {
             <div className="max-w-5xl mx-auto text-center space-y-8">
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance leading-[1.05] tracking-tight">
                 <UnderlinedText>
-                  <span className="text-[#031d40]">Rentable</span>
+                  <span className="text-[#031d40]">{t.hero.titleWord1}</span>
                 </UnderlinedText>
-                <span className="text-[#031d40]">, </span>
+                <span className="text-[#031d40]">{t.hero.separator1}</span>
                 <UnderlinedText delay={200}>
-                  <span className="text-[#031d40]">Segura</span>
+                  <span className="text-[#031d40]">{t.hero.titleWord2}</span>
                 </UnderlinedText>
-                <span className="text-[#031d40]"> y </span>
+                <span className="text-[#031d40]">{t.hero.separator2}</span>
                 <UnderlinedText delay={400}>
-                  <span className="text-[#031d40]">Escalable</span>
+                  <span className="text-[#031d40]">{t.hero.titleWord3}</span>
                 </UnderlinedText>
               </h1>
 
               <p className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
-                Aplicamos IA de forma práctica en tu empresa: ayudamos a tu equipo a mejorar procesos, reducir costes y ver resultados reales de forma segura              
+                {t.hero.subtitle}
               </p>
 
               <div className="flex flex-col items-center pt-3">
@@ -447,7 +402,7 @@ export default function ServiciosPage() {
                   }}
                   className="group flex flex-col items-center gap-3 text-[#031d40]/60 hover:text-[#031d40] transition-colors cursor-pointer"
                 >
-                  <span className="text-sm font-medium tracking-wide">Ver cómo</span>
+                  <span className="text-sm font-medium tracking-wide">{t.hero.scrollCta}</span>
                   <div className="flex flex-col items-center">
                     <div className="w-px h-2 bg-current opacity-40" />
                     <ChevronDown className="w-5 h-5 -mt-1" />
@@ -475,69 +430,59 @@ export default function ServiciosPage() {
                     className="inline-flex items-center gap-2 bg-[#031d40] text-white px-4 py-1.5 rounded-full text-sm font-medium mb-6 hover:bg-[#031d40]/80 transition-colors"
                   >
                     <Lightbulb className="w-4 h-4" />
-                    CONSULTORÍA
+                    {t.consultoria.badge}
                   </Link>
                   <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#031d40] mb-4 sm:mb-6">
                     <UnderlinedText>
-                      <span className="text-[#031d40]">Primero,</span>
+                      <span className="text-[#031d40]">{t.consultoria.titleHighlight}</span>
                     </UnderlinedText>{" "}
-                    tu Estrategia
+                    {t.consultoria.titleRest}
                   </h2>
                   <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Identificamos dónde la IA puede generar impacto real en tu negocio y trazamos el camino para
-                    conseguirlo
+                    {t.consultoria.subtitle}
                   </p>
                 </div>
 
                 {/* Timeline */}
-                <SimpleTimeline />
+                <SimpleTimeline
+                  steps={t.consultoria.timelineSteps.map((step, i) => ({
+                    number: String(i + 1).padStart(2, "0"),
+                    icon: [Search, Lightbulb, Target][i],
+                    ...step,
+                  }))}
+                />
 
                 <div className="mt-16 grid md:grid-cols-2 gap-12 items-center">
-                  {/* Columna izquierda - Mensaje */}
                   <div>
                     <h3 className="text-4xl md:text-5xl font-bold text-[#031d40] mb-4">
-                      Crea tu{" "}
+                      {t.consultoria.actionPlanTitle}
                       <UnderlinedText>
-                        <span className="text-[#031d40]">plan de acción</span>
+                        <span className="text-[#031d40]">{t.consultoria.actionPlanHighlight}</span>
                       </UnderlinedText>{" "}
                       
                     </h3>
                     <p className="text-lg text-gray-600">
-                      Con proyectos definidos, priorizados y presupuestados listos para ejecutar
+                      {t.consultoria.actionPlanSubtitle}
                     </p>
                   </div>
 
-                  {/* Columna derecha - Card con entregables */}
                   <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <p className="text-sm font-semibold text-[#bbbd26] uppercase tracking-wide mb-6">Lo que obtienes</p>
+                    <p className="text-sm font-semibold text-[#bbbd26] uppercase tracking-wide mb-6">{t.consultoria.deliverablesLabel}</p>
                     <div className="space-y-5 mb-8">
-                      <div className="flex items-start gap-4">
-                        <div className="w-8 h-8 bg-[#bbbd26]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <FileText className="w-4 h-4 text-[#031d40]" />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-[#031d40]">Diagnóstico completo</p>
-                          <p className="text-sm text-gray-500">Análisis detallado de tu situación actual</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <div className="w-8 h-8 bg-[#bbbd26]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Target className="w-4 h-4 text-[#031d40]" />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-[#031d40]">Proyectos de alto impacto</p>
-                          <p className="text-sm text-gray-500">Oportunidades priorizadas por ROI</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <div className="w-8 h-8 bg-[#bbbd26]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <TrendingUp className="w-4 h-4 text-[#031d40]" />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-[#031d40]">Inversión clara</p>
-                          <p className="text-sm text-gray-500">Presupuesto y timeline definidos</p>
-                        </div>
-                      </div>
+                      {t.consultoria.deliverables.map((item, i) => {
+                        const Icon = [FileText, Target, TrendingUp][i]
+                        return (
+                          <div key={i} className="flex items-start gap-4">
+                            <div className="w-8 h-8 bg-[#bbbd26]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                              <Icon className="w-4 h-4 text-[#031d40]" />
+                            </div>
+                            <div>
+                              <p className="font-semibold text-[#031d40]">{item.title}</p>
+                              <p className="text-sm text-gray-500">{item.desc}</p>
+                            </div>
+                          </div>
+                        )
+                      })}
                     </div>
                     <Button
                       size="lg"
@@ -545,7 +490,7 @@ export default function ServiciosPage() {
                       asChild
                     >
                       <Link href="/contacto">
-                        Agendar Análisis
+                        {t.consultoria.ctaButton}
                         <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                       </Link>
                     </Button>
@@ -553,7 +498,7 @@ export default function ServiciosPage() {
                       href="/servicios/consultoria"
                       className="w-full mt-4 inline-flex items-center justify-center text-[#031d40] hover:text-[#bbbd26] font-medium transition-colors group"
                     >
-                      Más sobre Consultoría
+                      {t.consultoria.moreLink}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -584,57 +529,33 @@ export default function ServiciosPage() {
                     className="inline-flex items-center gap-2 bg-[#031d40] text-white px-4 py-1.5 rounded-full text-sm font-medium mb-6 hover:bg-[#031d40]/80 transition-colors"
                   >
                     <Layers className="w-4 h-4" />
-                    IMPLEMENTACION
+                    {t.implementacion.badge}
                   </Link>
                   <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#031d40] mb-4">
-                    Proyectos{" "}
+                    {t.implementacion.titlePrefix}
                     <UnderlinedText>
-                      <span className="text-[#031d40]">100% a Medida</span>
+                      <span className="text-[#031d40]">{t.implementacion.titleHighlight}</span>
                     </UnderlinedText>
                   </h2>
                   <p className="text-xl text-gray-600 mt-6 max-w-3xl mx-auto">
-                    Un proceso probado que garantiza resultados desde la primera fase
+                    {t.implementacion.subtitle}
                   </p>
                 </div>
 
                 <AnimatedDesarrolloSteps
-                  steps={[
-                    { icon: Search, title: "Análisis", desc: "Entendemos tu negocio y objetivos" },
-                    { icon: PenTool, title: "Diseño", desc: "Arquitectura técnica y prototipado" },
-                    { icon: Cog, title: "Desarrollo", desc: "Sprints con entregas frecuentes" },
-                    { icon: Rocket, title: "Despliegue", desc: "Producción e integración" },
-                    { icon: Headphones, title: "Soporte", desc: "Mantenimiento y evolución continua" },
-                  ]}
+                  steps={t.implementacion.steps.map((step, i) => ({
+                    icon: [Search, PenTool, Cog, Rocket, Headphones][i],
+                    ...step,
+                  }))}
                 />
 
                 {/* Áreas de desarrollo */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {[
-                    {
-                      icon: Brain,
-                      title: "IA Generativa",
-                      desc: "Agentes de IA, Llamadas con IA, Sistemas RAG",
-                      href: "/servicios/ia-generativa",
-                    },
-                    {
-                      icon: Cog,
-                      title: "Automatizaciones",
-                      desc: "N8n, PowerAutomate, RPA a medida",
-                      href: "/servicios/automatizacion",
-                    },
-                    {
-                      icon: TrendingUp,
-                      title: "Data & BI",
-                      desc: "Power BI, estudios de datos, modelos predictivos",
-                      href: "/servicios/data",
-                    },
-                    {
-                      icon: Layers,
-                      title: "Desarrollo",
-                      desc: "Apps Web, Software Ad Hoc, integraciones",
-                      href: "/servicios/desarrollo",
-                    },
-                  ].map((area, index) => (
+                  {t.implementacion.areas.map((area, index) => {
+                    const areaIcons = [Brain, Cog, TrendingUp, Layers]
+                    const areaHrefs = ["/servicios/ia-generativa", "/servicios/automatizacion", "/servicios/data", "/servicios/desarrollo"]
+                    return { icon: areaIcons[index], href: areaHrefs[index], ...area }
+                  }).map((area, index) => (
                     <Link key={index} href={area.href} className="group">
                       <div className="bg-white rounded-2xl p-8 border-2 border-[#bbbd26] hover:bg-[#bbbd26]/5 transition-all h-full flex flex-col">
                         <div className="w-16 h-16 bg-[#bbbd26]/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#bbbd26]/20 transition-all">
@@ -643,7 +564,7 @@ export default function ServiciosPage() {
                         <h3 className="text-xl font-bold text-[#031d40] mb-3">{area.title}</h3>
                         <p className="text-gray-600 flex-grow">{area.desc}</p>
                         <div className="mt-4 flex items-center text-[#031d40] font-medium group-hover:text-[#bbbd26] transition-colors">
-                          Saber más
+                          {t.implementacion.learnMore}
                           <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -659,7 +580,7 @@ export default function ServiciosPage() {
                     asChild
                   >
                     <Link href="/contacto">
-                      Cuéntanos tu proyecto
+                      {t.implementacion.ctaButton}
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -700,9 +621,9 @@ export default function ServiciosPage() {
           <div className="container mx-auto px-4 max-w-5xl relative">
             <div className="text-center mb-8">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight text-balance">
-                ¿Tienes un proyecto en mente?
+                {t.bannerCta.title}
               </h2>
-              <p className="text-white/70 mt-4 text-lg">Déjanos tu contacto y te respondemos en menos de 24h</p>
+              <p className="text-white/70 mt-4 text-lg">{t.bannerCta.subtitle}</p>
             </div>
 
             {/* Contact form */}
@@ -711,7 +632,7 @@ export default function ServiciosPage() {
                 <input
                   type="text"
                   name="contact"
-                  placeholder="Tu email o teléfono"
+                  placeholder={t.bannerCta.placeholder}
                   required
                   disabled={formState === "loading"}
                   className="flex-1 h-14 px-6 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:border-[#bbbd26] focus:ring-2 focus:ring-[#bbbd26]/20 transition-all disabled:opacity-50"
@@ -725,11 +646,11 @@ export default function ServiciosPage() {
                   {formState === "loading" ? (
                     <>
                       <Loader2 className="mr-2 w-5 h-5 animate-spin" />
-                      Enviando...
+                      {t.bannerCta.sending}
                     </>
                   ) : (
                     <>
-                      Te contactamos
+                      {t.bannerCta.submitButton}
                       <ArrowRight className="ml-2 w-5 h-5" />
                     </>
                   )}
@@ -744,7 +665,7 @@ export default function ServiciosPage() {
                   checked={consentChecked}
                   onChange={(e) => {
                     setConsentChecked(e.target.checked)
-                    if (e.target.checked && errorMessage.includes("aceptar")) {
+                    if (e.target.checked && errorMessage === t.bannerCta.consentError) {
                       setErrorMessage("")
                     }
                   }}
@@ -752,9 +673,9 @@ export default function ServiciosPage() {
                   className="w-4 h-4 rounded border-white/30 text-[#bbbd26] focus:ring-[#bbbd26] cursor-pointer flex-shrink-0 disabled:opacity-50"
                 />
                 <label htmlFor="services-consent" className="text-xs text-white/60 leading-tight cursor-pointer">
-                  Autorizo el tratamiento de datos según{" "}
+                  {t.bannerCta.consentText}
                   <a href="/politica-privacidad" className="text-[#bbbd26] hover:underline">
-                    política de privacidad
+                    {t.bannerCta.consentLink}
                   </a>
                 </label>
               </div>
@@ -763,19 +684,19 @@ export default function ServiciosPage() {
               {formState === "success" && (
                 <div className="flex items-center gap-3 p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
                   <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <p className="text-sm text-green-100">¡Mensaje enviado! Te contactaremos pronto.</p>
+                  <p className="text-sm text-green-100">{t.bannerCta.successMessage}</p>
                 </div>
               )}
 
               {/* Error Message */}
               {(formState === "error" || errorMessage) && (
                 <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-                  <p className="text-sm text-red-100">{errorMessage || "Hubo un error. Por favor, inténtalo de nuevo."}</p>
+                  <p className="text-sm text-red-100">{errorMessage || t.bannerCta.genericError}</p>
                 </div>
               )}
             </form>
 
-            <p className="text-white/50 text-sm text-center mt-6">Sin compromiso. Queremos conocer tu proyecto.</p>
+            <p className="text-white/50 text-sm text-center mt-6">{t.bannerCta.footerText}</p>
           </div>
         </section>
 
@@ -800,12 +721,12 @@ export default function ServiciosPage() {
                     className="inline-flex items-center gap-2 bg-[#031d40] text-white px-4 py-1.5 rounded-full text-sm font-medium mb-6 hover:bg-[#031d40]/80 transition-colors"
                   >
                     <GraduationCap className="w-4 h-4" />
-                    FORMACIÓN
+                    {t.formacion.badge}
                   </Link>
                   <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#031d40]">
-                    Forma a tu equipo{" "}
+                    {t.formacion.titlePrefix}
                     <UnderlinedText>
-                      <span className="text-[#031d40]">con Expertos</span>
+                      <span className="text-[#031d40]">{t.formacion.titleHighlight}</span>
                     </UnderlinedText>
                   </h2>
                 </div>
@@ -815,35 +736,22 @@ export default function ServiciosPage() {
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                     <img
                       src="/formacion-equipo-ia-capacitacion-empresarial.png"
-                      alt="Formación en IA para equipos"
+                      alt={t.formacion.imageAlt}
                       className="w-full h-[400px] object-cover"
                       style={{ objectPosition: 'center 65%' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#031d40]/60 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6">
-                      <p className="text-white text-lg font-medium">Formación práctica y adaptada a tu negocio</p>
+                      <p className="text-white text-lg font-medium">{t.formacion.imageCaption}</p>
                     </div>
                   </div>
 
                   {/* Características */}
                   <div className="space-y-8">
-                    {[
-                      {
-                        icon: Target,
-                        title: "Enfoque práctico",
-                        desc: "Casos reales y ejercicios aplicables desde el día uno",
-                      },
-                      {
-                        icon: TrendingUp,
-                        title: "Orientado a tu negocio",
-                        desc: "Contenido adaptado a tu industria y objetivos",
-                      },
-                      {
-                        icon: Eye,
-                        title: "Visión estratégica",
-                        desc: "No solo herramientas, sino cómo aplicarlas con impacto",
-                      },
-                    ].map((feature, index) => (
+                    {t.formacion.features.map((feature, index) => {
+                      const featureIcons = [Target, TrendingUp, Eye]
+                      return { icon: featureIcons[index], ...feature }
+                    }).map((feature, index) => (
                       <div key={index} className="flex items-start gap-5">
                         <div className="w-14 h-14 bg-[#bbbd26]/20 rounded-2xl flex items-center justify-center flex-shrink-0">
                           <feature.icon className="w-7 h-7 text-[#bbbd26]" />
@@ -858,7 +766,7 @@ export default function ServiciosPage() {
                 </div>
 
                 <div className="relative mt-16">
-                  <h3 className="text-2xl font-bold text-[#031d40] mb-8 text-center">Nuestros Cursos</h3>
+                  <h3 className="text-2xl font-bold text-[#031d40] mb-8 text-center">{t.formacion.coursesTitle}</h3>
 
                   <div className="relative">
                     {/* Fade izquierdo */}
@@ -871,48 +779,10 @@ export default function ServiciosPage() {
                         {/* Duplicamos los cursos para el efecto infinito */}
                         {[...Array(2)].map((_, setIndex) => (
                           <React.Fragment key={setIndex}>
-                            {[
-                              {
-                                name: "Introducción a la IA",
-                                desc: "Fundamentos de inteligencia artificial para cualquier perfil profesional",
-                                highlight: false,
-                              },
-                              {
-                                name: "IA para Directivos",
-                                desc: "Toma de decisiones estratégicas con inteligencia artificial",
-                                highlight: false,
-                              },
-                              {
-                                name: "IA para Comerciales",
-                                desc: "Potencia tus ventas con herramientas de IA",
-                                highlight: false,
-                              },
-                              {
-                                name: "IA para Marketers",
-                                desc: "Automatiza y optimiza tus campañas de marketing",
-                                highlight: false,
-                              },
-                              {
-                                name: "IA para RRHH",
-                                desc: "Gestión del talento y procesos de selección con IA",
-                                highlight: false,
-                              },
-                              {
-                                name: "IA para Finanzas",
-                                desc: "Análisis financiero y predicción con machine learning",
-                                highlight: false,
-                              },
-                              {
-                                name: "IA para Desarrolladores",
-                                desc: "Integración de modelos y APIs de IA en tus proyectos",
-                                highlight: false,
-                              },
-                              {
-                                name: "Ad Hoc",
-                                desc: "Formación personalizada según tus necesidades específicas",
-                                highlight: true,
-                              },
-                            ].map((course, index) => (
+                            {t.formacion.courses.map((course, i) => ({
+                              ...course,
+                              highlight: i === t.formacion.courses.length - 1,
+                            })).map((course, index) => (
                               <div
                                 key={`${setIndex}-${index}`}
                                 className={`flex-shrink-0 w-[280px] rounded-2xl p-6 transition-all flex flex-col ${
@@ -938,7 +808,7 @@ export default function ServiciosPage() {
                                       : "text-[#031d40] hover:text-[#031d40]/70"
                                   } transition-colors`}
                                 >
-                                  Saber más
+                                  {t.formacion.learnMore}
                                   <ArrowRight className="w-4 h-4" />
                                 </Link>
                               </div>
@@ -957,7 +827,7 @@ export default function ServiciosPage() {
                     asChild
                   >
                     <Link href="/servicios/formacion">
-                      Solicita una Formación
+                      {t.formacion.ctaButton}
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -968,7 +838,7 @@ export default function ServiciosPage() {
                     asChild
                   >
                     <Link href="/contacto">
-                      Formación Personalizada
+                      {t.formacion.ctaButtonAlt}
                       <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </Button>
@@ -992,60 +862,50 @@ export default function ServiciosPage() {
                     className="inline-flex items-center gap-2 bg-[#031d40] text-white px-4 py-1.5 rounded-full text-sm font-medium mb-6 hover:bg-[#031d40]/80 transition-colors"
                   >
                     <Scale className="w-4 h-4" />
-                    CUMPLIMIENTO RIA
+                    {t.ria.badge}
                   </Link>
                   <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#031d40]">
-                    Transformación{" "}
+                    {t.ria.titlePrefix}
                     <UnderlinedText>
-                      <span className="text-[#031d40]">Segura y Legal</span>
+                      <span className="text-[#031d40]">{t.ria.titleHighlight}</span>
                     </UnderlinedText>
                   </h2>
                   <p className="text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
-                    Impulsa la IA en tu empresa cumpliendo con el Reglamento Europeo
+                    {t.ria.subtitle}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
                   {/* Timeline - 3 columnas */}
                   <div className="lg:col-span-3">
-                    <AnimatedRIATimeline />
+                    <AnimatedRIATimeline
+                      steps={t.ria.timelineSteps.map((step, i) => ({
+                        num: String(i + 1).padStart(2, "0"),
+                        ...step,
+                      }))}
+                    />
                   </div>
 
                   {/* Badges y CTA - 2 columnas */}
                   <div className="lg:col-span-2">
                     <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 sticky top-24">
-                      <h3 className="text-xl font-bold text-[#031d40] mb-6">¿Qué consigues?</h3>
+                      <h3 className="text-xl font-bold text-[#031d40] mb-6">{t.ria.benefitsTitle}</h3>
 
                       <div className="space-y-4 mb-8">
-                        <div className="flex items-start gap-4">
-                          <div className="w-10 h-10 rounded-full bg-[#bbbd26]/20 flex items-center justify-center flex-shrink-0">
-                            <ShieldCheck className="w-5 h-5 text-[#bbbd26]" />
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-[#031d40]">Cumplimiento total</h4>
-                            <p className="text-sm text-gray-600">Alineación con el Reglamento Europeo de IA</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-4">
-                          <div className="w-10 h-10 rounded-full bg-[#bbbd26]/20 flex items-center justify-center flex-shrink-0">
-                            <AlertTriangle className="w-5 h-5 text-[#bbbd26]" />
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-[#031d40]">Reducción de riesgos</h4>
-                            <p className="text-sm text-gray-600">Mitigación de sanciones y problemas legales</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-4">
-                          <div className="w-10 h-10 rounded-full bg-[#bbbd26]/20 flex items-center justify-center flex-shrink-0">
-                            <Handshake className="w-5 h-5 text-[#bbbd26]" />
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-[#031d40]">Cultura y confianza</h4>
-                            <p className="text-sm text-gray-600">Genera confianza en el uso responsable de IA</p>
-                          </div>
-                        </div>
+                        {t.ria.benefits.map((benefit, i) => {
+                          const Icon = [ShieldCheck, AlertTriangle, Handshake][i]
+                          return (
+                            <div key={i} className="flex items-start gap-4">
+                              <div className="w-10 h-10 rounded-full bg-[#bbbd26]/20 flex items-center justify-center flex-shrink-0">
+                                <Icon className="w-5 h-5 text-[#bbbd26]" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-[#031d40]">{benefit.title}</h4>
+                                <p className="text-sm text-gray-600">{benefit.desc}</p>
+                              </div>
+                            </div>
+                          )
+                        })}
                       </div>
 
                       <Button
@@ -1054,7 +914,7 @@ export default function ServiciosPage() {
                         asChild
                       >
                         <Link href="/contacto">
-                          Quiero proteger mi empresa
+                          {t.ria.ctaButton}
                           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                       </Button>
@@ -1063,7 +923,7 @@ export default function ServiciosPage() {
                         href="/servicios/cumplimiento-ria"
                         className="flex items-center justify-center gap-2 mt-4 text-[#031d40]/70 hover:text-[#bbbd26] transition-colors text-sm font-medium"
                       >
-                        Más sobre RIA
+                        {t.ria.moreLink}
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>

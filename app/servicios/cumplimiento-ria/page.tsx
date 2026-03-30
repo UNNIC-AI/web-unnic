@@ -23,6 +23,8 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "@/lib/i18n"
+import { cumplimientoRiaTranslations } from "@/lib/i18n/pages/cumplimiento-ria"
 
 function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -55,79 +57,19 @@ function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: 
   )
 }
 
-const risks = [
-  {
-    icon: Euro,
-    title: "Sanciones",
-    description: "Hasta 35M€ o el 7% de la facturación global",
-  },
-  {
-    icon: FileX,
-    title: "Datos sin control",
-    description: "Uso de datos de clientes o empleados sin documentación",
-  },
-  {
-    icon: ShieldOff,
-    title: "Sin políticas",
-    description: "Ninguna norma interna sobre qué IA se puede usar y cómo",
-  },
+const riskIcons = [Euro, FileX, ShieldOff]
+
+const stepMeta = [
+  { number: "01", icon: Search },
+  { number: "02", icon: TriangleAlert },
+  { number: "03", icon: FileSearch },
+  { number: "04", icon: UsersRound },
+  { number: "05", icon: ScrollText },
+  { number: "06", icon: BookOpenCheck },
+  { number: "07", icon: CalendarClock },
 ]
 
-const steps = [
-  {
-    number: "01",
-    icon: Search,
-    title: "Descubrimiento",
-    description: "Mapeamos todas las herramientas de IA que usa tu empresa, visibles y ocultas",
-  },
-  {
-    number: "02",
-    icon: TriangleAlert,
-    title: "Evaluación de riesgos",
-    description: "Clasificamos cada uso según el Reglamento: prohibido, alto riesgo, limitado o mínimo",
-  },
-  {
-    number: "03",
-    icon: FileSearch,
-    title: "Diagnóstico",
-    description: "Te mostramos tus brechas de cumplimiento antes de tomar ninguna decisión",
-  },
-  {
-    number: "04",
-    icon: UsersRound,
-    title: "Sesión directiva",
-    description: "Con la dirección, decidís qué se permite, qué se limita y quién es responsable",
-  },
-  {
-    number: "05",
-    icon: ScrollText,
-    title: "Marco normativo",
-    description: "Redactamos vuestra política de uso responsable de IA y el protocolo para nuevas herramientas",
-  },
-  {
-    number: "06",
-    icon: BookOpenCheck,
-    title: "Formación al equipo",
-    description: "Explicamos las normas a toda la plantilla y lo dejamos documentado legalmente",
-  },
-  {
-    number: "07",
-    icon: CalendarClock,
-    title: "Mantenimiento",
-    description: "Os dejamos el sistema para que podáis actualizar el cumplimiento solos cada 6 meses",
-  },
-]
-
-const deliverables = [
-  { title: "Acta de Decisiones", desc: "Firmada por Dirección" },
-  { title: "Inventario de sistemas v1.0", desc: "Firmado por el Responsable de IA" },
-  { title: "Política de Uso Responsable", desc: "Distribuida a toda la plantilla" },
-  { title: "Protocolo de nuevas herramientas", desc: "Para aprobar futuras incorporaciones sin llamarnos" },
-  { title: "Registro de formación", desc: "Firmado por los empleados, con valor como evidencia legal" },
-  { title: "Plan de mantenimiento semestral", desc: "Para que el cumplimiento no caduque" },
-]
-
-function StepsTimeline() {
+function StepsTimeline({ translatedSteps }: { translatedSteps: { title: string; description: string }[] }) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -149,11 +91,12 @@ function StepsTimeline() {
         />
       </div>
       <div className="space-y-5">
-        {steps.map((step, index) => {
-          const Icon = step.icon
+        {stepMeta.map((meta, index) => {
+          const Icon = meta.icon
+          const step = translatedSteps[index]
           return (
             <div
-              key={step.number}
+              key={meta.number}
               className="relative"
               style={{
                 opacity: isVisible ? 1 : 0,
@@ -162,7 +105,7 @@ function StepsTimeline() {
               }}
             >
               <div className="absolute -left-8 md:-left-12 top-3 w-8 h-8 rounded-full bg-[#bbbd26] flex items-center justify-center shadow-md z-10">
-                <span className="text-xs font-bold text-[#031d40]">{step.number}</span>
+                <span className="text-xs font-bold text-[#031d40]">{meta.number}</span>
               </div>
               <div className="bg-white border border-gray-200 rounded-2xl p-5 hover:border-[#bbbd26] hover:shadow-md transition-[border-color,box-shadow] duration-300">
                 <div className="flex items-center gap-3 mb-2">
@@ -182,6 +125,9 @@ function StepsTimeline() {
 }
 
 export default function CumplimientoRIAPage() {
+  const { locale } = useTranslation()
+  const t = cumplimientoRiaTranslations[locale]
+
   return (
     <>
       <Navigation />
@@ -202,18 +148,18 @@ export default function CumplimientoRIAPage() {
             <div className="max-w-5xl mx-auto text-center space-y-8">
               
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance leading-[1.05] tracking-tight">
-                <span className="text-[#031d40]">IA </span>
+                <span className="text-[#031d40]">{t.hero.title1}</span>
                 <UnderlinedText>
-                  <span className="text-[#031d40]">Sin Riesgos</span>
+                  <span className="text-[#031d40]">{t.hero.titleHighlight}</span>
                 </UnderlinedText>
               </h1>
               <p className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                El Reglamento Europeo de IA ya está en vigor. No se trata de dejar de usar IA, sino de documentar que la usas bien.
+                {t.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Solicitar diagnóstico RIA
+                    {t.hero.cta}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -223,7 +169,7 @@ export default function CumplimientoRIAPage() {
                   onClick={() => document.getElementById("problema")?.scrollIntoView({ behavior: "smooth" })}
                   className="group flex flex-col items-center gap-3 text-[#031d40]/60 hover:text-[#031d40] transition-colors cursor-pointer"
                 >
-                  <span className="text-sm font-medium tracking-wide">Ver el problema real</span>
+                  <span className="text-sm font-medium tracking-wide">{t.hero.scrollLabel}</span>
                   <div className="flex flex-col items-center">
                     <div className="w-px h-2 bg-current opacity-40" />
                     <ChevronDown className="w-5 h-5 -mt-1" />
@@ -243,17 +189,17 @@ export default function CumplimientoRIAPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">El problema <span className="text-[#bbbd26]">real</span></h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">{t.problem.title}<span className="text-[#bbbd26]">{t.problem.titleAccent}</span></h2>
                 <p className="text-white/80 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                  La mayoría de empresas ya usa IA: ChatGPT para redactar, herramientas de RRHH, chatbots de atención al cliente. El problema no es usarla, sino no tener ningún control documentado sobre cómo se usa.
+                  {t.problem.description}
                 </p>
-                <p className="text-[#bbbd26] font-bold text-xl mt-4">Si mañana hay una inspección, ¿qué demuestras?</p>
+                <p className="text-[#bbbd26] font-bold text-xl mt-4">{t.problem.highlight}</p>
               </div>
               <div className="grid sm:grid-cols-3 gap-4">
-                {risks.map((risk) => {
-                  const Icon = risk.icon
+                {t.risks.map((risk, i) => {
+                  const Icon = riskIcons[i]
                   return (
-                    <div key={risk.title} className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                    <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6">
                       <div className="w-10 h-10 bg-[#bbbd26]/15 rounded-xl flex items-center justify-center mb-4">
                         <Icon className="w-5 h-5 text-[#bbbd26]" />
                       </div>
@@ -273,12 +219,12 @@ export default function CumplimientoRIAPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-12 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">Cómo lo hacemos</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.howSection.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-                  Siete pasos para pasar de la exposición legal a la tranquilidad documentada.
+                  {t.howSection.subtitle}
                 </p>
               </div>
-              <StepsTimeline />
+              <StepsTimeline translatedSteps={t.steps} />
             </div>
           </div>
         </section>
@@ -291,13 +237,13 @@ export default function CumplimientoRIAPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-10 md:mb-16 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">Qué obtienes al terminar</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.deliverables.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Un sistema de cumplimiento completo y operativo desde el primer día.
+                  {t.deliverables.subtitle}
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {deliverables.map((d, i) => (
+                {t.deliverables.items.map((d, i) => (
                   <div key={i} className="bg-gradient-to-br from-[#031d40]/5 to-[#031d40]/10 border border-gray-200/50 rounded-2xl p-6">
                     <div className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-[#bbbd26] flex-shrink-0 mt-0.5" />
@@ -324,23 +270,23 @@ export default function CumplimientoRIAPage() {
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <div className="inline-flex items-center gap-2 bg-[#031d40]/10 rounded-full px-4 py-2">
                 <Shield className="w-4 h-4 text-[#031d40]" />
-                <span className="text-[#031d40] text-sm font-semibold">Gratuito · Sin compromiso</span>
+                <span className="text-[#031d40] text-sm font-semibold">{t.cta.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40] whitespace-nowrap">
-                ¿Sabes qué IA usa tu empresa hoy mismo?
+                {t.cta.title}
               </h2>
               <p className="text-[#031d40]/80 text-lg leading-relaxed max-w-2xl mx-auto">
-                En la mayoría de empresas, la respuesta sorprende. Empieza por el diagnóstico: es gratuito y sin compromiso.
+                {t.cta.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Solicitar diagnóstico RIA
+                    {t.cta.primaryButton}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-8 py-6 border-2 border-[#031d40]/30 text-[#031d40] hover:bg-[#031d40] hover:text-white transition-[background-color,color] duration-300 rounded-full bg-transparent" asChild>
-                  <Link href="/servicios">Ver todos los servicios</Link>
+                  <Link href="/servicios">{t.cta.secondaryButton}</Link>
                 </Button>
               </div>
             </div>
@@ -357,9 +303,9 @@ export default function CumplimientoRIAPage() {
               <div className="container relative mx-auto px-4">
                 <div className="max-w-7xl mx-auto">
                   <div className="text-center mb-10 md:mb-16">
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">Caso de éxito</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">{t.caseStudy.sectionTitle}</h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                      Descubre cómo ayudamos a implementar un sistema de cumplimiento RIA
+                      {t.caseStudy.sectionSubtitle}
                     </p>
                   </div>
                   <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
@@ -392,15 +338,15 @@ export default function CumplimientoRIAPage() {
                           <h3 className="text-3xl font-bold text-[#031d40]">{c.company}</h3>
                           <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Industria:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.industryLabel}</span>
                               <span className="text-gray-800">{c.industry}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Año:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.yearLabel}</span>
                               <span className="text-gray-800">{c.year}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Servicio:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.serviceLabel}</span>
                               <span className="inline-block px-3 py-1 bg-[#bbbd26]/20 text-[#031d40] rounded-full text-xs font-bold">{c.service}</span>
                             </div>
                           </div>
@@ -413,7 +359,7 @@ export default function CumplimientoRIAPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">El Desafío</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.challengeTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.challenge}</p>
                         </div>
@@ -422,7 +368,7 @@ export default function CumplimientoRIAPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">La Solución</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.solutionTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.solution}</p>
                         </div>
@@ -431,7 +377,7 @@ export default function CumplimientoRIAPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">Los Resultados</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.resultsTitle}</h4>
                           </div>
                           <div className="grid md:grid-cols-3 gap-6">
                             {c.results.map((result, index) => (
@@ -445,7 +391,7 @@ export default function CumplimientoRIAPage() {
                         <div className="pt-4">
                           <Button size="lg" className="bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold transition-all group" asChild>
                             <Link href={`/portfolio/${c.id}`}>
-                              Ver caso completo
+                              {t.caseStudy.viewFullCase}
                               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                           </Button>

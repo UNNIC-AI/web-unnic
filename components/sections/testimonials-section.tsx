@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import AnimatedStats from "@/components/animated-stats"
 import { testimonials } from "@/lib/data"
+import { useTranslation } from "@/lib/i18n"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -48,6 +49,7 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 
 export function TestimonialsSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const { t } = useTranslation()
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
@@ -70,14 +72,13 @@ export function TestimonialsSection() {
       <div className="container mx-auto px-4 max-w-7xl relative">
         <div className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#031d40] mb-4">
-            Nuestra filosofía:{" "}
+            {t.testimonials.title}
             <UnderlinedText>
-              <span className="text-[#031d40]">Win-Win</span>
+              <span className="text-[#031d40]">{t.testimonials.titleHighlight}</span>
             </UnderlinedText>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2 sm:px-0">
-            Nuestras estrategias y nuestro Partnership son a largo plazo. Por ello, proveemos un servicio de 10, porque
-            si a ti te va bien, a nosotros también
+            {t.testimonials.subtitle}
           </p>
         </div>
 

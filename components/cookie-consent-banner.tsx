@@ -4,9 +4,11 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { getConsentState, setConsentState } from "@/lib/cookie-consent"
 import type { ConsentLevel } from "@/lib/cookie-consent"
+import { useTranslation } from "@/lib/i18n"
 
 export function CookieConsentBanner() {
   const [showBanner, setShowBanner] = useState(false)
+  const { t } = useTranslation()
 
   useEffect(() => {
     // Mostrar banner solo si el usuario no ha tomado una decision
@@ -40,13 +42,12 @@ export function CookieConsentBanner() {
             {/* Texto */}
             <div className="flex-1 text-white">
               <p className="text-sm leading-relaxed text-gray-300">
-                Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar nuestros servicios.
-                Puedes aceptar todas las cookies o solo las necesarias.{" "}
+                {t.cookies.texto}{" "}
                 <Link
                   href="/cookies"
                   className="text-[#bbbd26] underline underline-offset-2 hover:text-[#bbbd26]/80 transition-colors"
                 >
-                  Politica de Cookies
+                  {t.cookies.politica}
                 </Link>
               </p>
             </div>
@@ -57,13 +58,13 @@ export function CookieConsentBanner() {
                 onClick={() => handleConsent("necessary")}
                 className="px-5 py-2.5 text-sm font-medium text-gray-300 border border-gray-500 rounded-lg hover:border-white hover:text-white transition-all"
               >
-                Solo necesarias
+                {t.cookies.soloNecesarias}
               </button>
               <button
                 onClick={() => handleConsent("all")}
                 className="px-5 py-2.5 text-sm font-bold bg-[#bbbd26] text-[#031d40] rounded-lg hover:bg-[#bbbd26]/90 transition-all"
               >
-                Aceptar todas
+                {t.cookies.aceptarTodas}
               </button>
             </div>
           </div>

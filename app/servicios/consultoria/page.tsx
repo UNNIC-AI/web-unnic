@@ -17,6 +17,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { getServiceSchema, StructuredData } from "@/lib/structured-data"
+import { useTranslation } from "@/lib/i18n"
+import { consultoriaTranslations } from "@/lib/i18n/pages/consultoria"
 
 function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -57,47 +59,43 @@ function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: 
   )
 }
 
-function SimpleTimeline() {
+interface Phase {
+  number: string
+  title: string
+  subtitle: string
+  description: string
+  image: string
+  icon: typeof ClipboardList
+  anchorId: string
+  objectPosition?: string
+  deliverables: string[]
+}
+
+const timelineStepMeta = [
+  { number: "01", icon: ClipboardList, anchor: "fase-analisis" },
+  { number: "02", icon: Stethoscope, anchor: "fase-diagnostico" },
+  { number: "03", icon: PenTool, anchor: "fase-diseno" },
+  { number: "04", icon: Rocket, anchor: "fase-implantacion" },
+  { number: "05", icon: LineChart, anchor: "fase-seguimiento" },
+]
+
+const phaseMeta: Omit<Phase, "title" | "subtitle" | "description" | "deliverables">[] = [
+  { number: "01", image: "/analisis-consultoria-ia-evaluacion-procesos-negocio.png", icon: ClipboardList, anchorId: "fase-analisis" },
+  { number: "02", image: "/ai-diagnosis-planning-whiteboard.jpg", icon: Stethoscope, anchorId: "fase-diagnostico" },
+  { number: "03", image: "/diseno-arquitectura-sistemas-ia-planificacion-tecnica.png", icon: PenTool, anchorId: "fase-diseno", objectPosition: "center bottom" },
+  { number: "04", image: "/implantacion-desarrollo-equipo-programacion-ia.png", icon: Rocket, anchorId: "fase-implantacion" },
+  { number: "05", image: "/seguimiento-monitorizacion-ia-kpis-optimizacion.png", icon: LineChart, anchorId: "fase-seguimiento" },
+]
+
+function SimpleTimeline({ t }: { t: typeof consultoriaTranslations.es }) {
   const timelineRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
-  const steps = [
-    {
-      number: "01",
-      icon: ClipboardList,
-      title: "Análisis",
-      description: "Exploramos tus procesos, sistemas y forma de trabajar para detectar oportunidades reales",
-      anchor: "fase-analisis",
-    },
-    {
-      number: "02",
-      icon: Stethoscope,
-      title: "Diagnóstico",
-      description: "Convertimos los problemas en proyectos realizables con viabilidad técnica y de negocio",
-      anchor: "fase-diagnostico",
-    },
-    {
-      number: "03",
-      icon: PenTool,
-      title: "Diseño",
-      description: "Creamos tu plan de implementación a medida con fases, tiempos y presupuestos cerrados",
-      anchor: "fase-diseno",
-    },
-    {
-      number: "04",
-      icon: Rocket,
-      title: "Implantación",
-      description: "Desarrollamos e integramos tus soluciones con metodología ágil y comunicación continua",
-      anchor: "fase-implantacion",
-    },
-    {
-      number: "05",
-      icon: LineChart,
-      title: "Seguimiento",
-      description: "Medimos, optimizamos y escalamos la IA en toda tu organización",
-      anchor: "fase-seguimiento",
-    },
-  ]
+  const steps = timelineStepMeta.map((meta, i) => ({
+    ...meta,
+    title: t.timelineSteps[i].title,
+    description: t.timelineSteps[i].description,
+  }))
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -139,7 +137,7 @@ function SimpleTimeline() {
         <div className="grid grid-cols-5 gap-4">
           {steps.map((step, index) => {
             const Icon = step.icon
-            const isTop = index % 2 === 0 // 0, 2, 4 arriba - 1, 3 abajo
+            const isTop = index % 2 === 0
 
             return (
               <div
@@ -250,96 +248,11 @@ function SimpleTimeline() {
   )
 }
 
-const optimiaPhases = [
-  {
-    number: "01",
-    title: "Análisis",
-    subtitle: "Conocemos tu negocio de verdad",
-    description:
-      "Realizamos una exploración profunda de tus procesos, sistemas y forma de trabajar. Entendemos qué te frena, dónde se pierde tiempo y qué oportunidades existen para que la IA genere impacto real desde el primer día.",
-    image: "/analisis-consultoria-ia-evaluacion-procesos-negocio.png",
-    icon: ClipboardList,
-    deliverables: [
-      "Informes detallados por departamento",
-      "Evaluación de sistemas y herramientas actuales",
-      "Inventario de datos y fuentes disponibles",
-      "Identificación de oportunidades reales de mejora",
-    ],
-  },
-  {
-    number: "02",
-    title: "Diagnóstico",
-    subtitle: "Convertimos los problemas en proyectos realizables",
-    description:
-      "Transformamos todo lo analizado en oportunidades concretas de IA y automatización. Evaluamos la viabilidad técnica y de negocio de cada iniciativa, priorizando aquellas con mayor impacto y menor complejidad.",
-    image: "/ai-diagnosis-planning-whiteboard.jpg",
-    icon: Stethoscope,
-    deliverables: [
-      "Lista priorizada de proyectos IA",
-      "Viabilidad técnica y operativa por proyecto",
-      "Viabilidad de negocio y retorno estimado",
-      "Matriz de impacto–beneficio",
-    ],
-  },
-  {
-    number: "03",
-    title: "Diseño",
-    subtitle: "Creamos tu plan de implementación a medida",
-    description:
-      "Definimos cómo se ejecutarán los proyectos seleccionados. Ordenamos fases, estimamos tiempos, cerramos presupuestos y establecemos los recursos necesarios para llevarlo a cabo con éxito.",
-    image: "/diseno-arquitectura-sistemas-ia-planificacion-tecnica.png",
-    icon: PenTool,
-    objectPosition: "center bottom",
-    deliverables: [
-      "Roadmap de implantación por fases",
-      "Presupuesto cerrado y planificado",
-      "Plan de recursos, roles y equipo necesario",
-      "Cronograma detallado de ejecución",
-    ],
-  },
-  {
-    number: "04",
-    title: "Implantación",
-    subtitle: "Construimos e integramos tus soluciones",
-    description:
-      "Desarrollamos y desplegamos las soluciones definidas, con metodología ágil y comunicación continua. Nos integramos con tus sistemas actuales para que la transición sea fluida y sin interrupciones.",
-    image: "/implantacion-desarrollo-equipo-programacion-ia.png",
-    icon: Rocket,
-    deliverables: [
-      "Desarrollo iterativo con demos periódicas",
-      "Integración con tus sistemas actuales",
-      "Testing avanzado y validación funcional",
-      "Formación para tu equipo interno",
-    ],
-  },
-  {
-    number: "05",
-    title: "Seguimiento",
-    subtitle: "Medimos, optimizamos y escalamos tu IA",
-    description:
-      "Monitorizamos el rendimiento de las soluciones implementadas y te acompañamos para seguir mejorando. Ajustamos modelos, optimizamos procesos y te ayudamos a escalar la IA en toda la organización.",
-    image: "/seguimiento-monitorizacion-ia-kpis-optimizacion.png",
-    icon: LineChart,
-    deliverables: [
-      "Dashboard de KPIs y resultados en tiempo real",
-      "Informes mensuales de evolución",
-      "Propuestas de mejora continua",
-      "Soporte técnico y acompañamiento",
-    ],
-  },
-]
-
-function PhaseSection({ phase, index }: { phase: (typeof optimiaPhases)[0]; index: number }) {
+function PhaseSection({ phase, index, t }: { phase: Phase; index: number; t: typeof consultoriaTranslations.es }) {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const isEven = index % 2 === 0
   const Icon = phase.icon
-
-  const anchorId = `fase-${phase.title
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, "-")}`
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -360,7 +273,7 @@ function PhaseSection({ phase, index }: { phase: (typeof optimiaPhases)[0]; inde
 
   return (
     <div
-      id={anchorId}
+      id={phase.anchorId}
       ref={ref}
       className={`grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-16 items-center transition-all duration-700 scroll-mt-24 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
@@ -369,12 +282,12 @@ function PhaseSection({ phase, index }: { phase: (typeof optimiaPhases)[0]; inde
       {/* Image - changes order based on even/odd */}
       <div className={`relative ${isEven ? "md:order-1" : "md:order-2"}`}>
         <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-          <Image 
-            src={phase.image || "/placeholder.svg"} 
-            alt={`${phase.title} - ${phase.subtitle} - Fase ${phase.number} de consultoría IA`} 
-            fill 
-            className="object-cover" 
-            style={{ objectPosition: (phase as any).objectPosition || 'center' }}
+          <Image
+            src={phase.image || "/placeholder.svg"}
+            alt={`${phase.title} - ${phase.subtitle} - ${t.phaseLabel} ${phase.number}`}
+            fill
+            className="object-cover"
+            style={{ objectPosition: phase.objectPosition || "center" }}
           />
           {/* Overlay with phase number */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#031d40]/60 via-transparent to-transparent" />
@@ -394,7 +307,7 @@ function PhaseSection({ phase, index }: { phase: (typeof optimiaPhases)[0]; inde
           <div className="w-12 h-12 bg-[#bbbd26] rounded-xl flex items-center justify-center">
             <Icon className="w-6 h-6 text-[#031d40]" />
           </div>
-          <span className="text-sm font-bold text-[#bbbd26] uppercase tracking-wider">Fase {phase.number}</span>
+          <span className="text-sm font-bold text-[#bbbd26] uppercase tracking-wider">{t.phaseLabel} {phase.number}</span>
         </div>
 
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40] mb-2">{phase.title}</h3>
@@ -403,7 +316,7 @@ function PhaseSection({ phase, index }: { phase: (typeof optimiaPhases)[0]; inde
 
         {/* Deliverables */}
         <div className="bg-gray-50 rounded-xl p-6">
-          <p className="text-sm font-semibold text-[#031d40] uppercase tracking-wide mb-4">Entregables</p>
+          <p className="text-sm font-semibold text-[#031d40] uppercase tracking-wide mb-4">{t.deliverablesLabel}</p>
           <ul className="space-y-3">
             {phase.deliverables.map((deliverable, i) => (
               <li key={i} className="flex items-start gap-3">
@@ -419,12 +332,22 @@ function PhaseSection({ phase, index }: { phase: (typeof optimiaPhases)[0]; inde
 }
 
 export default function ConsultoriaPage() {
+  const { locale } = useTranslation()
+  const t = consultoriaTranslations[locale]
+
+  const phases: Phase[] = phaseMeta.map((meta, i) => ({
+    ...meta,
+    title: t.phases[i].title,
+    subtitle: t.phases[i].subtitle,
+    description: t.phases[i].description,
+    deliverables: t.phases[i].deliverables,
+  }))
+
   const serviceSchema = getServiceSchema({
-    name: "Consultoría Estratégica en IA",
-    description:
-      "Consultoría experta en Inteligencia Artificial para transformar tu empresa. Estrategia, casos de uso y hoja de ruta personalizada para implementar IA con ROI garantizado.",
+    name: t.meta.serviceName,
+    description: t.meta.serviceDescription,
     url: "https://unnic.ai/servicios/consultoria",
-    serviceType: "Consultoría en Inteligencia Artificial",
+    serviceType: t.meta.serviceType,
   })
 
   return (
@@ -468,14 +391,14 @@ export default function ConsultoriaPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center space-y-8">
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance leading-[1.05] tracking-tight">
-                <span className="text-[#031d40]">Empieza con </span>
+                <span className="text-[#031d40]">{t.hero.titlePrefix}</span>
                 <UnderlinedText>
-                  <span className="text-[#031d40]">Estrategia</span>
+                  <span className="text-[#031d40]">{t.hero.titleHighlight}</span>
                 </UnderlinedText>
               </h1>
 
               <p className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                La IA sin estrategia es solo tecnología. Diseñamos el camino para que genere impacto real en tu negocio.
+                {t.hero.subtitle}
               </p>
 
               <div className="flex flex-col items-center pt-3">
@@ -485,7 +408,7 @@ export default function ConsultoriaPage() {
                   }}
                   className="group flex flex-col items-center gap-3 text-[#031d40]/60 hover:text-[#031d40] transition-colors cursor-pointer"
                 >
-                  <span className="text-sm font-medium tracking-wide">Ver cómo</span>
+                  <span className="text-sm font-medium tracking-wide">{t.hero.scrollCta}</span>
                   <div className="flex flex-col items-center">
                     <div className="w-px h-2 bg-current opacity-40" />
                     <ChevronDown className="w-5 h-5 -mt-1" />
@@ -510,18 +433,17 @@ export default function ConsultoriaPage() {
               <div className="text-center mb-10 md:mb-16">
                 <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#031d40] mb-4 sm:mb-6">
                   <UnderlinedText>
-                    <span className="text-[#031d40]">Un plan Únnico</span>
+                    <span className="text-[#031d40]">{t.plan.titleHighlight}</span>
                   </UnderlinedText>{" "}
-                  para tu Empresa
+                  {t.plan.titleSuffix}
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-2 sm:px-0">
-                  Identificamos dónde la IA puede generar impacto real en tu negocio y trazamos el camino para
-                  conseguirlo
+                  {t.plan.subtitle}
                 </p>
               </div>
 
               {/* Timeline */}
-              <SimpleTimeline />
+              <SimpleTimeline t={t} />
 
               <div className="mt-10 md:mt-16 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 {/* Columna izquierda - Mensaje */}
@@ -567,11 +489,11 @@ export default function ConsultoriaPage() {
               {/* Text */}
               <div className="mb-10">
                 <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight text-balance">
-                  La IA está aquí para quedarse...
+                  {t.cta.line1}
                   <br />
-                  <span className="text-white">No es cuestión de hacerlo,</span>
+                  <span className="text-white">{t.cta.line2}</span>
                   <br />
-                  <span className="text-white">Sino de cuándo.</span>
+                  <span className="text-white">{t.cta.line3}</span>
                 </h2>
               </div>
 
@@ -584,7 +506,7 @@ export default function ConsultoriaPage() {
                   asChild
                 >
                   <Link href="/contacto">
-                    Quiero empezar
+                    {t.cta.button}
                     <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -658,25 +580,24 @@ export default function ConsultoriaPage() {
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-12 md:mb-20">
               <span className="inline-block text-sm font-bold text-[#bbbd26] uppercase tracking-wider mb-4">
-                Nuestra metodología
+                {t.methodology.kicker}
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#031d40] mb-4 sm:mb-6">
-                El Método{" "}
+                {t.methodology.titlePrefix}{" "}
                 <UnderlinedText>
-                  <span className="text-[#031d40]">OptimIA</span>
+                  <span className="text-[#031d40]">{t.methodology.titleHighlight}</span>
                 </UnderlinedText>
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2 sm:px-0">
-                Un proceso probado en más de 50 empresas para implementar IA con éxito. Cinco fases que garantizan
-                resultados medibles y sostenibles.
+                {t.methodology.subtitle}
               </p>
             </div>
           </div>
 
           {/* Phases in Zigzag Layout */}
           <div className="max-w-6xl mx-auto px-4 space-y-12 sm:space-y-20 md:space-y-32">
-            {optimiaPhases.map((phase, index) => (
-              <PhaseSection key={phase.number} phase={phase} index={index} />
+            {phases.map((phase, index) => (
+              <PhaseSection key={phase.number} phase={phase} index={index} t={t} />
             ))}
           </div>
 

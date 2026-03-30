@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/select"
 import { Send, Mail, Phone, MapPin, Linkedin, Twitter, Instagram, CheckCircle2, Loader2 } from 'lucide-react'
 import { useEffect, useRef, useState } from "react"
+import { useTranslation } from "@/lib/i18n"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -59,12 +60,13 @@ export function ContactSection() {
   const [errorMessage, setErrorMessage] = useState("")
   const [consentChecked, setConsentChecked] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const { t } = useTranslation()
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     
     if (!consentChecked) {
-      setErrorMessage("Debes aceptar el tratamiento de datos para continuar")
+      setErrorMessage(t.contact.form.errorConsent)
       return
     }
 
@@ -90,11 +92,11 @@ export function ContactSection() {
         formRef.current?.reset()
       } else {
         setFormState("error")
-        setErrorMessage("Error al enviar el mensaje. Por favor, inténtalo de nuevo.")
+        setErrorMessage(t.contact.form.errorEnvio)
       }
     } catch (error) {
       setFormState("error")
-      setErrorMessage("Error de conexión. Por favor, inténtalo de nuevo.")
+      setErrorMessage(t.contact.form.errorConexion)
     }
   }
 
@@ -153,14 +155,13 @@ export function ContactSection() {
       <div className="container px-4 mx-auto relative z-10">
         <div className="text-center mb-10 md:mb-16 space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-[#031d40] text-balance leading-tight">
-            Hablemos de como la IA{" "}
+            {t.contact.title}
             <UnderlinedText>
-              te puede ayudar  
+              {t.contact.titleHighlight}
             </UnderlinedText>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 text-balance max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
-            Estamos listos para ayudarte a transformar tu negocio con soluciones tecnológicas a medida.
-            Cuéntanos tus ideas y las haremos realidad.
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -173,16 +174,16 @@ export function ContactSection() {
                   <div className="w-16 h-16 bg-[#bbbd26]/20 rounded-full flex items-center justify-center">
                     <CheckCircle2 className="w-8 h-8 text-[#bbbd26]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#031d40]">Mensaje enviado</h3>
+                  <h3 className="text-2xl font-bold text-[#031d40]">{t.contact.form.exitoTitulo}</h3>
                   <p className="text-gray-600 max-w-md">
-                    Gracias por contactarnos. Te responderemos lo antes posible.
+                    {t.contact.form.exitoTexto}
                   </p>
                   <Button
                     variant="outline"
                     className="mt-4 border-[#031d40] text-[#031d40] hover:bg-[#031d40] hover:text-white"
                     onClick={() => setFormState("idle")}
                   >
-                    Enviar otro mensaje
+                    {t.contact.form.otroMensaje}
                   </Button>
                 </div>
               ) : (
@@ -192,39 +193,39 @@ export function ContactSection() {
                   
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-[#031d40] font-semibold">Nombre <span className="text-red-500">*</span></Label>
-                      <Input id="name" name="name" placeholder="Tu nombre" className="h-12" required />
+                      <Label htmlFor="name" className="text-[#031d40] font-semibold">{t.contact.form.nombre} <span className="text-red-500">*</span></Label>
+                      <Input id="name" name="name" placeholder={t.contact.form.nombre} className="h-12" required />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-[#031d40] font-semibold">Email <span className="text-red-500">*</span></Label>
+                      <Label htmlFor="email" className="text-[#031d40] font-semibold">{t.contact.form.email} <span className="text-red-500">*</span></Label>
                       <Input id="email" name="email" type="email" placeholder="tu@email.com" className="h-12" required />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="canal" className="text-[#031d40] font-semibold">Canal</Label>
+                    <Label htmlFor="canal" className="text-[#031d40] font-semibold">{t.contact.form.canal}</Label>
                     <Select name="canal">
                       <SelectTrigger className="h-12">
-                        <SelectValue placeholder="¿Cómo nos has conocido?" />
+                        <SelectValue placeholder={t.contact.form.canalPlaceholder} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="linkedin">LinkedIn</SelectItem>
-                        <SelectItem value="evento-presencial">Evento Presencial</SelectItem>
-                        <SelectItem value="webinar">Webinar</SelectItem>
-                        <SelectItem value="google">Google</SelectItem>
-                        <SelectItem value="instagram">Instagram</SelectItem>
-                        <SelectItem value="conocido">De un conocido</SelectItem>
-                        <SelectItem value="otros">Otros</SelectItem>
+                        <SelectItem value="linkedin">{t.contact.form.canalOptions.linkedin}</SelectItem>
+                        <SelectItem value="evento-presencial">{t.contact.form.canalOptions.eventoPresencial}</SelectItem>
+                        <SelectItem value="webinar">{t.contact.form.canalOptions.webinar}</SelectItem>
+                        <SelectItem value="google">{t.contact.form.canalOptions.google}</SelectItem>
+                        <SelectItem value="instagram">{t.contact.form.canalOptions.instagram}</SelectItem>
+                        <SelectItem value="conocido">{t.contact.form.canalOptions.conocido}</SelectItem>
+                        <SelectItem value="otros">{t.contact.form.canalOptions.otros}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-[#031d40] font-semibold">Mensaje <span className="text-red-500">*</span></Label>
+                    <Label htmlFor="message" className="text-[#031d40] font-semibold">{t.contact.form.mensaje} <span className="text-red-500">*</span></Label>
                     <Textarea 
                       id="message"
                       name="message"
-                      placeholder="Cuéntanos más sobre tu proyecto..." 
+                      placeholder={t.contact.form.mensajePlaceholder}
                       className="min-h-[180px] resize-none"
                       required
                     />
@@ -245,11 +246,11 @@ export function ContactSection() {
                       className="w-5 h-5 mt-0.5 rounded border-gray-300 text-[#bbbd26] focus:ring-[#bbbd26] cursor-pointer flex-shrink-0"
                     />
                     <label htmlFor="consent" className="text-sm text-gray-700 leading-relaxed cursor-pointer flex-1">
-                      Autorizo a Unnic AI a recopilar y procesar mis datos personales según la{" "}
+                      {t.contact.form.consentimiento}{" "}
                       <a href="/politica-privacidad" className="text-[#bbbd26] hover:underline font-semibold">
-                        Política de Privacidad
+                        {t.contact.form.politicaPrivacidad}
                       </a>
-                      . Podré revocar este consentimiento en cualquier momento desuscribiéndome de las comunicaciones.
+                      {t.contact.form.consentimientoFin}
                     </label>
                   </div>
 
@@ -267,12 +268,12 @@ export function ContactSection() {
                   >
                     {formState === "loading" ? (
                       <>
-                        Enviando...
+                        {t.contact.form.enviando}
                         <Loader2 className="w-4 h-4 ml-2 animate-spin" />
                       </>
                     ) : (
                       <>
-                        Enviar mensaje
+                        {t.contact.form.enviar}
                         <Send className="w-4 h-4 ml-2" />
                       </>
                     )}
@@ -285,10 +286,9 @@ export function ContactSection() {
           {/* Contact Info */}
           <div className="space-y-12">
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-[#031d40]">Información de contacto</h3>
+              <h3 className="text-2xl font-bold text-[#031d40]">{t.contact.info.titulo}</h3>
               <p className="text-gray-600 leading-relaxed">
-                ¿Tienes alguna pregunta o quieres empezar un proyecto? 
-                Estamos aquí para ayudarte. Contáctanos por cualquiera de estos medios.
+                {t.contact.info.texto}
               </p>
               
               <div className="space-y-6">
@@ -300,7 +300,7 @@ export function ContactSection() {
                     <Mail className="w-5 h-5 text-[#bbbd26] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 font-medium">Email</p>
+                    <p className="text-sm text-gray-500 font-medium">{t.contact.info.emailLabel}</p>
                     <p className="text-[#031d40] font-semibold">contacto@unnic.ai</p>
                   </div>
                 </a>
@@ -313,7 +313,7 @@ export function ContactSection() {
                     <Phone className="w-5 h-5 text-[#bbbd26] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 font-medium">Teléfono</p>
+                    <p className="text-sm text-gray-500 font-medium">{t.contact.info.telefonoLabel}</p>
                     <p className="text-[#031d40] font-semibold">+34 610 757 689</p>
                   </div>
                 </a>
@@ -323,7 +323,7 @@ export function ContactSection() {
                     <MapPin className="w-5 h-5 text-[#bbbd26] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 font-medium">Oficina</p>
+                    <p className="text-sm text-gray-500 font-medium">{t.contact.info.oficinaLabel}</p>
                     <p className="text-[#031d40] font-semibold">Carrer de Gomis 38, 08023 Barcelona</p>
                   </div>
                 </div>

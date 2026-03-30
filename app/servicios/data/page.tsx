@@ -23,6 +23,8 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { getServiceSchema, StructuredData } from "@/lib/structured-data"
 import { successStories } from "@/lib/data"
+import { useTranslation } from "@/lib/i18n"
+import { dataTranslations } from "@/lib/i18n/pages/data"
 
 function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -55,91 +57,20 @@ function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: 
   )
 }
 
-const problems = [
-  {
-    icon: GitBranch,
-    title: "Datos dispersos",
-    description: "Múltiples sistemas sin consolidar",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Intuición vs evidencia",
-    description: "Decisiones sin respaldo en datos",
-  },
-  {
-    icon: FileWarning,
-    title: "Informes sin uso",
-    description: "Nadie los entiende ni los consulta",
-  },
-  {
-    icon: UserX,
-    title: "Conocimiento frágil",
-    description: "Depende de una sola persona",
-  },
+const problemIcons = [GitBranch, AlertTriangle, FileWarning, UserX]
+
+const whatWeBuildIcons = [Shuffle, Database, Search, Brain, LayoutDashboard]
+const whatWeBuildStyles = [
+  { color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8" },
+  { color: "from-[#bbbd26]/5 to-[#bbbd26]/10", iconBg: "bg-[#bbbd26]/15" },
+  { color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8" },
+  { color: "from-[#bbbd26]/5 to-[#bbbd26]/10", iconBg: "bg-[#bbbd26]/15" },
+  { color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8" },
 ]
 
-const whatWeBuild = [
-  {
-    icon: Shuffle,
-    title: "Centralización y pipelines",
-    description: "Una única fuente de verdad para todos tus datos. Conectamos todos los sistemas y automatizamos el flujo.",
-    color: "from-[#031d40]/5 to-[#031d40]/10",
-    iconBg: "bg-[#031d40]/8",
-  },
-  {
-    icon: Database,
-    title: "Limpieza y preparación",
-    description: "Datos ordenados, fiables y listos para trabajar. Sin datos bien estructurados, no hay análisis útil.",
-    color: "from-[#bbbd26]/5 to-[#bbbd26]/10",
-    iconBg: "bg-[#bbbd26]/15",
-  },
-  {
-    icon: Search,
-    title: "Estudios y análisis",
-    description: "Respuestas concretas a preguntas de negocio reales. No informes genéricos, sino análisis orientado a decisión.",
-    color: "from-[#031d40]/5 to-[#031d40]/10",
-    iconBg: "bg-[#031d40]/8",
-  },
-  {
-    icon: Brain,
-    title: "Modelos predictivos / ML",
-    description: "Anticipa demanda, comportamiento o riesgo antes de que ocurra. Decisiones proactivas en lugar de reactivas.",
-    color: "from-[#bbbd26]/5 to-[#bbbd26]/10",
-    iconBg: "bg-[#bbbd26]/15",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Dashboards con Power BI",
-    description: "Visualización que tu equipo realmente entiende y usa. Diseñados para personas de negocio, no para técnicos.",
-    color: "from-[#031d40]/5 to-[#031d40]/10",
-    iconBg: "bg-[#031d40]/8",
-  },
-]
+const stepNumbers = ["01", "02", "03", "04"]
 
-const steps = [
-  {
-    number: "01",
-    title: "Diagnóstico de datos",
-    description: "Qué tienes, dónde está, en qué estado y qué valor tiene realmente",
-  },
-  {
-    number: "02",
-    title: "Arquitectura y centralización",
-    description: "Construimos la base para que todo fluya hacia un punto único de verdad",
-  },
-  {
-    number: "03",
-    title: "Análisis / modelado / visualización",
-    description: "Convertimos datos en respuestas concretas para tu negocio",
-  },
-  {
-    number: "04",
-    title: "Entrega y acompañamiento",
-    description: "Formamos a tu equipo y mantenemos la solución viva a lo largo del tiempo",
-  },
-]
-
-function StepsTimeline() {
+function StepsTimeline({ steps }: { steps: { number: string; title: string; description: string }[] }) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -221,12 +152,18 @@ function StepsTimeline() {
 }
 
 export default function DataPage() {
+  const { locale } = useTranslation()
+  const t = dataTranslations[locale]
+
+  const problems = t.problems.map((p, i) => ({ ...p, icon: problemIcons[i] }))
+  const whatWeBuild = t.whatWeBuild.map((w, i) => ({ ...w, ...whatWeBuildStyles[i], icon: whatWeBuildIcons[i] }))
+  const steps = t.steps.map((s, i) => ({ ...s, number: stepNumbers[i] }))
+
   const serviceSchema = getServiceSchema({
-    name: "Ciencia de Datos e Inteligencia Artificial",
-    description:
-      "Convierte los datos de tu empresa en decisiones estratégicas. Centralización, análisis, modelos predictivos y dashboards Power BI.",
+    name: t.schema.name,
+    description: t.schema.description,
     url: "https://unnic.ai/servicios/data",
-    serviceType: "Ciencia de Datos y Machine Learning",
+    serviceType: t.schema.serviceType,
   })
 
   return (
@@ -250,18 +187,18 @@ export default function DataPage() {
             <div className="max-w-5xl mx-auto text-center space-y-8">
               
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance leading-[1.05] tracking-tight">
-                <span className="text-[#031d40]">La Experiencia de tu Empresa </span>
+                <span className="text-[#031d40]">{t.hero.title1}</span>
                 <UnderlinedText>
-                  <span className="text-[#031d40]">está en tus Datos</span>
+                  <span className="text-[#031d40]">{t.hero.titleHighlight}</span>
                 </UnderlinedText>
               </h1>
               <p className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Cada operación, cada venta, cada error: tu empresa lleva años acumulando conocimiento. El problema es que nadie lo está leyendo.
+                {t.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Analiza tus datos con nosotros
+                    {t.hero.cta}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -282,9 +219,9 @@ export default function DataPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-12 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">El problema <span className="text-[#bbbd26]">real</span></h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">{t.problemSection.title1}<span className="text-[#bbbd26]">{t.problemSection.titleHighlight}</span></h2>
                 <p className="text-white/80 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                  Decisiones tomadas por intuición, problemas que se repiten sin que nadie los detecte, y oportunidades que pasan desapercibidas. No es un problema de tecnología. Es un problema de estructura.
+                  {t.problemSection.subtitle}
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -313,9 +250,9 @@ export default function DataPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-10 md:mb-16 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">Qué construimos contigo</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.whatWeBuildSection.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Desde la centralización hasta la visualización: cubrimos todo el ciclo del dato.
+                  {t.whatWeBuildSection.subtitle}
                 </p>
               </div>
               <div className="space-y-6">
@@ -369,12 +306,12 @@ export default function DataPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-20 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">Cómo trabajamos</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">{t.howSection.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto">
-                  Cuatro fases para convertir tus datos dispersos en una ventaja competitiva real.
+                  {t.howSection.subtitle}
                 </p>
               </div>
-              <StepsTimeline />
+              <StepsTimeline steps={steps} />
             </div>
           </div>
         </section>
@@ -389,20 +326,20 @@ export default function DataPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40]">
-                ¿Sabes realmente qué te están diciendo tus datos?
+                {t.ctaSection.title}
               </h2>
               <p className="text-[#031d40]/80 text-lg leading-relaxed">
-                En una primera sesión de diagnóstico analizamos qué datos tienes, en qué estado y qué valor pueden generar para tu negocio.
+                {t.ctaSection.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Solicitar diagnóstico de datos
+                    {t.ctaSection.cta}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-8 py-6 border-2 border-[#031d40]/30 text-[#031d40] hover:bg-[#031d40] hover:text-white transition-[background-color,color] duration-300 rounded-full bg-transparent" asChild>
-                  <Link href="/servicios">Ver todos los servicios</Link>
+                  <Link href="/servicios">{t.ctaSection.ctaSecondary}</Link>
                 </Button>
               </div>
             </div>
@@ -419,9 +356,9 @@ export default function DataPage() {
               <div className="container relative mx-auto px-4">
                 <div className="max-w-7xl mx-auto">
                   <div className="text-center mb-10 md:mb-16">
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">Caso de éxito</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">{t.caseStudy.title}</h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                      Descubre cómo ayudamos a una cadena de restauración a convertir sus datos en ahorro real
+                      {t.caseStudy.subtitle}
                     </p>
                   </div>
                   <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
@@ -454,15 +391,15 @@ export default function DataPage() {
                           <h3 className="text-3xl font-bold text-[#031d40]">{c.company}</h3>
                           <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Industria:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.industryLabel}</span>
                               <span className="text-gray-800">{c.industry}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Año:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.yearLabel}</span>
                               <span className="text-gray-800">{c.year}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Servicio:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.serviceLabel}</span>
                               <span className="inline-block px-3 py-1 bg-[#bbbd26]/20 text-[#031d40] rounded-full text-xs font-bold">{c.service}</span>
                             </div>
                           </div>
@@ -475,7 +412,7 @@ export default function DataPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">El Desafío</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.challengeTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.challenge}</p>
                         </div>
@@ -484,7 +421,7 @@ export default function DataPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">La Solución</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.solutionTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.solution}</p>
                         </div>
@@ -493,7 +430,7 @@ export default function DataPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">Los Resultados</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.resultsTitle}</h4>
                           </div>
                           <div className="grid md:grid-cols-3 gap-6">
                             {c.results.map((result, index) => (
@@ -507,7 +444,7 @@ export default function DataPage() {
                         <div className="pt-4">
                           <Button size="lg" className="bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold transition-all group" asChild>
                             <Link href={`/portfolio/${c.id}`}>
-                              Ver caso completo
+                              {t.caseStudy.viewFullCase}
                               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                           </Button>

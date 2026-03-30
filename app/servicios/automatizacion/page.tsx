@@ -27,6 +27,8 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { successStories } from "@/lib/data"
+import { useTranslation } from "@/lib/i18n"
+import { automatizacionTranslations } from "@/lib/i18n/pages/automatizacion"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -66,42 +68,19 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
   )
 }
 
-function SimpleTimeline() {
+const timelineIcons = [ClipboardList, Lightbulb, Code, Rocket, GraduationCap]
+const timelineNumbers = ["01", "02", "03", "04", "05"]
+
+function SimpleTimeline({ translatedSteps }: { translatedSteps: { title: string; description: string }[] }) {
   const timelineRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
-  const steps = [
-    {
-      number: "01",
-      icon: ClipboardList,
-      title: "Definición de Requerimientos",
-      description: "Mapeamos el proceso actual, y los requisitos técnicos y de negocio",
-    },
-    {
-      number: "02",
-      icon: Lightbulb,
-      title: "Elección de Herramientas",
-      description: "Elegimos la herramienta que se adapta a tus requisitos y presupuesto",
-    },
-    {
-      number: "03",
-      icon: Code,
-      title: "Desarrollo del Flujo",
-      description: "Construimos la automatización de forma ágil y adaptada a ti",
-    },
-    {
-      number: "04",
-      icon: Rocket,
-      title: "Producción",
-      description: "Desplegamos la solución de forma gradual, y ajustamos si es necesario",
-    },
-    {
-      number: "05",
-      icon: GraduationCap,
-      title: "Formación y Adopción",
-      description: "Capacitamos a tu equipo y aseguramos un uso correcto",
-    },
-  ]
+  const steps = translatedSteps.map((step, i) => ({
+    number: timelineNumbers[i],
+    icon: timelineIcons[i],
+    title: step.title,
+    description: step.description,
+  }))
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -241,66 +220,32 @@ function SimpleTimeline() {
 import { getServiceSchema, StructuredData } from "@/lib/structured-data"
 
 export default function AutomatizacionPage() {
+  const { locale } = useTranslation()
+  const t = automatizacionTranslations[locale]
+
   const serviceSchema = getServiceSchema({
-    name: "Automatización con IA",
-    description:
-      "Automatiza procesos empresariales con Inteligencia Artificial. Chatbots inteligentes, análisis de documentos, RPA y más. Ahorra más de 200 horas mensuales.",
+    name: t.schema.name,
+    description: t.schema.description,
     url: "https://unnic.ai/servicios/automatizacion",
-    serviceType: "Automatización de Procesos con IA",
+    serviceType: t.schema.serviceType,
   })
-  const processTypes = [
-    {
-      icon: Repeat,
-      title: "Alta Repetición",
-      description: "Tareas que se realizan una y otra vez con los mismos pasos",
-      color: "from-[#031d40]/5 to-[#031d40]/10",
-      iconBg: "bg-[#031d40]/8",
-      iconColor: "text-[#031d40]",
-    },
-    {
-      icon: Wrench,
-      title: "Bajo Nivel de Skills",
-      description: "Procesos operativos que no requieren experiencia especializada",
-      color: "from-[#bbbd26]/5 to-[#bbbd26]/10",
-      iconBg: "bg-[#bbbd26]/15",
-      iconColor: "text-[#031d40]",
-    },
-    {
-      icon: Network,
-      title: "Múltiples Sistemas",
-      description: "Operaciones que conectan diferentes plataformas o herramientas",
-      color: "from-[#031d40]/5 to-[#031d40]/10",
-      iconBg: "bg-[#031d40]/8",
-      iconColor: "text-[#031d40]",
-    },
-    {
-      icon: AlertCircle,
-      title: "Propensos a Error",
-      description: "Tareas donde el error humano tiene alto impacto o frecuencia",
-      color: "from-[#bbbd26]/5 to-[#bbbd26]/10",
-      iconBg: "bg-[#bbbd26]/15",
-      iconColor: "text-[#031d40]",
-    },
-    {
-      icon: FileCheck,
-      title: "Validaciones de Datos",
-      description: "Procesos de verificación, conciliación o revisión de información",
-      color: "from-[#031d40]/5 to-[#031d40]/10",
-      iconBg: "bg-[#031d40]/8",
-      iconColor: "text-[#031d40]",
-    },
-    {
-      icon: CheckCircle2,
-      title: "Alto Volumen de Trabajo",
-      description: "Procesos que consumen horas de tu equipo cada semana",
-      color: "from-[#bbbd26]/5 to-[#bbbd26]/10",
-      iconBg: "bg-[#bbbd26]/15",
-      iconColor: "text-[#031d40]",
-    },
+  const processTypesMeta = [
+    { icon: Repeat, color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8", iconColor: "text-[#031d40]" },
+    { icon: Wrench, color: "from-[#bbbd26]/5 to-[#bbbd26]/10", iconBg: "bg-[#bbbd26]/15", iconColor: "text-[#031d40]" },
+    { icon: Network, color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8", iconColor: "text-[#031d40]" },
+    { icon: AlertCircle, color: "from-[#bbbd26]/5 to-[#bbbd26]/10", iconBg: "bg-[#bbbd26]/15", iconColor: "text-[#031d40]" },
+    { icon: FileCheck, color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8", iconColor: "text-[#031d40]" },
+    { icon: CheckCircle2, color: "from-[#bbbd26]/5 to-[#bbbd26]/10", iconBg: "bg-[#bbbd26]/15", iconColor: "text-[#031d40]" },
   ]
 
+  const processTypes = processTypesMeta.map((meta, i) => ({
+    ...meta,
+    title: t.processTypes[i].title,
+    description: t.processTypes[i].description,
+  }))
+
   const [chatMessages, setChatMessages] = useState([
-    { type: "bot", text: "¿Quieres que te ayude a automatizar un proceso?" },
+    { type: "bot", text: t.chatbot.initialMessage },
   ])
   const [inputValue, setInputValue] = useState("")
 
@@ -308,11 +253,10 @@ export default function AutomatizacionPage() {
     if (inputValue.trim()) {
       setChatMessages([...chatMessages, { type: "user", text: inputValue }])
       setInputValue("")
-      // Automated response
       setTimeout(() => {
         setChatMessages((prev) => [
           ...prev,
-          { type: "bot", text: "Perdona, este servicio no está disponible ahora, pero si quieres automatizar un proceso, agenda una llamada con el equipo para que te ayuden del mejor modo posible" },
+          { type: "bot", text: t.chatbot.autoReply },
         ])
       }, 1000)
     }
@@ -361,14 +305,14 @@ export default function AutomatizacionPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto text-center space-y-8">
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance leading-[1.05] tracking-tight">
-                <span className="text-[#031d40]">¿Procesos Manuales? </span>
+                <span className="text-[#031d40]">{t.hero.title1}</span>
                 <UnderlinedText>
-                  <span className="text-[#031d40]">Automatízalos</span>
+                  <span className="text-[#031d40]">{t.hero.titleHighlight}</span>
                 </UnderlinedText>
               </h1>
 
               <p className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {"Olvida las tareas que se pueden hacer automáticas y centra a tu equipo en lo realmente importante."}
+                {t.hero.subtitle}
               </p>
 
               <div className="flex flex-col items-center pt-3">
@@ -395,9 +339,9 @@ export default function AutomatizacionPage() {
             <div className="max-w-6xl mx-auto">
               {/* Section header */}
               <div className="text-center mb-10 md:mb-16 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">¿Qué procesos automatizar?</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.processSection.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  No todos los procesos son ideales para automatizar. Estos son los que generan mayor ROI:
+                  {t.processSection.subtitle}
                 </p>
               </div>
 
@@ -455,13 +399,13 @@ export default function AutomatizacionPage() {
             <div className="max-w-5xl mx-auto">
               {/* Section header */}
               <div className="text-center mb-20 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">¿Cómo automatizar procesos?</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.howSection.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Nuestro proceso paso a paso para automatizar tus operaciones de forma efectiva
+                  {t.howSection.subtitle}
                 </p>
               </div>
 
-              <SimpleTimeline />
+              <SimpleTimeline translatedSteps={t.timelineSteps} />
             </div>
           </div>
         </section>
@@ -497,12 +441,10 @@ export default function AutomatizacionPage() {
 
                   {/* Updated heading */}
                   <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white leading-tight">
-                    ¿Listo para hacer Más con Menos?
+                    {t.cta.title}
                   </h2>
-                  {/* Updated paragraph */}
                   <p className="text-xl text-white/80 leading-relaxed">
-                    Cuéntanos qué proceso te gustaría automatizar y te ayudamos a descubrir el potencial de ahorro y
-                    eficiencia.
+                    {t.cta.subtitle}
                   </p>
 
                   {/* Contact buttons */}
@@ -515,7 +457,7 @@ export default function AutomatizacionPage() {
                     >
                       <a href="mailto:info@unnic.ai">
                         <Mail className="mr-2 w-5 h-5" />
-                        Enviar Email
+                        {t.cta.emailButton}
                       </a>
                     </Button>
                     {/* Updated outline button */}
@@ -527,7 +469,7 @@ export default function AutomatizacionPage() {
                     >
                       <a href="tel:+34610757689">
                         <Phone className="mr-2 w-5 h-5" />
-                        Llamar Ahora
+                        {t.cta.callButton}
                       </a>
                     </Button>
                   </div>
@@ -541,17 +483,17 @@ export default function AutomatizacionPage() {
                       <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                         <Image
                           src="/chatbot-avatar.png"
-                          alt="Asistente de automatización"
+                          alt={t.chatbot.avatarAlt}
                           width={48}
                           height={48}
                           className="w-full h-full object-cover"
                         />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-white">Habla con un experto de Automatización    </h3>
+                        <h3 className="text-lg font-bold text-white">{t.chatbot.headerTitle}</h3>
                         <div className="flex items-center gap-2">
                           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                          <span className="text-sm text-gray-300">Joan Navarro AI  </span>
+                          <span className="text-sm text-gray-300">{t.chatbot.headerSubtitle}</span>
                         </div>
                       </div>
                     </div>
@@ -591,7 +533,7 @@ export default function AutomatizacionPage() {
                               handleSendMessage()
                             }
                           }}
-                          placeholder="Escribe tu proceso a automatizar..."
+                          placeholder={t.chatbot.inputPlaceholder}
                           className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#bbbd26] focus:border-transparent text-sm"
                         />
                         <button
@@ -602,7 +544,7 @@ export default function AutomatizacionPage() {
                         </button>
                       </div>
                       <p className="text-xs text-gray-500 mt-2 text-center">
-                        Este es un chat de demostración. Para hablar con nuestro equipo, usa los botones de contacto.
+                        {t.chatbot.demoNote}
                       </p>
                     </div>
                   </div>
@@ -637,9 +579,9 @@ export default function AutomatizacionPage() {
             <div className="max-w-7xl mx-auto">
               {/* Section Header */}
               <div className="text-center mb-10 md:mb-16">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">Caso de éxito</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">{t.caseStudy.sectionTitle}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Descubre cómo ayudamos a Catalonia Ceramic a automatizar sus procesos operativos
+                  {t.caseStudy.sectionSubtitle}
                 </p>
               </div>
 
@@ -681,15 +623,15 @@ export default function AutomatizacionPage() {
                       <h3 className="text-3xl font-bold text-[#031d40]">{cataloniaCeramicCase.company}</h3>
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-gray-600">Industria:</span>
+                          <span className="font-semibold text-gray-600">{t.caseStudy.industryLabel}</span>
                           <span className="text-gray-800">{cataloniaCeramicCase.industry}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-gray-600">Año:</span>
+                          <span className="font-semibold text-gray-600">{t.caseStudy.yearLabel}</span>
                           <span className="text-gray-800">{cataloniaCeramicCase.year}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-gray-600">Servicio:</span>
+                          <span className="font-semibold text-gray-600">{t.caseStudy.serviceLabel}</span>
                           <span className="inline-block px-3 py-1 bg-[#bbbd26]/20 text-[#031d40] rounded-full text-xs font-bold">
                             {cataloniaCeramicCase.service}
                           </span>
@@ -711,7 +653,7 @@ export default function AutomatizacionPage() {
                             d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                           />
                         </svg>
-                        <h4 className="text-xl font-bold text-[#031d40]">El Desafío</h4>
+                        <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.challengeTitle}</h4>
                       </div>
                       <p className="text-gray-700 leading-relaxed">{cataloniaCeramicCase.challenge}</p>
                     </div>
@@ -727,7 +669,7 @@ export default function AutomatizacionPage() {
                             d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 014.438 0 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138-3.138z"
                           />
                         </svg>
-                        <h4 className="text-xl font-bold text-[#031d40]">La Solución</h4>
+                        <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.solutionTitle}</h4>
                       </div>
                       <p className="text-gray-700 leading-relaxed">{cataloniaCeramicCase.solution}</p>
                     </div>
@@ -743,7 +685,7 @@ export default function AutomatizacionPage() {
                             d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 014.438 0 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
                           />
                         </svg>
-                        <h4 className="text-xl font-bold text-[#031d40]">Los Resultados</h4>
+                        <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.resultsTitle}</h4>
                       </div>
                       <div className="grid md:grid-cols-3 gap-6">
                         {cataloniaCeramicCase.results.map((result, index) => (
@@ -765,7 +707,7 @@ export default function AutomatizacionPage() {
                         asChild
                       >
                         <Link href={`/portfolio/${cataloniaCeramicCase.id}`}>
-                          Ver caso completo
+                          {t.caseStudy.viewFullCase}
                           <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                       </Button>

@@ -1,15 +1,18 @@
+"use client"
+
 import Image from "next/image"
 import { companies } from "@/lib/data"
+import { useTranslation } from "@/lib/i18n"
 
 export function CompanyLogosSection() {
-
+  const { t } = useTranslation()
   const duplicatedCompanies = [...companies, ...companies]
 
   return (
     <section className="py-8 sm:py-11 bg-white border-y border-gray-200">
       <div className="container mx-auto px-4">
         <p className="text-center text-gray-600 font-medium text-base sm:text-lg mb-6 sm:mb-10">
-          Empresas como la tuya ya han dado el paso:
+          {t.companyLogos.subtitle}
         </p>
         <div className="relative overflow-hidden">
           <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />

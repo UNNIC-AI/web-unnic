@@ -18,6 +18,8 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { getServiceSchema, StructuredData } from "@/lib/structured-data"
 import { companies, successStories } from "@/lib/data"
+import { useTranslation } from "@/lib/i18n"
+import { formacionTranslations } from "@/lib/i18n/pages/formacion"
 
 const duplicatedCompanies = [...companies, ...companies]
 
@@ -52,37 +54,22 @@ function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: 
   )
 }
 
-const workshopsByProfile = [
-  { title: "Introducción a la IA", desc: "Fundamentos para cualquier perfil profesional" },
-  { title: "IA para Directivos", desc: "Toma de decisiones estratégicas con IA" },
-  { title: "IA para Comerciales", desc: "Potencia tus ventas con herramientas de IA" },
-  { title: "IA para Marketers", desc: "Automatiza y optimiza tus campañas" },
-  { title: "IA para RRHH", desc: "Gestión del talento y selección con IA" },
-  { title: "IA para Finanzas", desc: "Análisis financiero y predicción con ML" },
-  { title: "IA para Desarrolladores", desc: "Integración de modelos y APIs de IA" },
-  { title: "Ad Hoc", desc: "Formación personalizada según tus necesidades específicas" },
-]
-
-const workshopsByTech = [
-  { name: "ChatGPT", brand: "OpenAI", logo: "/logos/chatgpt.png", logoBg: "bg-white", logoInvert: false, desc: "Prompt engineering y casos de uso prácticos" },
-  { name: "Copilot", brand: "Microsoft", logo: "/logos/copilot.png", logoBg: "bg-white", logoInvert: false, desc: "Integración con Microsoft 365 y productividad" },
-  { name: "Gemini", brand: "Google", logo: "/logos/gemini-isotipo.png", logoBg: "bg-white", logoInvert: false, desc: "Análisis multimodal y generación de contenido" },
-  { name: "Claude", brand: "Anthropic", logo: "/logos/claude-isotipo.jpg", logoBg: "bg-white", logoInvert: false, desc: "Reasoning avanzado y tareas complejas" },
-]
-
-const continuousFeatures = [
-  "Contenido actualizado con las últimas novedades del mercado",
-  "Formadores que trabajan con IA en proyectos reales, no en teoría",
-  "Subvencionable a través de FUNDAE",
+const techLogos = [
+  { logo: "/logos/chatgpt.png", logoBg: "bg-white" },
+  { logo: "/logos/copilot.png", logoBg: "bg-white" },
+  { logo: "/logos/gemini-isotipo.png", logoBg: "bg-white" },
+  { logo: "/logos/claude-isotipo.jpg", logoBg: "bg-white" },
 ]
 
 export default function FormacionPage() {
+  const { locale } = useTranslation()
+  const t = formacionTranslations[locale]
+
   const serviceSchema = getServiceSchema({
-    name: "Formación en IA para Empresas",
-    description:
-      "Formación en Inteligencia Artificial impartida por profesionales que aplican IA en proyectos reales. Talleres intensivos y programas continuos, subvencionables mediante FUNDAE.",
+    name: t.meta.serviceName,
+    description: t.meta.serviceDescription,
     url: "https://unnic.ai/servicios/formacion",
-    serviceType: "Formación Empresarial en IA",
+    serviceType: t.meta.serviceType,
   })
 
   return (
@@ -106,19 +93,19 @@ export default function FormacionPage() {
             <div className="max-w-5xl mx-auto text-center space-y-8">
               
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance leading-[1.05] tracking-tight">
-                <span className="text-[#031d40]">Forma a tu Equipo con </span>
+                <span className="text-[#031d40]">{t.hero.titlePrefix}</span>
                 <UnderlinedText>
-                  <span className="text-[#031d40]">Expertos</span>
+                  <span className="text-[#031d40]">{t.hero.titleHighlight}</span>
                 </UnderlinedText>
               </h1>
               <p className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Nuestros formadores no son docentes: son profesionales que aplican IA en empresas reales cada día.
+                {t.hero.subtitle}
               </p>
               {/* FUNDAE badge */}
               <div className="inline-flex items-center gap-3 bg-[#bbbd26]/10 border border-[#bbbd26]/30 rounded-2xl px-6 py-3">
                 <BadgeCheck className="w-5 h-5 text-[#031d40] flex-shrink-0" />
                 <span className="text-[#031d40] font-semibold text-sm sm:text-base">
-                  Toda nuestra formación es subvencionable a través de FUNDAE
+                  {t.hero.fundaeBadge}
                 </span>
               </div>
               
@@ -134,9 +121,9 @@ export default function FormacionPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-10 md:mb-16 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">Dos modelos de formación</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.models.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Elige el formato que mejor encaja con la madurez y las necesidades de tu equipo.
+                  {t.models.subtitle}
                 </p>
               </div>
               <div className="grid md:grid-cols-2 gap-8">
@@ -145,12 +132,12 @@ export default function FormacionPage() {
                   <div className="w-14 h-14 bg-[#031d40]/8 rounded-xl flex items-center justify-center mb-5">
                     <Users className="w-7 h-7 text-[#031d40]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[#031d40] mb-3">Talleres</h3>
+                  <h3 className="text-2xl font-bold text-[#031d40] mb-3">{t.models.workshops.title}</h3>
                   <p className="text-gray-600 leading-relaxed mb-5">
-                    Sesiones intensivas de 3 horas, enfocadas en una herramienta o perfil concreto. Prácticas, directas y aplicables desde el primer día.
+                    {t.models.workshops.description}
                   </p>
                   <ul className="space-y-2">
-                    {["Duración: 3 horas", "Perfil o herramienta específica", "Aplicable desde el día 1", "Subvencionable FUNDAE"].map((f) => (
+                    {t.models.workshops.features.map((f) => (
                       <li key={f} className="flex items-center gap-2 text-sm text-gray-700">
                         <CheckCircle2 className="w-4 h-4 text-[#bbbd26] flex-shrink-0" />
                         {f}
@@ -163,12 +150,12 @@ export default function FormacionPage() {
                   <div className="w-14 h-14 bg-[#bbbd26]/20 rounded-xl flex items-center justify-center mb-5">
                     <Repeat className="w-7 h-7 text-[#bbbd26]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3">Formación Continua</h3>
+                  <h3 className="text-2xl font-bold text-white mb-3">{t.models.continuous.title}</h3>
                   <p className="text-white/80 leading-relaxed mb-5">
-                    Programa diseñado a medida para tu empresa. Adaptamos contenido, ritmo y objetivos a tu equipo y tu sector. Sin rigidez, sin temarios genéricos.
+                    {t.models.continuous.description}
                   </p>
                   <ul className="space-y-2">
-                    {["Programa a medida", "Ritmo adaptado a tu empresa", "Contenido actualizado mensualmente", "Subvencionable FUNDAE"].map((f) => (
+                    {t.models.continuous.features.map((f) => (
                       <li key={f} className="flex items-center gap-2 text-sm text-white/80">
                         <CheckCircle2 className="w-4 h-4 text-[#bbbd26] flex-shrink-0" />
                         {f}
@@ -185,7 +172,7 @@ export default function FormacionPage() {
         <section className="py-8 sm:py-11 bg-white border-y border-gray-200">
           <div className="container mx-auto px-4">
             <p className="text-center text-gray-500 font-medium text-base sm:text-lg mb-6 sm:mb-10">
-              Empresas que ya han formado a sus equipos con nosotros
+              {t.companies.title}
             </p>
             <div className="relative overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
@@ -215,20 +202,20 @@ export default function FormacionPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-10 md:mb-16 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40]">Talleres por perfil</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40]">{t.workshopsByProfile.title}</h2>
                 <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                  Contenido adaptado al rol real de cada persona en la empresa.
+                  {t.workshopsByProfile.subtitle}
                 </p>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {workshopsByProfile.map((w) => (
+                {t.workshopsByProfile.items.map((w) => (
                   <div key={w.title} className="bg-white border border-gray-200 rounded-2xl p-5 hover:border-[#bbbd26] hover:shadow-md transition-[border-color,box-shadow] duration-300 flex flex-col gap-4">
                     <div>
                       <h4 className="font-bold text-[#031d40] mb-1">{w.title}</h4>
                       <p className="text-gray-500 text-sm">{w.desc}</p>
                     </div>
                     <Link href="/contacto" className="flex items-center gap-2 text-[#bbbd26] hover:text-[#a8aa22] font-semibold text-sm transition-colors mt-auto">
-                      Saber más
+                      {t.workshopsByProfile.learnMore}
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
@@ -243,27 +230,27 @@ export default function FormacionPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-10 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40]">Talleres por tecnología</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40]">{t.workshopsByTech.title}</h2>
                 <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                  Domina las herramientas que el mercado ya está usando.
+                  {t.workshopsByTech.subtitle}
                 </p>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {workshopsByTech.map((t) => (
-                  <div key={t.name} className="bg-gradient-to-br from-[#031d40]/5 to-[#031d40]/10 border border-gray-200/50 rounded-2xl p-6 text-center flex flex-col items-center gap-3">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${t.logoBg} shadow-sm border border-gray-100 p-2`}>
+                {t.workshopsByTech.items.map((tech, idx) => (
+                  <div key={tech.name} className="bg-gradient-to-br from-[#031d40]/5 to-[#031d40]/10 border border-gray-200/50 rounded-2xl p-6 text-center flex flex-col items-center gap-3">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${techLogos[idx].logoBg} shadow-sm border border-gray-100 p-2`}>
                       <Image
-                        src={t.logo}
-                        alt={`${t.name} logo`}
+                        src={techLogos[idx].logo}
+                        alt={`${tech.name} logo`}
                         width={48}
                         height={48}
                         className="w-full h-full object-contain"
                       />
                     </div>
                     <div>
-                      <p className="text-[#031d40] font-bold text-lg">{t.name}</p>
-                      <p className="text-gray-500 text-sm mt-0.5">{t.brand}</p>
-                      <p className="text-gray-600 text-sm mt-2">{t.desc}</p>
+                      <p className="text-[#031d40] font-bold text-lg">{tech.name}</p>
+                      <p className="text-gray-500 text-sm mt-0.5">{tech.brand}</p>
+                      <p className="text-gray-600 text-sm mt-2">{tech.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -282,14 +269,14 @@ export default function FormacionPage() {
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-10 space-y-4">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                  Formación Continua
+                  {t.continuousDetail.title}
                 </h2>
                 <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
-                  La IA evoluciona cada mes. Tu equipo también debería. Diseñamos un programa formativo continuo adaptado a tu empresa, tu sector y tu nivel de madurez. Ajustamos el ritmo y el contenido según vuestras necesidades, y todo ello subvencionable a través de FUNDAE.
+                  {t.continuousDetail.subtitle}
                 </p>
               </div>
               <div className="space-y-4">
-                {continuousFeatures.map((f, i) => (
+                {t.continuousDetail.features.map((f, i) => (
                   <div key={i} className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl p-5">
                     <CheckCircle2 className="w-6 h-6 text-[#bbbd26] flex-shrink-0 mt-0.5" />
                     <p className="text-white/90 text-base sm:text-lg">{f}</p>
@@ -310,20 +297,20 @@ export default function FormacionPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40]">
-                ¿Quieres saber qué formación necesita tu equipo?
+                {t.cta.title}
               </h2>
               <p className="text-[#031d40]/80 text-lg leading-relaxed">
-                Analizamos el nivel de madurez de tu empresa y te proponemos el programa más adecuado, incluyendo la tramitación FUNDAE si lo necesitas.
+                {t.cta.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Hablemos de tu equipo
+                    {t.cta.primaryButton}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-8 py-6 border-2 border-[#031d40]/30 text-[#031d40] hover:bg-[#031d40] hover:text-white transition-[background-color,color] duration-300 rounded-full bg-transparent" asChild>
-                  <Link href="/servicios">Ver todos los servicios</Link>
+                  <Link href="/servicios">{t.cta.secondaryButton}</Link>
                 </Button>
               </div>
             </div>
@@ -340,9 +327,9 @@ export default function FormacionPage() {
               <div className="container relative mx-auto px-4">
                 <div className="max-w-7xl mx-auto">
                   <div className="text-center mb-10 md:mb-16">
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">Caso de éxito</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">{t.caseStudy.title}</h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                      Descubre cómo un programa de formación transformó a un equipo
+                      {t.caseStudy.subtitle}
                     </p>
                   </div>
                   <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
@@ -375,15 +362,15 @@ export default function FormacionPage() {
                           <h3 className="text-3xl font-bold text-[#031d40]">{c.company}</h3>
                           <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Industria:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.industryLabel}</span>
                               <span className="text-gray-800">{c.industry}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Año:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.yearLabel}</span>
                               <span className="text-gray-800">{c.year}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Servicio:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.serviceLabel}</span>
                               <span className="inline-block px-3 py-1 bg-[#bbbd26]/20 text-[#031d40] rounded-full text-xs font-bold">{c.service}</span>
                             </div>
                           </div>
@@ -396,7 +383,7 @@ export default function FormacionPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">El Desafío</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.challengeTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.challenge}</p>
                         </div>
@@ -405,7 +392,7 @@ export default function FormacionPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">La Solución</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.solutionTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.solution}</p>
                         </div>
@@ -414,7 +401,7 @@ export default function FormacionPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">Los Resultados</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.resultsTitle}</h4>
                           </div>
                           <div className="grid md:grid-cols-3 gap-6">
                             {c.results.map((result, index) => (
@@ -428,7 +415,7 @@ export default function FormacionPage() {
                         <div className="pt-4">
                           <Button size="lg" className="bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold transition-all group" asChild>
                             <Link href={`/portfolio/${c.id}`}>
-                              Ver caso completo
+                              {t.caseStudy.viewFullCase}
                               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                           </Button>

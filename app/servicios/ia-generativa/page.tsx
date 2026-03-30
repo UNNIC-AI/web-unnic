@@ -22,6 +22,8 @@ import {
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { getServiceSchema, StructuredData } from "@/lib/structured-data"
+import { useTranslation } from "@/lib/i18n"
+import { iaGenerativaTranslations } from "@/lib/i18n/pages/ia-generativa"
 
 function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -54,67 +56,21 @@ function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: 
   )
 }
 
-const solutions = [
-  {
-    icon: Bot,
-    title: "Agentes de IA",
-    description:
-      "Asistentes inteligentes que actúan: responden, consultan sistemas, ejecutan tareas y escalan cuando es necesario. Para atención al cliente, soporte interno, ventas o cualquier flujo que hoy depende de una persona.",
-    color: "from-[#031d40]/5 to-[#031d40]/10",
-    iconBg: "bg-[#031d40]/8",
-  },
-  {
-    icon: Phone,
-    title: "Llamadas con IA",
-    description:
-      "Agentes de voz que atienden y realizan llamadas de forma autónoma. Citas, confirmaciones, soporte básico, cualificación de leads: disponibles 24/7, sin esperas ni coste por volumen.",
-    color: "from-[#bbbd26]/5 to-[#bbbd26]/10",
-    iconBg: "bg-[#bbbd26]/15",
-  },
-  {
-    icon: BookOpen,
-    title: "Sistemas RAG",
-    description:
-      "Tu empresa sabe mucho más de lo que parece. Construimos sistemas que convierten documentos, manuales y procedimientos en una base de conocimiento consultable al instante.",
-    color: "from-[#031d40]/5 to-[#031d40]/10",
-    iconBg: "bg-[#031d40]/8",
-  },
+const solutionsMeta = [
+  { icon: Bot, color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8" },
+  { icon: Phone, color: "from-[#bbbd26]/5 to-[#bbbd26]/10", iconBg: "bg-[#bbbd26]/15" },
+  { icon: BookOpen, color: "from-[#031d40]/5 to-[#031d40]/10", iconBg: "bg-[#031d40]/8" },
 ]
 
-const steps = [
-  {
-    number: "01",
-    icon: ClipboardList,
-    title: "Definición del caso de uso",
-    description: "Qué problema resuelve y cómo se mide el éxito desde el primer día",
-  },
-  {
-    number: "02",
-    icon: PenTool,
-    title: "Diseño conversacional",
-    description: "Flujos, contexto e integraciones necesarias para que funcione de verdad",
-  },
-  {
-    number: "03",
-    icon: Code2,
-    title: "Desarrollo e iteración",
-    description: "Construcción con pruebas reales desde el principio, sin teoría",
-  },
-  {
-    number: "04",
-    icon: Plug,
-    title: "Despliegue e integración",
-    description: "En tu stack, con tus sistemas, sin interrupciones",
-  },
-  {
-    number: "05",
-    icon: TrendingUp,
-    title: "Mejora continua",
-    description: "Monitorizamos, ajustamos y escalamos la solución con el tiempo",
-  },
+const stepsMeta = [
+  { number: "01", icon: ClipboardList },
+  { number: "02", icon: PenTool },
+  { number: "03", icon: Code2 },
+  { number: "04", icon: Plug },
+  { number: "05", icon: TrendingUp },
 ]
 
-function SimpleTimeline() {
+function SimpleTimeline({ steps }: { steps: { number: string; icon: typeof ClipboardList; title: string; description: string }[] }) {
   const timelineRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -206,12 +162,20 @@ function SimpleTimeline() {
 }
 
 export default function IAGenerativaPage() {
+  const { locale } = useTranslation()
+  const t = iaGenerativaTranslations[locale]
+
+  const steps = stepsMeta.map((s, i) => ({
+    ...s,
+    title: t.process.steps[i].title,
+    description: t.process.steps[i].description,
+  }))
+
   const serviceSchema = getServiceSchema({
-    name: "IA Generativa: Agentes, Voz y RAG",
-    description:
-      "Construimos soluciones de IA Generativa que resuelven problemas reales: agentes de IA, llamadas con voz y sistemas RAG para atención al cliente, soporte interno y automatización.",
+    name: t.schema.name,
+    description: t.schema.description,
     url: "https://unnic.ai/servicios/ia-generativa",
-    serviceType: "IA Generativa y Agentes Inteligentes",
+    serviceType: t.schema.serviceType,
   })
 
   return (
@@ -235,18 +199,18 @@ export default function IAGenerativaPage() {
             <div className="max-w-5xl mx-auto text-center space-y-8">
               
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-balance leading-[1.05] tracking-tight">
-                <span className="text-[#031d40]">IA que </span>
+                <span className="text-[#031d40]">{t.hero.titlePrefix}</span>
                 <UnderlinedText>
-                  <span className="text-[#031d40]">genera resultados</span>
+                  <span className="text-[#031d40]">{t.hero.titleHighlight}</span>
                 </UnderlinedText>
               </h1>
               <p className="text-base sm:text-lg md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Construimos soluciones de IA Generativa que resuelven problemas reales: atienden clientes, gestionan conocimiento y automatizan decisiones complejas.
+                {t.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    ¿Tienes un caso de uso?
+                    {t.hero.ctaButton}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -266,13 +230,13 @@ export default function IAGenerativaPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-10 md:mb-16 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">Qué construimos</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.solutions.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Tres líneas de soluciones de IA Generativa con casos de uso probados en empresas reales.
+                  {t.solutions.subtitle}
                 </p>
               </div>
               <div className="grid md:grid-cols-3 gap-6">
-                {solutions.map((item, index) => {
+                {solutionsMeta.map((item, index) => {
                   const Icon = item.icon
                   return (
                     <div key={index} className={`group relative bg-gradient-to-br ${item.color} border border-gray-200/50 rounded-2xl p-8 hover:shadow-xl hover:scale-[1.02] transition-[transform,box-shadow] duration-300`}>
@@ -282,8 +246,8 @@ export default function IAGenerativaPage() {
                       <div className={`${item.iconBg} w-14 h-14 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
                         <Icon className="w-7 h-7 text-[#031d40]" />
                       </div>
-                      <h3 className="text-xl font-bold text-[#031d40] mb-3">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                      <h3 className="text-xl font-bold text-[#031d40] mb-3">{t.solutions.items[index].title}</h3>
+                      <p className="text-gray-600 leading-relaxed">{t.solutions.items[index].description}</p>
                     </div>
                   )
                 })}
@@ -304,17 +268,17 @@ export default function IAGenerativaPage() {
               <div className="space-y-6">
                 <div className="inline-flex items-center gap-2 bg-[#bbbd26]/20 border border-[#bbbd26]/30 rounded-full px-4 py-2">
                   <Phone className="w-4 h-4 text-[#bbbd26]" />
-                  <span className="text-[#bbbd26] text-sm font-semibold">Pruébalo ahora</span>
+                  <span className="text-[#bbbd26] text-sm font-semibold">{t.tryIt.badge}</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
-                  ¿Quieres saber cómo suena un agente de voz real?
+                  {t.tryIt.title}
                 </h2>
                 <p className="text-white/80 text-base sm:text-lg leading-relaxed">
-                  Llama al{" "}
+                  {t.tryIt.description1}{" "}
                   <a href="tel:+34872432750" className="text-[#bbbd26] font-bold hover:underline">
                     +34 872 43 27 50
                   </a>{" "}
-                  y habla con el agente de Unnic AI. Sin formularios, sin esperas: experiencia directa.
+                  {t.tryIt.description2}
                 </p>
               </div>
             </div>
@@ -327,12 +291,12 @@ export default function IAGenerativaPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-20 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">Cómo trabajamos</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.process.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Cinco fases para construir soluciones de IA que funcionan en producción, no solo en demos.
+                  {t.process.subtitle}
                 </p>
               </div>
-              <SimpleTimeline />
+              <SimpleTimeline steps={steps} />
             </div>
           </div>
         </section>
@@ -348,23 +312,23 @@ export default function IAGenerativaPage() {
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <div className="inline-flex items-center gap-2 bg-[#031d40]/10 rounded-full px-4 py-2">
                 <Sparkles className="w-4 h-4 text-[#031d40]" />
-                <span className="text-[#031d40] text-sm font-semibold">Respuesta en 24h · Sin compromiso</span>
+                <span className="text-[#031d40] text-sm font-semibold">{t.cta.badge}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40] text-balance">
-                ¿Tienes un caso de uso en mente?
+                {t.cta.title}
               </h2>
               <p className="text-[#031d40]/80 text-lg leading-relaxed max-w-2xl mx-auto">
-                Te decimos en 24h si tiene sentido técnico y qué costaría construirlo. Sin compromisos.
+                {t.cta.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Cuéntanoslo
+                    {t.cta.primaryButton}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-8 py-6 border-2 border-[#031d40]/30 text-[#031d40] hover:bg-[#031d40] hover:text-white transition-[background-color,color] duration-300 rounded-full bg-transparent" asChild>
-                  <Link href="/servicios">Ver todos los servicios</Link>
+                  <Link href="/servicios">{t.cta.secondaryButton}</Link>
                 </Button>
               </div>
             </div>
@@ -381,9 +345,9 @@ export default function IAGenerativaPage() {
               <div className="container relative mx-auto px-4">
                 <div className="max-w-7xl mx-auto">
                   <div className="text-center mb-10 md:mb-16">
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">Caso de éxito</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">{t.caseStudy.sectionTitle}</h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                      Descubre cómo ayudamos a implementar IA generativa en proyectos reales
+                      {t.caseStudy.sectionSubtitle}
                     </p>
                   </div>
                   <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
@@ -416,15 +380,15 @@ export default function IAGenerativaPage() {
                           <h3 className="text-3xl font-bold text-[#031d40]">{c.company}</h3>
                           <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Industria:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.industryLabel}</span>
                               <span className="text-gray-800">{c.industry}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Año:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.yearLabel}</span>
                               <span className="text-gray-800">{c.year}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Servicio:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.serviceLabel}</span>
                               <span className="inline-block px-3 py-1 bg-[#bbbd26]/20 text-[#031d40] rounded-full text-xs font-bold">{c.service}</span>
                             </div>
                           </div>
@@ -437,7 +401,7 @@ export default function IAGenerativaPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">El Desafío</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.challengeTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.challenge}</p>
                         </div>
@@ -446,7 +410,7 @@ export default function IAGenerativaPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">La Solución</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.solutionTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.solution}</p>
                         </div>
@@ -455,7 +419,7 @@ export default function IAGenerativaPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">Los Resultados</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.resultsTitle}</h4>
                           </div>
                           <div className="grid md:grid-cols-3 gap-6">
                             {c.results.map((result, index) => (
@@ -469,7 +433,7 @@ export default function IAGenerativaPage() {
                         <div className="pt-4">
                           <Button size="lg" className="bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold transition-all group" asChild>
                             <Link href={`/portfolio/${c.id}`}>
-                              Ver caso completo
+                              {t.caseStudy.viewFullCase}
                               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                           </Button>

@@ -22,6 +22,8 @@ import {
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { techPartners, successStories } from "@/lib/data"
+import { useTranslation } from "@/lib/i18n"
+import { desarrolloTranslations } from "@/lib/i18n/pages/desarrollo"
 
 const duplicatedTechPartners = [...techPartners, ...techPartners, ...techPartners]
 
@@ -58,42 +60,18 @@ function UnderlinedText({ children, delay = 0 }: { children: ReactNode; delay?: 
   )
 }
 
-function SimpleTimeline() {
+const timelineIcons = [ClipboardList, Layers, Code2, Rocket, HeartHandshake] as const
+
+function SimpleTimeline({ translatedSteps }: { translatedSteps: { title: string; description: string }[] }) {
   const timelineRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
-  const steps = [
-    {
-      number: "01",
-      icon: ClipboardList,
-      title: "Análisis de requisitos",
-      description: "Entendemos el problema real antes de escribir una línea de código",
-    },
-    {
-      number: "02",
-      icon: Layers,
-      title: "Arquitectura técnica",
-      description: "Elegimos el stack adecuado al problema, no al revés",
-    },
-    {
-      number: "03",
-      icon: Code2,
-      title: "Desarrollo ágil",
-      description: "Sprints con demos periódicas para que el cliente valide en cada paso",
-    },
-    {
-      number: "04",
-      icon: Rocket,
-      title: "Despliegue",
-      description: "On premise, cloud o híbrido según tus necesidades",
-    },
-    {
-      number: "05",
-      icon: HeartHandshake,
-      title: "Soporte y evolución",
-      description: "Mantenemos y escalamos la solución a medida que crece tu empresa",
-    },
-  ]
+  const steps = translatedSteps.map((s, i) => ({
+    number: String(i + 1).padStart(2, "0"),
+    icon: timelineIcons[i],
+    title: s.title,
+    description: s.description,
+  }))
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -189,37 +167,19 @@ function SimpleTimeline() {
   )
 }
 
+const whatWeBuildIcons = [Globe, Server, Plug, MonitorSmartphone] as const
+
 export default function DesarrolloPage() {
-  const whatWeBuild = [
-    {
-      title: "SaaS escalable",
-      description: "Aplicaciones web con miles de usuarios concurrentes y arquitectura pronta para crecer.",
-      icon: Globe,
-      color: "from-[#031d40]/5 to-[#bbbd26]/5",
-      iconBg: "bg-[#bbbd26]",
-    },
-    {
-      title: "APIs y microservicios",
-      description: "Backends robustos, seguros y documentados que tu frontend o terceros pueden consumir.",
-      icon: Server,
-      color: "from-[#031d40]/5 to-[#bbbd26]/5",
-      iconBg: "bg-[#bbbd26]",
-    },
-    {
-      title: "Integraciones complejas",
-      description: "Conectamos tus sistemas internos con plataformas externas — sincronización, webhooks, ETL.",
-      icon: Plug,
-      color: "from-[#031d40]/5 to-[#bbbd26]/5",
-      iconBg: "bg-[#bbbd26]",
-    },
-    {
-      title: "Aplicaciones real-time",
-      description: "Chats, colaboración en vivo, notificaciones y dashboards que reaccionan instantáneamente.",
-      icon: MonitorSmartphone,
-      color: "from-[#031d40]/5 to-[#bbbd26]/5",
-      iconBg: "bg-[#bbbd26]",
-    },
-  ]
+  const { locale } = useTranslation()
+  const t = desarrolloTranslations[locale]
+
+  const whatWeBuild = t.whatWeBuild.items.map((item, i) => ({
+    title: item.title,
+    description: item.description,
+    icon: whatWeBuildIcons[i],
+    color: "from-[#031d40]/5 to-[#bbbd26]/5",
+    iconBg: "bg-[#bbbd26]",
+  }))
 
   return (
     <>
@@ -238,20 +198,20 @@ export default function DesarrolloPage() {
             <div className="max-w-4xl mx-auto text-center">
               
               <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-[#031d40] leading-tight mb-6">
-                Tu software,{" "}<UnderlinedText>exactamente como lo necesitas</UnderlinedText>
+                {t.hero.titlePrefix}<UnderlinedText>{t.hero.titleHighlight}</UnderlinedText>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed mb-8 max-w-3xl mx-auto">
-                Cuando la solución requiere código a medida, construimos exactamente lo que tu empresa necesita. Sin plantillas, sin limitaciones.
+                {t.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Cuéntanoslo
+                    {t.hero.ctaPrimary}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-8 py-6 border-2 border-[#031d40] text-[#031d40] hover:bg-[#031d40] hover:text-white transition-[background-color,color] duration-300 rounded-full bg-transparent" asChild>
-                  <Link href="/portfolio">Ver portfolio</Link>
+                  <Link href="/portfolio">{t.hero.ctaSecondary}</Link>
                 </Button>
               </div>
             </div>
@@ -268,17 +228,13 @@ export default function DesarrolloPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center space-y-8">
               <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">
-                Sin ataduras <UnderlinedText>tecnológicas</UnderlinedText>
+                {t.noLockIn.title}<UnderlinedText>{t.noLockIn.titleHighlight}</UnderlinedText>
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-                Trabajamos con el stack que mejor se adapta al problema, no al revés. Elegimos la tecnología según las necesidades reales del cliente: infraestructura, equipo, presupuesto y escalabilidad.
+                {t.noLockIn.subtitle}
               </p>
               <div className="grid sm:grid-cols-3 gap-6 mt-8">
-                {[
-                  { label: "Infraestructura", desc: "Cloud, on-premise o híbrido según tus necesidades" },
-                  { label: "Equipo", desc: "Nos adaptamos a tu stack actual o proponemos el más adecuado" },
-                  { label: "Escalabilidad", desc: "Arquitecturas que crecen contigo sin reescribir todo" },
-                ].map((item) => (
+                {t.noLockIn.cards.map((item) => (
                   <div key={item.label} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
                     <p className="text-[#bbbd26] font-bold text-lg mb-2">{item.label}</p>
                     <p className="text-white/70 text-sm leading-relaxed">{item.desc}</p>
@@ -293,7 +249,7 @@ export default function DesarrolloPage() {
         <section className="py-8 sm:py-11 bg-white border-y border-gray-200">
           <div className="container mx-auto px-4 mb-6 sm:mb-10">
             <p className="text-center text-gray-600 font-medium text-base sm:text-lg">
-              Trabajamos con las mejores tecnologías del mercado
+              {t.techCarousel.subtitle}
             </p>
           </div>
           <div className="relative overflow-hidden w-full">
@@ -325,9 +281,9 @@ export default function DesarrolloPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-10 md:mb-16 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">¿Qué construimos?</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40]">{t.whatWeBuild.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                  Cuatro líneas de desarrollo donde tenemos experiencia probada y resultados reales.
+                  {t.whatWeBuild.subtitle}
                 </p>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
@@ -360,12 +316,12 @@ export default function DesarrolloPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-20 space-y-4">
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">Cómo trabajamos</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white">{t.howWeWork.title}</h2>
                 <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto">
-                  Un proceso estructurado para que cada euro invertido en desarrollo tenga retorno medible.
+                  {t.howWeWork.subtitle}
                 </p>
               </div>
-              <SimpleTimeline />
+              <SimpleTimeline translatedSteps={t.howWeWork.steps} />
             </div>
           </div>
         </section>
@@ -380,20 +336,20 @@ export default function DesarrolloPage() {
           <div className="container relative mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center space-y-8">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#031d40]">
-                ¿Tienes un proyecto en mente?
+                {t.cta.title}
               </h2>
               <p className="text-[#031d40]/80 text-lg leading-relaxed">
-                Cuéntanoslo. En una primera llamada te decimos si tiene sentido técnico y qué costaría construirlo.
+                {t.cta.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="text-base px-8 py-6 bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold shadow-xl transition-[transform,background-color] duration-300 group rounded-full" asChild>
                   <Link href="/contacto">
-                    Cuéntanoslo
+                    {t.cta.ctaPrimary}
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-8 py-6 border-2 border-[#031d40]/30 text-[#031d40] hover:bg-[#031d40] hover:text-white transition-[background-color,color] duration-300 rounded-full bg-transparent" asChild>
-                  <Link href="/servicios">Ver todos los servicios</Link>
+                  <Link href="/servicios">{t.cta.ctaSecondary}</Link>
                 </Button>
               </div>
             </div>
@@ -410,9 +366,9 @@ export default function DesarrolloPage() {
               <div className="container relative mx-auto px-4">
                 <div className="max-w-7xl mx-auto">
                   <div className="text-center mb-10 md:mb-16">
-                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">Caso de éxito</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#031d40] mb-4">{t.caseStudy.title}</h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-                      Descubre cómo ayudamos a Catalonia Ceramic a transformar sus operaciones con desarrollo a medida
+                      {t.caseStudy.subtitle}
                     </p>
                   </div>
                   <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
@@ -445,15 +401,15 @@ export default function DesarrolloPage() {
                           <h3 className="text-3xl font-bold text-[#031d40]">{c.company}</h3>
                           <div className="space-y-2 text-sm">
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Industria:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.industryLabel}</span>
                               <span className="text-gray-800">{c.industry}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Año:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.yearLabel}</span>
                               <span className="text-gray-800">{c.year}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-semibold text-gray-600">Servicio:</span>
+                              <span className="font-semibold text-gray-600">{t.caseStudy.serviceLabel}</span>
                               <span className="inline-block px-3 py-1 bg-[#bbbd26]/20 text-[#031d40] rounded-full text-xs font-bold">{c.service}</span>
                             </div>
                           </div>
@@ -466,7 +422,7 @@ export default function DesarrolloPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">El Desafío</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.challengeTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.challenge}</p>
                         </div>
@@ -475,7 +431,7 @@ export default function DesarrolloPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138z" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">La Solución</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.solutionTitle}</h4>
                           </div>
                           <p className="text-gray-700 leading-relaxed">{c.solution}</p>
                         </div>
@@ -484,7 +440,7 @@ export default function DesarrolloPage() {
                             <svg className="w-6 h-6 text-[#bbbd26]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
-                            <h4 className="text-xl font-bold text-[#031d40]">Los Resultados</h4>
+                            <h4 className="text-xl font-bold text-[#031d40]">{t.caseStudy.resultsTitle}</h4>
                           </div>
                           <div className="grid md:grid-cols-3 gap-6">
                             {c.results.map((result, index) => (
@@ -498,7 +454,7 @@ export default function DesarrolloPage() {
                         <div className="pt-4">
                           <Button size="lg" className="bg-[#031d40] hover:bg-[#031d40]/90 text-white font-bold transition-all group" asChild>
                             <Link href={`/portfolio/${c.id}`}>
-                              Ver caso completo
+                              {t.caseStudy.viewFullCase}
                               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                           </Button>
