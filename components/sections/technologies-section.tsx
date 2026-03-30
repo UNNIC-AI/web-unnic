@@ -105,11 +105,11 @@ export function TechnologiesSection() {
       items: [
         {
           title: catTranslations[1].items[0],
-          image: "/placeholder.svg",
+          image: "/images/tech/n8n.svg",
         },
         {
           title: catTranslations[1].items[1],
-          image: "/placeholder.svg",
+          image: "/images/tech/power-automate.svg",
         },
       ],
     },
@@ -118,7 +118,7 @@ export function TechnologiesSection() {
       items: [
         {
           title: catTranslations[2].items[0],
-          image: "/placeholder.svg",
+          image: "/images/tech/power-bi.svg",
         },
         {
           title: catTranslations[2].items[1],
@@ -228,11 +228,19 @@ export function TechnologiesSection() {
                   key={itemIndex}
                   className="bg-white border-2 border-[#bbbd26] rounded-2xl p-6 hover:border-[#031d40] hover:scale-105 transition-[transform,border-color,box-shadow] duration-300 shadow-sm hover:shadow-xl flex flex-col items-center justify-center min-h-[160px]"
                 >
-                  <div className="w-16 h-16 flex items-center justify-center mb-4 relative">
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center">
                     {"image" in item && item.image ? (
-                      <Image src={item.image || "/placeholder.svg"} alt={item.title} fill sizes="64px" className="object-contain" />
+                      <div className="relative h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                        <Image
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.title}
+                          fill
+                          sizes="64px"
+                          className="object-contain p-2 grayscale"
+                        />
+                      </div>
                     ) : (
-                      <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-100">
                         {"icon" in item ? item.icon : null}
                       </div>
                     )}
@@ -263,7 +271,7 @@ export function TechnologiesSection() {
                   src={tech.logo || "/placeholder.svg"}
                   alt={tech.name}
                   fill
-                  className="object-contain grayscale hover:grayscale-0 transition-opacity duration-300 opacity-70 hover:opacity-100"
+                  className="object-contain grayscale transition-opacity duration-300 opacity-70 hover:opacity-100"
                 />
               </div>
             ))}
