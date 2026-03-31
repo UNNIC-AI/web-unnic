@@ -110,7 +110,7 @@ export const ca = {
   },
 
   cta: {
-    line1: "La IA és aquí per quedar-se…",
+    line1: "La IA és aquí per a quedar-se…",
     line2: "No és qüestió de fer-ho,",
     line3: "sinó de quan.",
     button: "Vull començar",

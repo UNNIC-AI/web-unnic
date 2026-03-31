@@ -261,7 +261,7 @@ const ca: typeof es = {
       "Identifiquem on la IA pot generar impacte real al teu negoci i traçem el camí per aconseguir-ho",
   },
   cta: {
-    line1: "La IA és aquí per quedar-se...",
+    line1: "La IA és aquí per a quedar-se...",
     line2: "No és qüestió de fer-ho,",
     line3: "Sinó de quan.",
     button: "Vull començar",
@@ -289,7 +289,7 @@ const ca: typeof es = {
       description: "Creem el teu pla d'implementació a mida amb fases, temps i pressupostos tancats",
     },
     {
-      title: "Implantació",
+      title: "Implementació",
       description: "Desenvolupem i integrem les teves solucions amb metodologia àgil i comunicació contínua",
     },
     {
@@ -335,7 +335,7 @@ const ca: typeof es = {
       ],
     },
     {
-      title: "Implantació",
+      title: "Implementació",
       subtitle: "Construïm i integrem les teves solucions",
       description:
         "Desenvolupem i despleguem les solucions definides, amb metodologia àgil i comunicació contínua. Ens integrem amb els teus sistemes actuals perquè la transició sigui fluida i sense interrupcions.",

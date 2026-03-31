@@ -2380,7 +2380,7 @@ export default function IndustriasPage() {
                 <div className="relative">
                   <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                     <img
-                      src="/abstract-blue-background-with-geometric-shapes.jpg"
+                      src="/images/tecnologia-industria.png"
                       alt={t.tecnologia.imageAlt}
                       className="w-full h-full object-cover"
                     />
