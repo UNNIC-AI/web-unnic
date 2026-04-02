@@ -220,7 +220,7 @@ function SimpleTimeline({ translatedSteps }: { translatedSteps: { title: string;
 import { getServiceSchema, StructuredData } from "@/lib/structured-data"
 
 export default function AutomatizacionPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = automatizacionTranslations[locale]
 
   const serviceSchema = getServiceSchema({
@@ -262,7 +262,10 @@ export default function AutomatizacionPage() {
     }
   }
 
-  const cataloniaCeramicCase = successStories[0] // Catalonia Ceramic is the first case
+  const cataloniaCeramicCase = {
+    ...successStories[0],
+    ...globalT.successStories.items[0],
+  }
 
   return (
     <>

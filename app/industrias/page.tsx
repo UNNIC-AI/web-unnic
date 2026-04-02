@@ -136,19 +136,31 @@ const casoDeUsoIconMap: Record<string, (typeof Brain)[]> = {
   energia: [Brain, BarChart2, Settings, Zap, FileCheck, MessageSquare],
 }
 
-const cataloniaCeramicCase = successStories.find((s) => s.id === "catalonia-ceramic")
-const construccionCase = successStories.find((s) => s.id === "construccion-distributor")
-const conectapCase = successStories.find((story) => story.id === "conectap")
-const pinturasCase = successStories.find((s) => s.id === "pinturas-personalizadas")
-const viviCoachingCase = successStories.find((s) => s.id === "vivi-coaching")
-
 export default function IndustriasPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = industriasTranslations[locale]
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
+
+  const buildLocalizedCase = (id: string, translationIndex: number) => {
+    const baseCase = successStories.find((story) => story.id === id)
+    const translatedCase = globalT.successStories.items[translationIndex]
+
+    return baseCase && translatedCase
+      ? {
+          ...baseCase,
+          ...translatedCase,
+        }
+      : baseCase
+  }
+
+  const cataloniaCeramicCase = buildLocalizedCase("catalonia-ceramic", 0)
+  const conectapCase = buildLocalizedCase("conectap", 1)
+  const construccionCase = buildLocalizedCase("construccion-distributor", 2)
+  const pinturasCase = buildLocalizedCase("pinturas-personalizadas", 3)
+  const viviCoachingCase = buildLocalizedCase("vivi-coaching", 4)
 
   const handleSelectIndustry = (industryId: string) => {
     setSelectedIndustry(industryId)
