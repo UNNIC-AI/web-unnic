@@ -47,7 +47,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
   return (
     <>
       <Navigation />
-      <PortfolioDetailContent story={story} />
+      <PortfolioDetailContent storyId={id} />
     </>
   )
 }

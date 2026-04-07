@@ -152,7 +152,7 @@ function StepsTimeline({ steps }: { steps: { number: string; title: string; desc
 }
 
 export default function DataPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = dataTranslations[locale]
 
   const problems = t.problems.map((p, i) => ({ ...p, icon: problemIcons[i] }))
@@ -348,7 +348,10 @@ export default function DataPage() {
 
         {/* Caso de éxito */}
         {(() => {
-          const c = successStories.find((cs) => cs.id === "restauracion-predictiva")!
+          const c = {
+            ...successStories.find((cs) => cs.id === "restauracion-predictiva")!,
+            ...globalT.successStories.items[5],
+          }
           return (
             <section className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50/40 overflow-hidden">
               <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-[#bbbd26]/10 rounded-full blur-[100px]" />

@@ -121,6 +121,7 @@ export const en: typeof es = {
     items: [
       {
         industry: "Distribution",
+        service: "Operational Automation with AI",
         shortTitle: "Comprehensive Operational Automation",
         challenge: "The company operated with manual processes in logistics, administration and procurement, consuming hundreds of hours and generating errors. This burden reduced efficiency and hindered operational control.",
         solution: "Unnic AI prioritized critical processes, developed automations in logistics and document validation and trained the team. Additionally, compliance with the AI Regulation was ensured.",
@@ -132,7 +133,12 @@ export const en: typeof es = {
       },
       {
         industry: "Restaurant & Hospitality",
+        service: "SaaS Platform with AI",
         shortTitle: "Operational Control with AI",
+        challenge:
+          "Restaurant groups with multiple locations faced the challenge of ensuring a consistent experience across all their establishments. Thousands of Google Maps reviews contained valuable information, but the volume was overwhelming and unstructured, making it impossible to detect critical issues or variations between locations without costly audits.",
+        solution:
+          "We designed and developed Conectap, a SaaS platform that integrates directly with Google My Business to automatically import reviews. We apply AI models for sentiment analysis and thematic classification (service, attention, atmosphere, prices, cleanliness), turning opinions into operational insights visualized in intuitive dashboards.",
         results: [
           { metric: "80%", description: "Reduction in analysis time" },
           { metric: "85%", description: "CMOs make better decisions" },
@@ -141,7 +147,12 @@ export const en: typeof es = {
       },
       {
         industry: "Construction & Distribution",
+        service: "Document Automation with AI",
         shortTitle: "Automatic Document Validation",
+        challenge:
+          "Spanish distributor with +220 employees had to manually reconcile each invoice with its corresponding order and delivery note. This repetitive process, performed on paper or traditional tools, was error-prone, depended on constant administrative staff intervention, and any discrepancy required additional review work, increasing management times and risk of financial losses.",
+        solution:
+          "We developed an automatic document reader and validator with advanced OCR to digitize invoices, delivery notes, and orders. AI systems extract and structure key data (references, products, quantities, amounts, dates) and the validation engine automatically reconciles each invoice with its order and delivery note in seconds, identifying discrepancies and alerting in real time. Complete integration with ERP to feed accounting processes.",
         results: [
           { metric: "90%", description: "Reduction in reconciliation time" },
           { metric: "€8,500", description: "Estimated monthly savings" },
@@ -150,7 +161,12 @@ export const en: typeof es = {
       },
       {
         industry: "Industrial & Manufacturing",
+        service: "Strategic AI Consulting",
         shortTitle: "Industrial AI Consulting",
+        challenge:
+          "Spanish manufacturer of custom paints faced strong dependence on manual processes, poorly integrated technological tools, and centralization of critical knowledge in key profiles. This generated bottlenecks in product formulation, quote generation and validation, order management, and technical knowledge transfer.",
+        solution:
+          "Unnic AI executed strategic consulting in two phases: 1) Exhaustive analysis through interviews with all critical areas and complete process mapping; 2) Roadmap definition with four concrete solutions: internal knowledge RAG assistant, predictive formulation model, automated quote generator, and intelligent order-quote reconciliation system. Each proposal included functional architecture, technology, backlog, and estimated ROI.",
         results: [
           { metric: "+4", description: "Projects with ROI < 6 months" },
           { metric: "80%", description: "Less time searching for information" },
@@ -159,7 +175,12 @@ export const en: typeof es = {
       },
       {
         industry: "HealthTech & Coaching",
+        service: "Conversational AI & Voice",
         shortTitle: "AI Coaching",
+        challenge:
+          "The challenge was twofold: convert a complex and personal methodology into a robust conversational flow, and ensure that AI maintained the neutrality and empathy necessary for emotional well-being.",
+        solution:
+          "We created Vivi, a comprehensive application that combines conversational design with generative AI. We use GPT-4.1 for reasoning, Whisper for transcription, and Eleven Labs for voice, all integrated into an accessible React interface.",
         results: [
           { metric: "+200", description: "Trial sessions" },
           { metric: "70%", description: "High emotional impact" },
@@ -168,7 +189,12 @@ export const en: typeof es = {
       },
       {
         industry: "Organized Restaurants",
+        service: "Predictive Purchasing Models",
         shortTitle: "Predictive Purchasing Optimization",
+        challenge:
+          "Chain with +50 franchises suffered from high demand variability, difficulties forecasting real consumption, and frequent overstock and stockout incidents. Purchases based on intuition generated high food waste, hidden costs, and lack of negotiating power with suppliers.",
+        solution:
+          "We developed a demand prediction and purchasing optimization system. Historical data audit, machine learning models (XGBoost) to forecast weekly demand by reference, ERP integration for automatic orders, and personalized dashboards for purchasing managers and franchises.",
         results: [
           { metric: "27%", description: "Less food waste" },
           { metric: "38%", description: "Fewer stock shortages" },

@@ -53,8 +53,16 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 }
 
 export default function PortfolioPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = portfolioTranslations[locale]
+  
+  const localizedStories = successStories.map((baseStory, index) => {
+    const translatedStory = globalT.successStories.items[index]
+    return translatedStory
+      ? { ...baseStory, ...translatedStory }
+      : baseStory
+  })
+  
   return (
     <>
       <Navigation />
@@ -77,7 +85,7 @@ export default function PortfolioPage() {
         {/* Projects Grid */}
         <section className="container mx-auto px-4">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {successStories.map((story, index) => (
+            {localizedStories.map((story, index) => (
               <Link
                 key={story.id}
                 href={`/portfolio/${story.id}`}

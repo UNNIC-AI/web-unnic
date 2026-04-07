@@ -170,7 +170,7 @@ function SimpleTimeline({ translatedSteps }: { translatedSteps: { title: string;
 const whatWeBuildIcons = [Globe, Server, Plug, MonitorSmartphone] as const
 
 export default function DesarrolloPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = desarrolloTranslations[locale]
 
   const whatWeBuild = t.whatWeBuild.items.map((item, i) => ({
@@ -358,7 +358,10 @@ export default function DesarrolloPage() {
 
         {/* Caso de éxito */}
         {(() => {
-          const c = successStories.find((cs) => cs.id === "catalonia-ceramic")!
+          const c = {
+            ...successStories.find((cs) => cs.id === "catalonia-ceramic")!,
+            ...globalT.successStories.items[0],
+          }
           return (
             <section className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50/40 overflow-hidden">
               <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-[#bbbd26]/10 rounded-full blur-[100px]" />

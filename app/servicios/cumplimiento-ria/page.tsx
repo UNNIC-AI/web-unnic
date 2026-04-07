@@ -125,7 +125,7 @@ function StepsTimeline({ translatedSteps }: { translatedSteps: { title: string; 
 }
 
 export default function CumplimientoRIAPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = cumplimientoRiaTranslations[locale]
 
   return (
@@ -295,7 +295,10 @@ export default function CumplimientoRIAPage() {
 
         {/* Caso de éxito */}
         {(() => {
-          const c = successStories.find((cs) => cs.id === "vivi-coaching")!
+          const c = {
+            ...successStories.find((cs) => cs.id === "vivi-coaching")!,
+            ...globalT.successStories.items[4],
+          }
           return (
             <section className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50/40 overflow-hidden">
               <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-[#bbbd26]/10 rounded-full blur-[100px]" />

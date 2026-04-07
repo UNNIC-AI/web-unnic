@@ -62,7 +62,7 @@ const techLogos = [
 ]
 
 export default function FormacionPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = formacionTranslations[locale]
 
   const serviceSchema = getServiceSchema({
@@ -319,7 +319,10 @@ export default function FormacionPage() {
 
         {/* Caso de éxito */}
         {(() => {
-          const c = successStories.find((cs) => cs.id === "pinturas-personalizadas")!
+          const c = {
+            ...successStories.find((cs) => cs.id === "pinturas-personalizadas")!,
+            ...globalT.successStories.items[3],
+          }
           return (
             <section className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50/40 overflow-hidden">
               <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-[#bbbd26]/10 rounded-full blur-[100px]" />

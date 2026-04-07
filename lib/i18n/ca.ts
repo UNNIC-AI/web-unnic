@@ -126,6 +126,7 @@ export const ca = {
     items: [
       {
         industry: "Distribució",
+        service: "Automatització operativa amb IA",
         shortTitle: "Automatització operativa integral",
         challenge:
           "L’empresa operava amb processos manuals en logística, administració i compres, consumint centenars d’hores i generant errors. Aquesta càrrega reduïa l’eficiència i dificultava el control operatiu.",
@@ -139,7 +140,12 @@ export const ca = {
       },
       {
         industry: "Restauració i hostaleria",
+        service: "Plataforma SaaS amb IA",
         shortTitle: "Control operatiu amb IA",
+        challenge:
+          "Els grups de restauració amb múltiples locals afrontaven el repte de garantir una experiència coherent en tots els seus establiments. Milers de ressenyes a Google Maps contenien informació valuosa, però el volum era inabastable i poc estructurat, impossibilitant detectar problemes crítics o variacions entre locals sense auditories costoses.",
+        solution:
+          "Vam dissenyar i desenvolupar Conectap, una plataforma SaaS que integra directament amb Google My Business per importar ressenyes automàticament. Apliquem models d'IA per anàlisi de sentiment i classificació temàtica (servei, atenció, ambient, preus, neteja), convertint opinions en insights operatius visualitzats en dashboards intuïtius.",
         results: [
           { metric: "80%", description: "Reducció en temps d’anàlisi" },
           { metric: "85%", description: "Els CMO prenen millors decisions" },
@@ -148,7 +154,12 @@ export const ca = {
       },
       {
         industry: "Construcció i distribució",
+        service: "Automatització documental amb IA",
         shortTitle: "Validació automàtica de documents",
+        challenge:
+          "Distribuïdora espanyola amb +220 empleats havia de contrastar manualment cada factura amb el seu comanda i albarà corresponent. Aquest procés repetitiu, realitzat en paper o eines tradicionals, era propens a errors, depenia d'intervenció constant del personal administratiu i qualsevol discrepància requeria treball addicional de revisió, incrementant temps de gestió i risc de pèrdues econòmiques.",
+        solution:
+          "Vam desenvolupar un lector i validador automàtic de documents amb OCR avançat per digitalitzar factures, albarans i comandes. Els sistemes d'IA extreuen i estructuren dades clau (referències, productes, quantitats, imports, dates) i el motor de validació contrasta automàticament cada factura amb la seva comanda i albarà en segons, identificant discrepàncies i alertant en temps real. Integració completa amb ERP per alimentar processos comptables.",
         results: [
           { metric: "90%", description: "Reducció en temps de contrast" },
           { metric: "€8.500", description: "Estalvi mensual estimat" },
@@ -157,7 +168,12 @@ export const ca = {
       },
       {
         industry: "Industrial i fabricació",
+        service: "Consultoria estratègica d'IA",
         shortTitle: "Consultoria IA industrial",
+        challenge:
+          "Fabricant espanyol de pintures personalitzades afrontava una forta dependència de processos manuals, eines tecnològiques poc integrades i centralització del coneixement crític en perfils clau. Això generava colls d'ampolla en formulació de productes, generació i validació d'ofertes, gestió de comandes i transferència de coneixement tècnic.",
+        solution:
+          "Unnic AI va executar una consultoria estratègica en dues fases: 1) Anàlisi exhaustiva mitjançant entrevistes amb totes les àrees crítiques i mapeig complet de processos; 2) Definició de full de ruta amb quatre solucions concretes: assistent RAG de coneixement intern, model predictiu de formulació, generador automatitzat d'ofertes i sistema de contrast intel·ligent comandes-ofertes. Cada proposta va incloure arquitectura funcional, tecnologia, backlog i ROI estimat.",
         results: [
           { metric: "+4", description: "Projectes amb ROI < 6 mesos" },
           { metric: "80%", description: "Menys temps cercant informació" },
@@ -166,7 +182,12 @@ export const ca = {
       },
       {
         industry: "HealthTech i coaching",
+        service: "IA conversacional i veu",
         shortTitle: "Coaching amb IA",
+        challenge:
+          "El repte era doble: convertir una metodologia complexa i personal en un flux conversacional robust, i garantir que la IA mantingués la neutralitat i empatia necessàries per al benestar emocional.",
+        solution:
+          "Vam crear Vivi, una aplicació integral que combina disseny conversacional amb IA generativa. Utilitzem GPT-4.1 per al raonament, Whisper per a transcripció i Eleven Labs per a veu, tot integrat en una interfície React accessible.",
         results: [
           { metric: "+200", description: "Sessions de prova" },
           { metric: "70%", description: "Impacte emocional alt" },
@@ -175,7 +196,12 @@ export const ca = {
       },
       {
         industry: "Restauració organitzada",
+        service: "Models predictius de compres",
         shortTitle: "Optimització predictiva de compres",
+        challenge:
+          "Cadena amb +50 franquícies patia alta variabilitat en la demanda, dificultats per preveure consum real i freqüents incidències de sobrestock i ruptures. Les compres basades en intuïció generaven malbaratament alimentari elevat, costos ocults i falta de poder de negociació amb proveïdors.",
+        solution:
+          "Vam desenvolupar un sistema de predicció de demanda i optimització de compres. Auditoria de dades històriques, models de machine learning (XGBoost) per preveure demanda setmanal per referència, integració amb ERP per comandes automàtiques i dashboards personalitzats per responsables de compres i franquícies.",
         results: [
           { metric: "27%", description: "Menys malbaratament alimentari" },
           { metric: "38%", description: "Menys ruptures d’estoc" },

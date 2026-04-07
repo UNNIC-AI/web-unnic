@@ -162,7 +162,7 @@ function SimpleTimeline({ steps }: { steps: { number: string; icon: typeof Clipb
 }
 
 export default function IAGenerativaPage() {
-  const { locale } = useTranslation()
+  const { locale, t: globalT } = useTranslation()
   const t = iaGenerativaTranslations[locale]
 
   const steps = stepsMeta.map((s, i) => ({
@@ -337,7 +337,10 @@ export default function IAGenerativaPage() {
 
         {/* Caso de éxito */}
         {(() => {
-          const c = successStories.find((cs) => cs.id === "conectap")!
+          const c = {
+            ...successStories.find((cs) => cs.id === "conectap")!,
+            ...globalT.successStories.items[1],
+          }
           return (
             <section className="relative py-12 sm:py-16 md:py-24 bg-gradient-to-br from-slate-50 to-blue-50/40 overflow-hidden">
               <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-[#bbbd26]/10 rounded-full blur-[100px]" />

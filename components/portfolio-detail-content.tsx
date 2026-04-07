@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "@/lib/i18n"
 import { portfolioTranslations } from "@/lib/i18n/pages/portfolio"
+import { successStories } from "@/lib/data"
+import { notFound } from "next/navigation"
 
 interface StoryResult {
   metric: string
@@ -29,9 +31,22 @@ interface Story {
   results: StoryResult[]
 }
 
-export function PortfolioDetailContent({ story }: { story: Story }) {
-  const { locale } = useTranslation()
+export function PortfolioDetailContent({ storyId }: { storyId: string }) {
+  const { locale, t: globalT } = useTranslation()
   const t = portfolioTranslations[locale].detail
+
+  const baseStory = successStories.find((s) => s.id === storyId)
+  
+  if (!baseStory) {
+    notFound()
+  }
+
+  const storyIndex = successStories.findIndex((s) => s.id === storyId)
+  const translatedStory = globalT.successStories.items[storyIndex]
+
+  const story = translatedStory
+    ? { ...baseStory, ...translatedStory }
+    : baseStory
 
   return (
     <main className="min-h-screen bg-white pt-20 sm:pt-24 pb-12 sm:pb-16">
