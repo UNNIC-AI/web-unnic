@@ -7,46 +7,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useTranslation } from "@/lib/i18n"
 import { portfolioTranslations } from "@/lib/i18n/pages/portfolio"
-import { successStories } from "@/lib/data"
-import { notFound } from "next/navigation"
+import type { SBCaseStudy } from "@/lib/storyblok.types"
 
-interface StoryResult {
-  metric: string
-  description: string
-}
-
-interface Story {
-  id: string
-  company: string
-  industry: string
-  service: string
-  year: string
-  shortTitle: string
-  challenge: string
-  solution: string
-  image: string
-  logoUrl?: string
-  logoGradient?: string
-  logo?: string
-  results: StoryResult[]
-}
-
-export function PortfolioDetailContent({ storyId }: { storyId: string }) {
-  const { locale, t: globalT } = useTranslation()
+export function PortfolioDetailContent({ story }: { story: SBCaseStudy }) {
+  const { locale } = useTranslation()
   const t = portfolioTranslations[locale].detail
-
-  const baseStory = successStories.find((s) => s.id === storyId)
-  
-  if (!baseStory) {
-    notFound()
-  }
-
-  const storyIndex = successStories.findIndex((s) => s.id === storyId)
-  const translatedStory = globalT.successStories.items[storyIndex]
-
-  const story = translatedStory
-    ? { ...baseStory, ...translatedStory }
-    : baseStory
 
   return (
     <main className="min-h-screen bg-white pt-20 sm:pt-24 pb-12 sm:pb-16">
@@ -99,7 +64,7 @@ export function PortfolioDetailContent({ storyId }: { storyId: string }) {
                 <h3 className="font-semibold text-[#031d40]">{t.contextoCliente}</h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                {story.company}{t.contextoTexto1}{story.industry.toLowerCase()}{t.contextoTexto2}{story.year}{t.contextoTexto3}
+                {story.contextClient}
               </p>
             </div>
           </div>

@@ -1,25 +1,18 @@
 import { notFound } from "next/navigation"
 import { Navigation } from "@/components/navigation"
 import { successStories } from "@/lib/data"
+import { fetchCaseStudyBySlug } from "@/lib/storyblok"
 import { generatePortfolioMetadata } from "@/lib/seo-metadata"
 import type { Metadata } from "next"
 import { PortfolioDetailContent } from "@/components/portfolio-detail-content"
 
 interface PageProps {
-  params: Promise<{
-    id: string
-  }>
-}
-
-export function generateStaticParams() {
-  return successStories.map((story) => ({
-    id: story.id,
-  }))
+  params: Promise<{ id: string }>
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params
-  const story = successStories.find((s) => s.id === id)
+  const story = await fetchCaseStudyBySlug(id) ?? successStories.find((s) => s.id === id)
 
   if (!story) {
     return {
@@ -32,22 +25,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     company: story.company,
     sector: story.industry,
     metric: story.results[0]?.description || story.shortTitle,
-    id: id,
+    id,
   })
 }
 
 export default async function PortfolioDetailPage({ params }: PageProps) {
   const { id } = await params
-  const story = successStories.find((s) => s.id === id)
+  const sbStory = await fetchCaseStudyBySlug(id)
+  const fallback = successStories.find((s) => s.id === id)
+  const story = sbStory ?? fallback
 
-  if (!story) {
-    notFound()
-  }
+  if (!story) notFound()
 
   return (
     <>
       <Navigation />
-      <PortfolioDetailContent storyId={id} />
+      <PortfolioDetailContent story={story} />
     </>
   )
 }
