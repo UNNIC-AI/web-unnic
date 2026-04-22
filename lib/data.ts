@@ -402,18 +402,6 @@ export const teamMembers: TeamMember[] = [
     initials: "RH",
   },
   {
-    name: "Erik González",
-    role: "AI Consultant",
-    image: "/team/erik.jpg",
-    initials: "EG",
-  },
-  {
-    name: "Rosa Aguirre",
-    role: "Administración",
-    image: "/team/rosa.jpg",
-    initials: "RA",
-  },
-  {
     name: "Ainhoa Borja",
     role: "Marketing",
     image: "/team/ainhoa.jpg",
