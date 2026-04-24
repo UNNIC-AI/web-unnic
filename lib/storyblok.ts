@@ -78,7 +78,11 @@ export async function fetchTeamSection(slug: string): Promise<SBTeamMember[] | n
 export async function fetchCaseStudyBySlug(slug: string): Promise<SBCaseStudy | null> {
   try {
     const storyblokApi = getStoryblokApi()
+        console.log("a");
+
     const { data } = await storyblokApi.get(`cdn/stories/casos-de-exito/${slug}`, { version })
+
+    console.log("a");
 
     const c = data.story.content as {
       client: string; title: string; sector: string; year: string
@@ -152,8 +156,9 @@ export async function fetchPortfolioCases(): Promise<SBCaseStudy[] | null> {
 
     const { data } = await storyblokApi.get('cdn/stories/portfolio', {
       version,
-      resolve_relations: 'case_study_section.cases',
+      resolve_relations: 'case_study_list.cases',
     })
+    console.log(data);
 
     const rels: SBCaseStudyRel[] = data.rels ?? []
     if (!rels.length) return null
