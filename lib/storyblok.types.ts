@@ -3,6 +3,12 @@ export type SBAsset = {
   alt?: string
 }
 
+export type SBCompanyLogo = {
+  component: 'company_logo'
+  name: string
+  image: SBAsset
+}
+
 export type SBLink = {
   url: string
   linktype: 'url' | 'story'

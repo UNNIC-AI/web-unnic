@@ -1,8 +1,8 @@
 import 'server-only'
 import { apiPlugin, storyblokInit, getStoryblokApi } from '@storyblok/react/rsc'
 import { unstable_cache } from 'next/cache'
-export type { SBTeamMember, SBCaseStudy } from './storyblok.types'
-import type { SBTeamMember, SBCaseStudy } from './storyblok.types'
+export type { SBTeamMember, SBCaseStudy, SBCompanyLogo } from './storyblok.types'
+import type { SBTeamMember, SBCaseStudy, SBCompanyLogo } from './storyblok.types'
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -25,7 +25,12 @@ type SBCaseStudySection = {
   cases: string[]
 }
 
-type SBBlock = SBTeamSection | SBCaseStudySection | { component: string }
+type SBCompanyLogosSection = {
+  component: 'companies_list'
+  company: Array<{ content: SBCompanyLogo; uuid: string; slug: string }>
+}
+
+type SBBlock = SBTeamSection | SBCaseStudySection | SBCompanyLogosSection | { component: string }
 
 type SBMetricContent = { value: string; description: string }
 
@@ -118,6 +123,25 @@ export async function fetchCaseStudyBySlug(slug: string): Promise<SBCaseStudy | 
     }
   } catch (error) {
     console.error('[Storyblok] fetchCaseStudyBySlug error:', error)
+    return null
+  }
+}
+
+export async function fetchCompanyLogos(slug: string): Promise<SBCompanyLogo[] | null> {
+  try {
+    const storyblokApi = getStoryblokApi()
+    const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+      version,
+      resolve_relations: 'companies_list.company',
+    })
+
+    const body: SBBlock[] = data?.story?.content?.body ?? []
+    const section = body.find((b): b is SBCompanyLogosSection => b.component === 'companies_list')
+
+    if (!section?.company?.length) return null
+    return section.company.map((m) => m.content)
+  } catch (error) {
+    console.error('[Storyblok] fetchCompanyLogos error:', error)
     return null
   }
 }

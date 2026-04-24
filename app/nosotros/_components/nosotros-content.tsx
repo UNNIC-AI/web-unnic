@@ -66,6 +66,7 @@ export function NosotrosContent({ sbTeamMembers }: Props) {
   const { locale } = useTranslation()
   const t = nosotrosTranslations[locale]
 
+
   const members = sbTeamMembers
     ? sbTeamMembers.map((m) => ({
         name: m.name,

@@ -3,10 +3,20 @@
 import Image from "next/image"
 import { companies } from "@/lib/data"
 import { useTranslation } from "@/lib/i18n"
+import type { SBCompanyLogo } from "@/lib/storyblok.types"
 
-export function CompanyLogosSection() {
+type Props = {
+  logos?: SBCompanyLogo[] | null
+}
+
+export function CompanyLogosSection({ logos }: Props) {
   const { t } = useTranslation()
-  const duplicatedCompanies = [...companies, ...companies]
+
+  const displayCompanies = logos
+    ? logos.map((l) => ({ name: l.name, src: l.image.filename }))
+    : companies
+
+  const duplicatedCompanies = [...displayCompanies, ...displayCompanies]
 
   return (
     <section className="py-8 sm:py-11 bg-white border-y border-gray-200">
