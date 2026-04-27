@@ -1,12 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, TrendingUp } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useRef, useEffect } from "react"
 import { successStories } from "@/lib/data"
 import { useTranslation } from "@/lib/i18n"
+import type { SBCaseStudy } from "@/lib/storyblok.types"
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const [isVisible, setIsVisible] = useState(false)
@@ -44,14 +45,24 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
 }
 
 interface SuccessStoriesSectionProps {
-  showHighlights?: boolean
+  cases?: SBCaseStudy[] | null
 }
 
-export function SuccessStoriesSection({ showHighlights }: SuccessStoriesSectionProps) {
+export function SuccessStoriesSection({ cases }: SuccessStoriesSectionProps) {
   const { t } = useTranslation()
   const storyTranslations = t.successStories.items
-  const featured = successStories[0]
-  const rest = successStories.slice(1, 5)
+
+  const displayStories = cases
+    ? cases.slice(0, 5)
+    : successStories.slice(0, 5).map((s, i) => ({
+        ...s,
+        industry: storyTranslations[i]?.industry ?? s.industry,
+        shortTitle: storyTranslations[i]?.shortTitle ?? s.shortTitle,
+        results: storyTranslations[i]?.results ?? s.results,
+      }))
+
+  const featured = displayStories[0]
+  const rest = displayStories.slice(1, 5)
 
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-slate-50 to-gray-100 relative overflow-hidden">
@@ -109,7 +120,7 @@ export function SuccessStoriesSection({ showHighlights }: SuccessStoriesSectionP
             <div className="relative p-6 sm:p-8 space-y-4">
               {/* Industry badge */}
               <span className="inline-block px-3 py-1 bg-[#bbbd26] text-[#031d40] text-xs font-bold rounded-full">
-                {storyTranslations[0].industry}
+                {featured.industry}
               </span>
 
               {/* Company + title */}
@@ -117,12 +128,12 @@ export function SuccessStoriesSection({ showHighlights }: SuccessStoriesSectionP
                 <h3 className="text-2xl sm:text-3xl font-bold text-white mb-1 group-hover:text-[#bbbd26] transition-colors duration-300">
                   {featured.company}
                 </h3>
-                <p className="text-white/70 text-sm">{storyTranslations[0].shortTitle}</p>
+                <p className="text-white/70 text-sm">{featured.shortTitle}</p>
               </div>
 
               {/* Metrics */}
               <div className="flex flex-wrap gap-3">
-                {storyTranslations[0].results.map((r, i) => (
+                {featured.results.map((r, i) => (
                   <div key={i} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-4 py-2">
                     <div className="text-[#bbbd26] text-xl font-bold">{r.metric}</div>
                     <div className="text-white/70 text-xs">{r.description}</div>
@@ -140,9 +151,7 @@ export function SuccessStoriesSection({ showHighlights }: SuccessStoriesSectionP
 
           {/* Right column — 2×2 smaller cards */}
           <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-            {rest.map((story, idx) => {
-              const stIdx = idx + 1
-              return (
+            {rest.map((story) => (
               <Link
                 key={story.id}
                 href={`/portfolio/${story.id}`}
@@ -161,21 +170,21 @@ export function SuccessStoriesSection({ showHighlights }: SuccessStoriesSectionP
 
                 <div className="relative p-4 space-y-2">
                   <span className="inline-block px-2 py-0.5 bg-[#bbbd26] text-[#031d40] text-[10px] font-bold rounded-full">
-                    {storyTranslations[stIdx]?.industry ?? story.industry}
+                    {story.industry}
                   </span>
                   <h3 className="text-sm font-bold text-white group-hover:text-[#bbbd26] transition-colors duration-300 leading-tight">
                     {story.company}
                   </h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-[#bbbd26] text-lg font-bold">{storyTranslations[stIdx]?.results[0]?.metric ?? story.results[0].metric}</span>
-                    <span className="text-white/60 text-xs">{storyTranslations[stIdx]?.results[0]?.description ?? story.results[0].description}</span>
+                    <span className="text-[#bbbd26] text-lg font-bold">{story.results[0]?.metric}</span>
+                    <span className="text-white/60 text-xs">{story.results[0]?.description}</span>
                   </div>
                   <div className="flex items-center gap-1 text-white/60 group-hover:text-[#bbbd26] transition-colors duration-300 text-xs font-semibold">
                     {t.successStories.verCasoCorto} <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-300" />
                   </div>
                 </div>
               </Link>
-            )})}
+            ))}
           </div>
         </div>
 

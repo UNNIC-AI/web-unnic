@@ -3,7 +3,7 @@ import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/sections/hero-section"
 import { generateMetadata as genMeta } from "@/lib/seo-metadata"
 import { getOrganizationSchema, StructuredData } from "@/lib/structured-data"
-import { fetchCompanyLogos, fetchTechPartners } from "@/lib/storyblok"
+import { fetchCompanyLogos, fetchTechPartners, fetchPortfolioCases } from "@/lib/storyblok"
 import type { Metadata } from "next"
 
 // Sections below the fold — split into separate JS chunks to reduce initial bundle
@@ -19,9 +19,10 @@ const FAQSection            = dynamic(() => import("@/components/sections/faq-se
 export const metadata: Metadata = genMeta("home")
 
 export default async function HomePage() {
-  const [sbLogos, sbTech] = await Promise.all([
+  const [sbLogos, sbTech, sbCases] = await Promise.all([
     fetchCompanyLogos('companies_home'),
     fetchTechPartners('technologies_home'),
+    fetchPortfolioCases(),
   ])
 
   return (
@@ -35,7 +36,7 @@ export default async function HomePage() {
         <TestimonialsSection />
         <TechnologiesSection techItems={sbTech} />
         <CTASection />
-        <SuccessStoriesSection showHighlights={true} />
+        <SuccessStoriesSection cases={sbCases} />
         <FAQSection />
       </main>
     </>

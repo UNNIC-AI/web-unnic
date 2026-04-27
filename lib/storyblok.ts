@@ -78,7 +78,7 @@ type SBCompanySection = {
 
 type SBCaseStudySection = {
   component: 'case_study_list'
-  cases: string[]
+  cases: Array<SBStory<SBCaseStudyContent>>
 }
 
 type SBTechSection = {
@@ -121,6 +121,7 @@ async function fetchMetrics(uuids: string[]) {
   const stories = (data.stories ?? []) as SBStory<SBMetricContent>[]
 
   return stories.map((s) => ({
+    uuid: s.uuid,
     metric: s.content.value,
     description: s.content.description,
   }))
@@ -233,7 +234,14 @@ export async function fetchCaseStudyBySlug(
 
     const c = data.story.content as SBCaseStudyContent
 
-    const results = await fetchMetrics(c.results || [])
+    const metrics = await fetchMetrics(c.results || [])
+    const metricMap = new Map(metrics.map((m) => [m.uuid, m]))
+    const results = (c.results || [])
+      .map((uuid) => {
+        const m = metricMap.get(uuid)
+        return m ? { metric: m.metric, description: m.description } : null
+      })
+      .filter(Boolean) as SBCaseStudy['results']
 
     return {
       id: slug,
@@ -271,21 +279,22 @@ export async function fetchPortfolioCases(): Promise<SBCaseStudy[] | null> {
       resolve_relations: 'case_study_list.cases',
     })
 
-    const rels = (data.rels ?? []) as SBStory<SBCaseStudyContent>[]
+    const body = (data.story.content as SBPageContent).body || []
+    const section = body.find(
+      (b): b is SBCaseStudySection => b.component === 'case_study_list'
+    )
+    const cases = section?.cases ?? []
 
-    if (!rels.length) return null
+    if (!cases.length) return null
 
     const allMetricIds = [
-      ...new Set(rels.flatMap((r) => r.content.results || [])),
+      ...new Set(cases.flatMap((r) => r.content.results || [])),
     ]
 
     const metrics = await fetchMetrics(allMetricIds)
+    const metricMap = new Map(metrics.map((m) => [m.uuid, m]))
 
-    const metricMap = new Map(
-      metrics.map((m) => [m.metric + m.description, m])
-    )
-
-    return rels.map((rel) => {
+    return cases.map((rel) => {
       const c = rel.content
 
       return {
@@ -303,11 +312,10 @@ export async function fetchPortfolioCases(): Promise<SBCaseStudy[] | null> {
         shortTitle: c.title,
         contextClient: c.context_client,
         results: (c.results || [])
-          .map((id) =>
-            metrics.find((m) =>
-              m.metric && m.description // simple match
-            )
-          )
+          .map((uuid) => {
+            const m = metricMap.get(uuid)
+            return m ? { metric: m.metric, description: m.description } : null
+          })
           .filter(Boolean) as SBCaseStudy['results'],
       }
     })
