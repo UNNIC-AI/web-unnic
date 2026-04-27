@@ -129,6 +129,13 @@ export function Navigation() {
               {t.nav.recursos}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
             </Link>
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors relative group"
+            >
+              {t.nav.blog}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </Link>
 
             <LanguageSwitcher />
 
@@ -226,6 +233,13 @@ export function Navigation() {
                       className="block px-6 py-3.5 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 transition-colors"
                     >
                       {t.nav.recursos}
+                    </Link>
+                    <Link
+                      href="/blog"
+                      onClick={() => setMobileOpen(false)}
+                      className="block px-6 py-3.5 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 transition-colors"
+                    >
+                      {t.nav.blog}
                     </Link>
                   </div>
 

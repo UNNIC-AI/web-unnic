@@ -7,6 +7,7 @@ export const en: typeof es = {
     portfolio: "Portfolio",
     unnickers: "Unnickers",
     recursos: "Resources",
+    blog: "Blog",
     contacto: "Contact",
     verTodos: "See all",
     abrirMenu: "Open menu",
@@ -303,5 +304,24 @@ export const en: typeof es = {
     politica: "Cookie Policy",
     soloNecesarias: "Only necessary",
     aceptarTodas: "Accept all",
+  },
+
+  blog: {
+    title: "Blog &",
+    titleHighlight: "Resources",
+    subtitle: "Articles, guides and practical cases on AI, automation and digital transformation.",
+    empty: "No articles published yet.",
+    readMore: "Read article",
+    back: "Back to blog",
+    readTime: "min read",
+    min: "min",
+    categories: {
+      todos: "All",
+      "ia-generativa": "Generative AI",
+      automatizacion: "Automation",
+      "bi-ml": "BI & ML",
+      desarrollo: "Development",
+      empresa: "Company",
+    },
   },
 } as const

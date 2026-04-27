@@ -15,6 +15,21 @@ export type SBTechPartner = {
   image: SBAsset
 }
 
+export type SBBlogPost = {
+  slug: string
+  title: string
+  excerpt: string
+  coverImage: string
+  coverImageAlt?: string
+  category: string
+  author: string
+  authorImage?: string
+  date: string
+  readTime: number
+  featured: boolean
+  body?: any
+}
+
 export type SBLink = {
   url: string
   linktype: 'url' | 'story'

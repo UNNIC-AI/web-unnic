@@ -7,6 +7,7 @@ export const ca = {
     portfolio: "Portfolio",
     unnickers: "Unnickers",
     recursos: "Recursos",
+    blog: "Blog",
     contacto: "Contacte",
     verTodos: "Veure-ho tot",
     abrirMenu: "Obrir menú",
@@ -321,5 +322,24 @@ export const ca = {
     politica: "Política de cookies",
     soloNecesarias: "Només necessàries",
     aceptarTodas: "Acceptar totes",
+  },
+
+  blog: {
+    title: "Blog i",
+    titleHighlight: "Recursos",
+    subtitle: "Articles, guies i casos pràctics sobre IA, automatització i transformació digital.",
+    empty: "No hi ha articles publicats encara.",
+    readMore: "Llegir article",
+    back: "Tornar al blog",
+    readTime: "min de lectura",
+    min: "min",
+    categories: {
+      todos: "Tots",
+      "ia-generativa": "IA Generativa",
+      automatizacion: "Automatització",
+      "bi-ml": "BI & ML",
+      desarrollo: "Desenvolupament",
+      empresa: "Empresa",
+    },
   },
 } as unknown as typeof es

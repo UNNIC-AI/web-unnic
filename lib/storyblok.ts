@@ -7,6 +7,7 @@ import type {
   SBCaseStudy,
   SBCompanyLogo,
   SBTechPartner,
+  SBBlogPost,
   SBAsset,
 } from './storyblok.types'
 
@@ -47,6 +48,19 @@ type SBResponse<T> = {
 
 // ─── Internal Types ───────────────────────────────────────────────────
 
+type SBBlogPostContent = {
+  title: string
+  excerpt: string
+  cover_image: SBAsset
+  body?: any
+  category: string
+  author: string
+  author_image?: SBAsset
+  date: string
+  read_time: number
+  featured?: boolean
+}
+
 type SBMetricContent = {
   value: string
   description: string
@@ -76,6 +90,11 @@ type SBCompanySection = {
   company: Array<{ content: SBCompanyLogo }>
 }
 
+type SBBlogListSection = {
+  component: 'blog_list'
+  blog: Array<SBStory<SBBlogPostContent>>
+}
+
 type SBCaseStudySection = {
   component: 'case_study_list'
   cases: Array<SBStory<SBCaseStudyContent>>
@@ -88,7 +107,7 @@ type SBTechSection = {
 
 type SBPageContent = {
   body: Array<
-    SBTeamSection | SBCompanySection | SBCaseStudySection | SBTechSection | { component: string }
+    SBTeamSection | SBCompanySection | SBCaseStudySection | SBTechSection | SBBlogListSection | { component: string }
   >
 }
 
@@ -321,6 +340,75 @@ export async function fetchPortfolioCases(): Promise<SBCaseStudy[] | null> {
     })
   } catch (e) {
     console.error('fetchPortfolioCases error', e)
+    return null
+  }
+}
+
+// ─── Blog ─────────────────────────────────────────────────────────────
+
+function mapBlogPost(
+  story: SBStory<SBBlogPostContent>,
+  includeBody = false
+): SBBlogPost {
+  const c = story.content
+  return {
+    slug: story.slug,
+    title: c.title,
+    excerpt: c.excerpt,
+    coverImage: c.cover_image?.filename || '',
+    coverImageAlt: c.cover_image?.alt,
+    category: c.category,
+    author: c.author,
+    authorImage: c.author_image?.filename,
+    date: c.date,
+    readTime: c.read_time,
+    featured: c.featured ?? false,
+    body: includeBody ? c.body : undefined,
+  }
+}
+
+export async function fetchBlogPosts(): Promise<SBBlogPost[] | null> {
+  try {
+    const api = getStoryblokApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get('cdn/stories/blog_home', {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      resolve_relations: 'blog_list.blog',
+    })
+
+    const body = (data.story.content as SBPageContent).body || []
+    const section = body.find(
+      (b): b is SBBlogListSection => b.component === 'blog_list'
+    )
+
+    const posts = section?.blog ?? []
+
+    if (!posts.length) return null
+
+    return posts.map((s: SBStory<SBBlogPostContent>) => mapBlogPost(s))
+  } catch (e) {
+    console.error('fetchBlogPosts error', e)
+    return null
+  }
+}
+
+export async function fetchBlogPost(slug: string): Promise<SBBlogPost | null> {
+  try {
+    const api = getStoryblokApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get(`cdn/stories/blog/${slug}`, {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+    })
+
+    return mapBlogPost(data.story as SBStory<SBBlogPostContent>, true)
+  } catch (e) {
+    console.error('fetchBlogPost error', e)
     return null
   }
 }

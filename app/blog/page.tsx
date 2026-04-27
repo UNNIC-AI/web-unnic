@@ -1,0 +1,13 @@
+import { Navigation } from "@/components/navigation"
+import { fetchBlogPosts } from "@/lib/storyblok"
+import { BlogListContent } from "./_components/blog-list-content"
+
+export default async function BlogPage() {
+  const posts = await fetchBlogPosts()
+  return (
+    <>
+      <Navigation />
+      <BlogListContent posts={posts} />
+    </>
+  )
+}

@@ -5,6 +5,7 @@ export const es = {
     portfolio: "Portfolio",
     unnickers: "Unnickers",
     recursos: "Recursos",
+    blog: "Blog",
     contacto: "Contacto",
     verTodos: "Ver todos",
     abrirMenu: "Abrir menu",
@@ -275,5 +276,24 @@ export const es = {
     politica: "Politica de Cookies",
     soloNecesarias: "Solo necesarias",
     aceptarTodas: "Aceptar todas",
+  },
+
+  blog: {
+    title: "Blog &",
+    titleHighlight: "Recursos",
+    subtitle: "Artículos, guías y casos prácticos sobre IA, automatización y transformación digital.",
+    empty: "No hay artículos publicados todavía.",
+    readMore: "Leer artículo",
+    back: "Volver al blog",
+    readTime: "min de lectura",
+    min: "min",
+    categories: {
+      todos: "Todos",
+      "ia-generativa": "IA Generativa",
+      automatizacion: "Automatización",
+      "bi-ml": "BI & ML",
+      desarrollo: "Desarrollo",
+      empresa: "Empresa",
+    },
   },
 } as const
