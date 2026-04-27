@@ -6,6 +6,7 @@ import type {
   SBTeamMember,
   SBCaseStudy,
   SBCompanyLogo,
+  SBTechPartner,
   SBAsset,
 } from './storyblok.types'
 
@@ -80,9 +81,14 @@ type SBCaseStudySection = {
   cases: string[]
 }
 
+type SBTechSection = {
+  component: 'technologies_list'
+  technology: Array<{ content: SBTechPartner }>
+}
+
 type SBPageContent = {
   body: Array<
-    SBTeamSection | SBCompanySection | SBCaseStudySection | { component: string }
+    SBTeamSection | SBCompanySection | SBCaseStudySection | SBTechSection | { component: string }
   >
 }
 
@@ -145,6 +151,35 @@ export async function fetchTeamSection(
     return section?.members?.map((m) => m.content) || null
   } catch (e) {
     console.error('fetchTeamSection error', e)
+    return null
+  }
+}
+
+// ─── Tech Partners ────────────────────────────────────────────────────
+
+export async function fetchTechPartners(
+  slug: string
+): Promise<SBTechPartner[] | null> {
+  try {
+    const api = getStoryblokApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get(`cdn/stories/${slug}`, {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      resolve_relations: 'technologies_list.technology',
+    })
+
+    const body = (data.story.content as SBPageContent).body || []
+
+    const section = body.find(
+      (b): b is SBTechSection => b.component === 'technologies_list'
+    )
+
+    return section?.technology?.map((t) => t.content) || null
+  } catch (e) {
+    console.error('fetchTechPartners error', e)
     return null
   }
 }

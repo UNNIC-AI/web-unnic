@@ -5,9 +5,11 @@ import { techPartners } from "@/lib/data"
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { useTranslation } from "@/lib/i18n"
+import type { SBTechPartner } from "@/lib/storyblok.types"
 
 interface TechnologiesSectionProps {
   className?: string
+  techItems?: SBTechPartner[] | null
 }
 
 function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -49,9 +51,12 @@ function UnderlinedText({ children, delay = 0 }: { children: React.ReactNode; de
   )
 }
 
-export function TechnologiesSection() {
+export function TechnologiesSection({ techItems }: TechnologiesSectionProps) {
   const [activeTab, setActiveTab] = useState(0)
-  const duplicatedPartners = [...techPartners, ...techPartners, ...techPartners]
+  const rawPartners = techItems
+    ? techItems.map((t) => ({ name: t.name, logo: t.image.filename }))
+    : techPartners
+  const duplicatedPartners = [...rawPartners, ...rawPartners, ...rawPartners]
   const { t } = useTranslation()
   const catTranslations = t.technologies.categories
 

@@ -9,6 +9,12 @@ export type SBCompanyLogo = {
   image: SBAsset
 }
 
+export type SBTechPartner = {
+  component: 'tech_partner'
+  name: string
+  image: SBAsset
+}
+
 export type SBLink = {
   url: string
   linktype: 'url' | 'story'
