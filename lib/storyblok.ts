@@ -1,8 +1,15 @@
 import 'server-only'
 import { apiPlugin, storyblokInit, getStoryblokApi } from '@storyblok/react/rsc'
-import { unstable_cache } from 'next/cache'
-export type { SBTeamMember, SBCaseStudy, SBCompanyLogo } from './storyblok.types'
-import type { SBTeamMember, SBCaseStudy, SBCompanyLogo } from './storyblok.types'
+import { cookies } from 'next/headers'
+
+import type {
+  SBTeamMember,
+  SBCaseStudy,
+  SBCompanyLogo,
+  SBAsset,
+} from './storyblok.types'
+
+// ─── Init ─────────────────────────────────────────────────────────────
 
 storyblokInit({
   accessToken: process.env.STORYBLOK_API_TOKEN,
@@ -11,31 +18,41 @@ storyblokInit({
 
 const version = process.env.NODE_ENV === 'production' ? 'published' : 'draft'
 
-// ─── Internal types ───────────────────────────────────────────────────────────
+// ─── Locale ───────────────────────────────────────────────────────────
 
-type SBAsset = { filename: string; alt?: string }
-
-type SBTeamSection = {
-  component: 'team_section'
-  members: Array<{ content: SBTeamMember; uuid: string; slug: string }>
+async function getLocale(): Promise<string> {
+  try {
+    const cookieStore = await cookies()
+    return cookieStore.get('unnic-locale')?.value || 'es'
+  } catch {
+    return 'es'
+  }
 }
 
-type SBCaseStudySection = {
-  component: 'case_study_section'
-  cases: string[]
+// ─── Generic Types ────────────────────────────────────────────────────
+
+type SBStory<T> = {
+  uuid: string
+  slug: string
+  content: T
 }
 
-type SBCompanyLogosSection = {
-  component: 'companies_list'
-  company: Array<{ content: SBCompanyLogo; uuid: string; slug: string }>
+type SBResponse<T> = {
+  story: {
+    content: T
+  }
+  rels?: SBStory<any>[]
 }
 
-type SBBlock = SBTeamSection | SBCaseStudySection | SBCompanyLogosSection | { component: string }
+// ─── Internal Types ───────────────────────────────────────────────────
 
-type SBMetricContent = { value: string; description: string }
+type SBMetricContent = {
+  value: string
+  description: string
+}
 
 type SBCaseStudyContent = {
-  client: string
+  client?: string
   title: string
   sector: string
   year: string
@@ -43,166 +60,224 @@ type SBCaseStudyContent = {
   challenge: string
   solution: string
   cover_image: SBAsset
-  logo: SBAsset
-  results: string[]
+  logo?: SBAsset
+  results?: string[]
   context_client?: string
 }
 
-type SBCaseStudyRel = {
-  uuid: string
-  slug: string
-  content: SBCaseStudyContent
+type SBTeamSection = {
+  component: 'team_section'
+  members: Array<{ content: SBTeamMember }>
 }
 
-// ─── Fetchers ─────────────────────────────────────────────────────────────────
+type SBCompanySection = {
+  component: 'companies_list'
+  company: Array<{ content: SBCompanyLogo }>
+}
 
-export async function fetchTeamSection(slug: string): Promise<SBTeamMember[] | null> {
+type SBCaseStudySection = {
+  component: 'case_study_list'
+  cases: string[]
+}
+
+type SBPageContent = {
+  body: Array<
+    SBTeamSection | SBCompanySection | SBCaseStudySection | { component: string }
+  >
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────────
+
+function getInitials(name?: string) {
+  if (!name) return ''
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
+}
+
+async function fetchMetrics(uuids: string[]) {
+  if (!uuids.length) return []
+
+  const api = getStoryblokApi()
+  const locale = await getLocale()
+
+  const { data } = await api.get('cdn/stories', {
+    version,
+    language: locale,
+    fallback_lang: 'es',
+    by_uuids: uuids.join(','),
+    per_page: 100,
+  })
+
+  const stories = (data.stories ?? []) as SBStory<SBMetricContent>[]
+
+  return stories.map((s) => ({
+    metric: s.content.value,
+    description: s.content.description,
+  }))
+}
+
+// ─── Team ─────────────────────────────────────────────────────────────
+
+export async function fetchTeamSection(
+  slug: string
+): Promise<SBTeamMember[] | null> {
   try {
-    const storyblokApi = getStoryblokApi()
-    const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+    const api = getStoryblokApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get(`cdn/stories/${slug}`, {
       version,
+      language: locale,
+      fallback_lang: 'es',
       resolve_relations: 'team_section.members',
     })
 
-    const body: SBBlock[] = data?.story?.content?.body ?? []
-    const teamSection = body.find((b): b is SBTeamSection => b.component === 'team_section')
+    const body = (data.story.content as SBPageContent).body || []
 
-    if (!teamSection?.members?.length) return null
-    return teamSection.members.map((m) => m.content)
-  } catch (error) {
-    console.error('[Storyblok] fetchTeamSection error:', error)
+    const section = body.find(
+      (b): b is SBTeamSection => b.component === 'team_section'
+    )
+
+    return section?.members?.map((m) => m.content) || null
+  } catch (e) {
+    console.error('fetchTeamSection error', e)
     return null
   }
 }
 
-export async function fetchCaseStudyBySlug(slug: string): Promise<SBCaseStudy | null> {
+// ─── Company Logos ────────────────────────────────────────────────────
+
+export async function fetchCompanyLogos(
+  slug: string
+): Promise<SBCompanyLogo[] | null> {
   try {
-    const storyblokApi = getStoryblokApi()
-        console.log("a");
+    const api = getStoryblokApi()
+    const locale = await getLocale()
 
-    const { data } = await storyblokApi.get(`cdn/stories/casos-de-exito/${slug}`, { version })
+    const { data } = await api.get(`cdn/stories/${slug}`, {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      resolve_relations: 'companies_list.company',
+    })
 
-    console.log("a");
+    const body = (data.story.content as SBPageContent).body || []
 
-    const c = data.story.content as {
-      client: string; title: string; sector: string; year: string
-      service: string; challenge: string; solution: string
-      cover_image: { filename: string }; logo: { filename: string }
-      results: string[]; context_client?: string
-    }
+    const section = body.find(
+      (b): b is SBCompanySection => b.component === 'companies_list'
+    )
 
-    const metricsMap = new Map<string, { value: string; description: string }>()
-    const uuids = c.results ?? []
-    if (uuids.length) {
-      const { data: md } = await storyblokApi.get('cdn/stories', {
+    return section?.company?.map((c) => c.content) || null
+  } catch (e) {
+    console.error('fetchCompanyLogos error', e)
+    return null
+  }
+}
+
+// ─── Case Study Detail ────────────────────────────────────────────────
+
+export async function fetchCaseStudyBySlug(
+  slug: string
+): Promise<SBCaseStudy | null> {
+  try {
+    const api = getStoryblokApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get(
+      `cdn/stories/casos-de-exito/${slug}`,
+      {
         version,
-        by_uuids: uuids.join(','),
-        per_page: 100,
-      })
-      for (const s of md.stories ?? []) {
-        metricsMap.set(s.uuid, s.content)
+        language: locale,
+        fallback_lang: 'es',
       }
-    }
+    )
 
-    const initials = c.client.split(' ').map((w: string) => w[0]).join('').slice(0, 2).toUpperCase()
+    const c = data.story.content as SBCaseStudyContent
+
+    const results = await fetchMetrics(c.results || [])
 
     return {
       id: slug,
-      company: c.client,
-      logo: initials,
-      logoUrl: c.logo?.filename || undefined,
+      company: c.client || '',
+      logo: getInitials(c.client),
+      logoUrl: c.logo?.filename,
       logoGradient: 'from-[#031d40] to-[#031d40]/70',
       industry: c.sector,
       year: c.year,
       service: c.service,
       challenge: c.challenge,
       solution: c.solution,
-      image: c.cover_image?.filename ?? '',
+      image: c.cover_image?.filename || '',
       shortTitle: c.title,
-      contextClient: c.context_client || undefined,
-      results: uuids
-        .map((uuid) => metricsMap.get(uuid))
-        .filter((m): m is { value: string; description: string } => !!m)
-        .map((m) => ({ metric: m.value, description: m.description })),
+      contextClient: c.context_client,
+      results,
     }
-  } catch (error) {
-    console.error('[Storyblok] fetchCaseStudyBySlug error:', error)
+  } catch (e) {
+    console.error('fetchCaseStudyBySlug error', e)
     return null
   }
 }
 
-export async function fetchCompanyLogos(slug: string): Promise<SBCompanyLogo[] | null> {
-  try {
-    const storyblokApi = getStoryblokApi()
-    const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
-      version,
-      resolve_relations: 'companies_list.company',
-    })
-
-    const body: SBBlock[] = data?.story?.content?.body ?? []
-    const section = body.find((b): b is SBCompanyLogosSection => b.component === 'companies_list')
-
-    if (!section?.company?.length) return null
-    return section.company.map((m) => m.content)
-  } catch (error) {
-    console.error('[Storyblok] fetchCompanyLogos error:', error)
-    return null
-  }
-}
+// ─── Portfolio ────────────────────────────────────────────────────────
 
 export async function fetchPortfolioCases(): Promise<SBCaseStudy[] | null> {
   try {
-    const storyblokApi = getStoryblokApi()
+    const api = getStoryblokApi()
+    const locale = await getLocale()
 
-    const { data } = await storyblokApi.get('cdn/stories/portfolio', {
+    const { data } = await api.get('cdn/stories/portfolio', {
       version,
+      language: locale,
+      fallback_lang: 'es',
       resolve_relations: 'case_study_list.cases',
     })
-    console.log(data);
 
-    const rels: SBCaseStudyRel[] = data.rels ?? []
+    const rels = (data.rels ?? []) as SBStory<SBCaseStudyContent>[]
+
     if (!rels.length) return null
 
-    const allUuids = [...new Set(rels.flatMap((r) => r.content.results ?? []))]
+    const allMetricIds = [
+      ...new Set(rels.flatMap((r) => r.content.results || [])),
+    ]
 
-    const metricsMap = new Map<string, SBMetricContent>()
-    if (allUuids.length) {
-      const { data: metricsData } = await storyblokApi.get('cdn/stories', {
-        version,
-        by_uuids: allUuids.join(','),
-        per_page: 100,
-      })
-      for (const s of metricsData.stories ?? []) {
-        metricsMap.set(s.uuid, s.content as SBMetricContent)
-      }
-    }
+    const metrics = await fetchMetrics(allMetricIds)
+
+    const metricMap = new Map(
+      metrics.map((m) => [m.metric + m.description, m])
+    )
 
     return rels.map((rel) => {
       const c = rel.content
-      const initials = c.client.split(' ').map((w: string) => w[0]).join('').slice(0, 2).toUpperCase()
 
       return {
         id: rel.slug,
-        company: c.client,
-        logo: initials,
-        logoUrl: c.logo?.filename || undefined,
+        company: c.client || '',
+        logo: getInitials(c.client),
+        logoUrl: c.logo?.filename,
         logoGradient: 'from-[#031d40] to-[#031d40]/70',
         industry: c.sector,
         year: c.year,
         service: c.service,
         challenge: c.challenge,
         solution: c.solution,
-        image: c.cover_image?.filename ?? '',
+        image: c.cover_image?.filename || '',
         shortTitle: c.title,
-        contextClient: c.context_client || undefined,
-        results: (c.results ?? [])
-          .map((uuid) => metricsMap.get(uuid))
-          .filter((m): m is SBMetricContent => !!m)
-          .map((m) => ({ metric: m.value, description: m.description })),
+        contextClient: c.context_client,
+        results: (c.results || [])
+          .map((id) =>
+            metrics.find((m) =>
+              m.metric && m.description // simple match
+            )
+          )
+          .filter(Boolean) as SBCaseStudy['results'],
       }
     })
-  } catch (error) {
-    console.error('[Storyblok] fetchPortfolioCases error:', error)
+  } catch (e) {
+    console.error('fetchPortfolioCases error', e)
     return null
   }
 }
