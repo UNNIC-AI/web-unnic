@@ -167,7 +167,6 @@ export async function fetchTeamSection(
     const section = body.find(
       (b): b is SBTeamSection => b.component === 'team_section'
     )
-    console.log(section)
     return section?.members?.map((m) => m.content) || null
   } catch (e) {
     console.error('fetchTeamSection error', e)
