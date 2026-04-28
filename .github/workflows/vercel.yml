@@ -27,6 +27,8 @@ jobs:
       # 🟢 BUILD
       - name: Build
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          STORYBLOK_API_TOKEN: ${{ secrets.STORYBLOK_API_TOKEN }}
 
       # 🔵 DEPLOY DEVELOP (preview)
       - name: Deploy Preview
