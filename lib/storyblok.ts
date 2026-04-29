@@ -17,6 +17,7 @@ let initialized = false
 
 function initStoryblok() {
   if (initialized) return
+  
 
   if (!process.env.STORYBLOK_API_TOKEN) {
     console.error('❌ STORYBLOK_API_TOKEN is undefined')
@@ -37,7 +38,7 @@ function getApi() {
 }
 
 const version =
-  process.env.NODE_ENV === 'production' ? 'published' : 'draft'
+  process.env.VERCEL_ENV === 'production' ? 'published' : 'draft'
 
 // ─── Locale ───────────────────────────────────────────────────────────
 
