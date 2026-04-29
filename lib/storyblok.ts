@@ -11,14 +11,34 @@ import type {
   SBAsset,
 } from './storyblok.types'
 
-// ─── Init ─────────────────────────────────────────────────────────────
+// ─── Init SAFE (runtime) ──────────────────────────────────────────────
 
-storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
-  use: [apiPlugin],
-})
+let initialized = false
 
-const version = process.env.NODE_ENV === 'production' ? 'published' : 'draft'
+function initStoryblok() {
+  if (initialized) return
+  
+
+  if (!process.env.STORYBLOK_API_TOKEN) {
+    console.error('❌ STORYBLOK_API_TOKEN is undefined')
+    return
+  }
+
+  storyblokInit({
+    accessToken: process.env.STORYBLOK_API_TOKEN,
+    use: [apiPlugin],
+  })
+
+  initialized = true
+}
+
+function getApi() {
+  initStoryblok()
+  return getStoryblokApi()
+}
+
+const version =
+  process.env.VERCEL_ENV === 'production' ? 'published' : 'draft'
 
 // ─── Locale ───────────────────────────────────────────────────────────
 
@@ -126,7 +146,7 @@ function getInitials(name?: string) {
 async function fetchMetrics(uuids: string[]) {
   if (!uuids.length) return []
 
-  const api = getStoryblokApi()
+  const api = getApi()
   const locale = await getLocale()
 
   const { data } = await api.get('cdn/stories', {
@@ -152,7 +172,7 @@ export async function fetchTeamSection(
   slug: string
 ): Promise<SBTeamMember[] | null> {
   try {
-    const api = getStoryblokApi()
+    const api = getApi()
     const locale = await getLocale()
 
     const { data } = await api.get(`cdn/stories/${slug}`, {
@@ -181,7 +201,7 @@ export async function fetchTechPartners(
   slug: string
 ): Promise<SBTechPartner[] | null> {
   try {
-    const api = getStoryblokApi()
+    const api = getApi()
     const locale = await getLocale()
 
     const { data } = await api.get(`cdn/stories/${slug}`, {
@@ -210,7 +230,7 @@ export async function fetchCompanyLogos(
   slug: string
 ): Promise<SBCompanyLogo[] | null> {
   try {
-    const api = getStoryblokApi()
+    const api = getApi()
     const locale = await getLocale()
 
     const { data } = await api.get(`cdn/stories/${slug}`, {
@@ -239,7 +259,7 @@ export async function fetchCaseStudyBySlug(
   slug: string
 ): Promise<SBCaseStudy | null> {
   try {
-    const api = getStoryblokApi()
+    const api = getApi()
     const locale = await getLocale()
 
     const { data } = await api.get(
@@ -288,7 +308,7 @@ export async function fetchCaseStudyBySlug(
 
 export async function fetchPortfolioCases(): Promise<SBCaseStudy[] | null> {
   try {
-    const api = getStoryblokApi()
+    const api = getApi()
     const locale = await getLocale()
 
     const { data } = await api.get('cdn/stories/portfolio', {
@@ -369,7 +389,7 @@ function mapBlogPost(
 
 export async function fetchBlogPosts(): Promise<SBBlogPost[] | null> {
   try {
-    const api = getStoryblokApi()
+    const api = getApi()
     const locale = await getLocale()
 
     const { data } = await api.get('cdn/stories/blog_home', {
@@ -397,7 +417,7 @@ export async function fetchBlogPosts(): Promise<SBBlogPost[] | null> {
 
 export async function fetchBlogPost(slug: string): Promise<SBBlogPost | null> {
   try {
-    const api = getStoryblokApi()
+    const api = getApi()
     const locale = await getLocale()
 
     const { data } = await api.get(`cdn/stories/blog/${slug}`, {
