@@ -7,6 +7,7 @@ import { GoogleAnalytics } from "@/components/google-analytics"
 import { CookieConsentBanner } from "@/components/cookie-consent-banner"
 import { DiagnosticPopup } from "@/components/diagnostic-popup"
 import { LanguageProvider } from "@/lib/i18n"
+import { Analytics } from "@vercel/analytics/next"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -74,6 +75,7 @@ export default function RootLayout({
           <Footer />
           <CookieConsentBanner />
           <DiagnosticPopup />
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
