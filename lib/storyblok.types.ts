@@ -24,6 +24,8 @@ export type SBBlogPost = {
   category: string
   author: string
   authorImage?: string
+  author_position?: string
+  author_url?: string
   date: string
   readTime: number
   featured: boolean

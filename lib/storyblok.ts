@@ -77,6 +77,8 @@ type SBBlogPostContent = {
   category: string
   author: string
   author_image?: SBAsset
+  author_position?: string
+  author_url?: { cached_url?: string; url?: string; linktype?: string }
   date: string
   read_time: number
   featured?: boolean
@@ -435,6 +437,16 @@ export async function fetchFormacionKPIs(): Promise<SBKpi[] | null> {
 
 // ─── Blog ─────────────────────────────────────────────────────────────
 
+function normalizeStoryblokLink(link?: { cached_url?: string; url?: string; linktype?: string }) {
+  const rawUrl = link?.url || link?.cached_url
+
+  if (!rawUrl) return undefined
+  if (rawUrl.startsWith("http")) return rawUrl
+  if (rawUrl.startsWith("/")) return rawUrl
+
+  return `https://${rawUrl}`
+}
+
 function mapBlogPost(
   story: SBStory<SBBlogPostContent>,
   includeBody = false
@@ -449,6 +461,8 @@ function mapBlogPost(
     category: c.category,
     author: c.author,
     authorImage: c.author_image?.filename,
+    author_position:c.author_position,
+    author_url: normalizeStoryblokLink(c.author_url),
     date: c.date,
     readTime: c.read_time,
     featured: c.featured ?? false,
@@ -474,6 +488,7 @@ export async function fetchBlogPosts(): Promise<SBBlogPost[] | null> {
     )
 
     const posts = section?.blog ?? []
+    console.log(posts)
 
     if (!posts.length) return null
 

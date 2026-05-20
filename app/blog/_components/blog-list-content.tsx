@@ -16,6 +16,38 @@ function formatDate(dateStr: string) {
   })
 }
 
+function AuthorMeta({ post, variant = "dark" }: { post: SBBlogPost; variant?: "dark" | "light" }) {
+  const isDark = variant === "dark"
+
+  return (
+    <div className="flex items-center gap-3">
+      {post.authorImage && (
+        <Image
+          src={post.authorImage}
+          alt={post.author}
+          width={36}
+          height={36}
+          className="rounded-full object-cover"
+        />
+      )}
+
+      <div className="min-w-0">
+        <div className="flex items-center gap-2">
+          <span className={`font-semibold text-sm ${isDark ? "text-white/85" : "text-[#031d40]"}`}>
+            {post.author}
+          </span>
+        </div>
+
+        {post.author_position && (
+          <p className={`text-xs ${isDark ? "text-white/55" : "text-gray-500"}`}>
+            {post.author_position}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
+
 interface BlogListContentProps {
   posts: SBBlogPost[] | null
 }
@@ -116,7 +148,7 @@ export function BlogListContent({ posts }: BlogListContentProps) {
                 <Clock size={14} />
                 {featured.readTime} {tb.min}
               </span>
-              <span className="font-medium text-white/80">{featured.author}</span>
+              <AuthorMeta post={featured} variant="dark" />
             </div>
             <div className="flex items-center gap-2 text-white/80 group-hover:text-[#bbbd26] transition-colors duration-300 text-sm font-semibold">
               {tb.readMore}{" "}
