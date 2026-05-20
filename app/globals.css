@@ -204,6 +204,18 @@
 .animate-scroll-slow {
   animation: scroll 50s linear infinite;
 }
+
+.animate-scroll-kpis {
+  animation: scroll 35s linear infinite;
+}
+.animate-scroll-kpis:hover {
+  animation-play-state: paused;
+}
+@media (min-width: 640px) {
+  .animate-scroll-kpis {
+    animation: scroll 45s linear infinite;
+  }
+}
 .animate-scroll-slow:hover {
   animation-play-state: paused;
 }
