@@ -183,15 +183,18 @@ export function BlogListContent({ posts }: BlogListContentProps) {
                     {post.title}
                   </h3>
                   <p className="text-gray-500 text-sm line-clamp-3 flex-1 mb-4">{post.excerpt}</p>
-                  <div className="flex items-center justify-between text-xs text-gray-400 pt-4 border-t border-gray-100">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} />
-                      {formatDate(post.date)}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {post.readTime} {tb.min}
-                    </span>
+                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+                    <AuthorMeta post={post} variant="light" />
+                    <div className="flex flex-col items-end text-xs text-gray-400 shrink-0">
+                      <span className="flex items-center gap-1">
+                        <Calendar size={12} />
+                        {formatDate(post.date)}
+                      </span>
+                      <span className="flex items-center gap-1 mt-0.5">
+                        <Clock size={12} />
+                        {post.readTime} {tb.min}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
