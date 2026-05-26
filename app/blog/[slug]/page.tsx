@@ -30,6 +30,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = await fetchBlogPost(slug)
 
   if (!post) notFound()
+    
 
   const articleSchema = {
     "@context": "https://schema.org",
