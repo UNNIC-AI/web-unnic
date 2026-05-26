@@ -56,6 +56,24 @@ export const viewport: Viewport = {
   userScalable: true,
 }
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Unnic AI",
+  url: "https://unnic.ai",
+  logo: "https://unnic.ai/un-logo-azulamarillo.png",
+  description: "Consultoría e implementación de Inteligencia Artificial para empresas. Automatización, desarrollo e IA generativa con ROI demostrado.",
+  sameAs: [
+    "https://www.linkedin.com/company/unnic-ai",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    url: "https://unnic.ai/contacto",
+    availableLanguage: ["Spanish", "English", "Catalan"],
+  },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -67,6 +85,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body className={`${montserrat.variable} ${poppins.variable} font-sans antialiased`}>
         <LanguageProvider>
