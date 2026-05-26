@@ -9,6 +9,7 @@ import type {
   SBTechPartner,
   SBBlogPost,
   SBAsset,
+  SBKpi,
 } from './storyblok.types'
 
 // ─── Init SAFE (runtime) ──────────────────────────────────────────────
@@ -76,6 +77,8 @@ type SBBlogPostContent = {
   category: string
   author: string
   author_image?: SBAsset
+  author_position?: string
+  author_url?: { cached_url?: string; url?: string; linktype?: string }
   date: string
   read_time: number
   featured?: boolean
@@ -125,9 +128,46 @@ type SBTechSection = {
   technology: Array<{ content: SBTechPartner }>
 }
 
+type SBFormacionKpiItem = {
+  component: 'formacion_kpi'
+  value: string
+  label: string
+}
+
+type SBListFormacionKpi = {
+  component: 'list_formacion_kpi'
+  kpi: Array<{ content: SBFormacionKpiItem }>
+}
+
+type SBFormacionItemContent = {
+  title: string
+  subtitle: string
+  category: string | string[]  // UUID — Storyblok puede devolver string o array
+  level: string | string[]
+  duration_label: string
+  short_description: string
+  topics?: string | string[]
+  fundable?: boolean
+  fundable_title?: string
+  fundable_text?: string
+  cta_label?: string
+  cta_url?: string
+  body?: string
+  logo?: SBAsset
+  initials?: string
+  order?: number
+}
+
+// TODO: ajusta el nombre del componente si en Storyblok no es 'formaciones_list'
+type SBFormacionesListSection = {
+  component: 'formaciones_list'
+  // TODO: ajusta 'formaciones' al nombre real del campo de relaciones en Storyblok
+  formaciones: Array<SBStory<SBFormacionItemContent>>
+}
+
 type SBPageContent = {
   body: Array<
-    SBTeamSection | SBCompanySection | SBCaseStudySection | SBTechSection | SBBlogListSection | { component: string }
+    SBTeamSection | SBCompanySection | SBCaseStudySection | SBTechSection | SBBlogListSection | SBListFormacionKpi | SBFormacionesListSection | { component: string }
   >
 }
 
@@ -364,7 +404,48 @@ export async function fetchPortfolioCases(): Promise<SBCaseStudy[] | null> {
   }
 }
 
+// ─── Formacion KPIs ───────────────────────────────────────────────────
+
+export async function fetchFormacionKPIs(): Promise<SBKpi[] | null> {
+  try {
+    const api = getApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get('cdn/stories/kpi-global/kpis', {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      resolve_relations: 'list_formacion_kpi.kpi',
+    })
+
+    const body = (data.story.content as SBPageContent).body || []
+    const section = body.find(
+      (b): b is SBListFormacionKpi => b.component === 'list_formacion_kpi'
+    )
+
+    if (!section?.kpi?.length) return null
+
+    return section.kpi.map((item) => ({
+      value: item.content.value,
+      label: item.content.label,
+    }))
+  } catch (e) {
+    console.error('fetchFormacionKPIs error', e)
+    return null
+  }
+}
+
 // ─── Blog ─────────────────────────────────────────────────────────────
+
+function normalizeStoryblokLink(link?: { cached_url?: string; url?: string; linktype?: string }) {
+  const rawUrl = link?.url || link?.cached_url
+
+  if (!rawUrl) return undefined
+  if (rawUrl.startsWith("http")) return rawUrl
+  if (rawUrl.startsWith("/")) return rawUrl
+
+  return `https://${rawUrl}`
+}
 
 function mapBlogPost(
   story: SBStory<SBBlogPostContent>,
@@ -380,6 +461,8 @@ function mapBlogPost(
     category: c.category,
     author: c.author,
     authorImage: c.author_image?.filename,
+    author_position:c.author_position,
+    author_url: normalizeStoryblokLink(c.author_url),
     date: c.date,
     readTime: c.read_time,
     featured: c.featured ?? false,
@@ -405,12 +488,164 @@ export async function fetchBlogPosts(): Promise<SBBlogPost[] | null> {
     )
 
     const posts = section?.blog ?? []
+    console.log(posts)
 
     if (!posts.length) return null
 
     return posts.map((s: SBStory<SBBlogPostContent>) => mapBlogPost(s))
   } catch (e) {
     console.error('fetchBlogPosts error', e)
+    return null
+  }
+}
+
+// ─── Formacion Catalog ────────────────────────────────────────────────
+
+export async function fetchFormacionCategories(): Promise<import('./storyblok.types').SBTrainingRef[] | null> {
+  try {
+    const api = getApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get('cdn/stories', {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      content_type: 'training_category',
+      per_page: 100,
+    })
+
+    const stories = (data.stories ?? []) as SBStory<{ name: string; slug: string }>[]
+    return stories.map((s) => ({
+      uuid: s.uuid,
+      slug: s.content.slug ?? s.slug,
+      name: s.content.name ?? '',
+    }))
+  } catch (e) {
+    console.error('fetchFormacionCategories error', e)
+    return null
+  }
+}
+
+export async function fetchFormacionLevels(): Promise<import('./storyblok.types').SBTrainingRef[] | null> {
+  try {
+    const api = getApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get('cdn/stories', {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      content_type: 'training_level',
+      per_page: 100,
+    })
+
+    const stories = (data.stories ?? []) as SBStory<{ name: string; slug: string }>[]
+    return stories.map((s) => ({
+      uuid: s.uuid,
+      slug: s.content.slug ?? s.slug,
+      name: s.content.name ?? '',
+    }))
+  } catch (e) {
+    console.error('fetchFormacionLevels error', e)
+    return null
+  }
+}
+
+export async function fetchFormacionTopics(): Promise<import('./storyblok.types').SBTrainingRef[] | null> {
+  try {
+    const api = getApi()
+    const locale = await getLocale()
+
+    const { data } = await api.get('cdn/stories', {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      content_type: 'training_topic',
+      per_page: 100,
+    })
+
+    const stories = (data.stories ?? []) as SBStory<{ text: string; slug: string }>[]
+    return stories.map((s) => ({
+      uuid: s.uuid,
+      slug: s.content.slug ?? s.slug,
+      name: s.content.text ?? '',
+    }))
+  } catch (e) {
+    console.error('fetchFormacionTopics error', e)
+    return null
+  }
+}
+
+export async function fetchFormacionCatalog(): Promise<import('./storyblok.types').SBFormacion[] | null> {
+  try {
+    const api = getApi()
+    const locale = await getLocale()
+
+    // Paso 1: obtener los UUIDs del page sin resolve_relations
+    // (resolve_relations falla con idiomas distintos de 'es' si las stories no tienen traducción)
+    // TODO: ajusta el slug al path real de la story en Storyblok (Content > ...)
+    const { data: pageData } = await api.get('cdn/stories/training_catalog_page', {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+    })
+
+    const body = (pageData.story.content as SBPageContent).body || []
+    const section = body.find(
+      (b): b is SBFormacionesListSection => b.component === 'formaciones_list'
+    )
+
+    const uuids: string[] = (section?.formaciones as unknown as string[]) ?? []
+    if (!uuids.length) return null
+
+    // Paso 2: buscar las stories por UUID con language + fallback
+    const { data: storiesData } = await api.get('cdn/stories', {
+      version,
+      language: locale,
+      fallback_lang: 'es',
+      by_uuids: uuids.join(','),
+      per_page: 100,
+    })
+
+    const items = (storiesData.stories ?? []) as SBStory<SBFormacionItemContent>[]
+    items.sort((a, b) => (a.content.order ?? 999) - (b.content.order ?? 999))
+
+    const storyblokFormaciones =  items.map((item) => ({
+      slug: item.slug,
+      title: item.content.title,
+      subtitle: item.content.subtitle,
+      categorySlug: Array.isArray(item.content.category)
+        ? (item.content.category[0] ?? '')
+        : (item.content.category ?? ''),
+      categoryName: '',
+      levelSlug: Array.isArray(item.content.level)
+        ? (item.content.level[0] ?? '')
+        : (item.content.level ?? ''),
+      levelName: '',
+      durationLabel: item.content.duration_label,
+      shortDescription: item.content.short_description,
+      topics: Array.isArray(item.content.topics)
+        ? item.content.topics
+        : item.content.topics
+          ? [item.content.topics]
+          : undefined,
+      fundable: item.content.fundable,
+      fundableTitle: item.content.fundable_title,
+      fundableText: item.content.fundable_text,
+      ctaLabel: item.content.cta_label,
+      ctaUrl: item.content.cta_url,
+      body: item.content.body,
+      logo: item.content.logo?.filename,
+      initials: item.content.initials,
+      order: item.content.order,
+      isManual: false
+    }))
+    const manualCustomTraining = getManualCustomTraining(locale)
+
+  return [...storyblokFormaciones, manualCustomTraining]
+
+  } catch (e) {
+    console.error('fetchFormacionCatalog error', e)
     return null
   }
 }
@@ -430,5 +665,76 @@ export async function fetchBlogPost(slug: string): Promise<SBBlogPost | null> {
   } catch (e) {
     console.error('fetchBlogPost error', e)
     return null
+  }
+}
+
+function getManualCustomTraining(locale: string): import('./storyblok.types').SBFormacion {
+  const labels = {
+    es: {
+      title: 'Formación a medida',
+      subtitle: 'Diseñada según tus necesidades específicas',
+      categoryName: 'A medida',
+      levelName: '',
+      durationLabel: 'A consultar',
+      shortDescription:
+        'Diseñamos contigo una formación completamente adaptada a los objetivos, herramientas y nivel de madurez de tu equipo. Analizamos vuestro contexto y construimos el programa ideal.',
+      topics: [
+        'Diagnóstico de necesidades y nivel',
+        'Diseño curricular personalizado',
+        'Formadores especializados en tu sector',
+        'Seguimiento y evaluación de impacto',
+      ],
+    },
+    en: {
+      title: 'Custom Training',
+      subtitle: 'Designed according to your specific needs',
+      categoryName: 'Custom',
+      levelName: '',
+      durationLabel: 'To be consulted',
+      shortDescription:
+        "We work with you to design training fully tailored to your team's objectives, tools, and experience level. We analyze your context and build the ideal program.",
+      topics: [
+        'Needs and skill level assessment',
+        'Personalized curriculum design',
+        'Trainers specializing in your sector',
+        'Monitoring and impact evaluation',
+      ],
+    },
+    ca: {
+      title: 'Formació a mida',
+      subtitle: 'Dissenyada segons les teves necessitats específiques',
+      categoryName: 'A mida',
+      levelName: '',
+      durationLabel: 'A consultar',
+      shortDescription:
+        'Dissenyem amb tu una formació completament adaptada als objectius, eines i nivell de maduresa del teu equip. Analitzem el vostre context i construïm el programa ideal.',
+      topics: [
+        'Diagnòstic de necessitats i nivell',
+        'Disseny curricular personalitzat',
+        'Formadors especialitzats en el teu sector',
+        "Seguiment i avaluació d'impacte",
+      ],
+    },
+  }
+
+  const l = labels[locale as keyof typeof labels] ?? labels.es
+
+  return {
+    slug: 'formacion-a-medida',
+    title: l.title,
+    subtitle: l.subtitle,
+    categorySlug: 'a_medida',
+    categoryName: l.categoryName,
+    levelSlug: 'all-levels',
+    levelName: l.levelName,
+    durationLabel: l.durationLabel,
+    shortDescription: l.shortDescription,
+    topics: l.topics,
+    fundable: true,
+    body: undefined,
+    logo: undefined,
+    initials: 'IA',
+    order: 999,
+    isManual: true,
   }
 }

@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Calendar, Clock } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, Linkedin } from "lucide-react"
 import { renderRichText } from "@storyblok/react"
 import { marked } from "marked"
 import type { SBBlogPost } from "@/lib/storyblok.types"
@@ -118,14 +118,37 @@ export function BlogPostContent({ post }: BlogPostContentProps) {
             {post.title}
           </h1>
           <div className="flex flex-wrap items-center gap-6 text-gray-500 text-sm pb-8 border-b border-gray-200">
-            <div className="flex items-center gap-2">
-              {post.authorImage && (
-                <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
-                  <Image src={post.authorImage} alt={post.author} fill className="object-cover" />
-                </div>
-              )}
-              <span className="font-semibold text-[#031d40]">{post.author}</span>
-            </div>
+            <div className="flex items-center gap-4">
+  {post.authorImage && (
+    <div className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0">
+      <Image src={post.authorImage} alt={post.author} fill className="object-cover" />
+    </div>
+  )}
+
+  <div className="min-w-0">
+    <p className="font-bold text-[#031d40] text-lg leading-tight">
+      {post.author}
+    </p>
+
+    {post.author_position && (
+      <p className="text-gray-500 text-sm mt-1">
+        {post.author_position}
+      </p>
+    )}
+  </div>
+
+  {post.author_url && (
+    <a
+      href={post.author_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="ml-2 inline-flex w-10 h-10 items-center justify-center rounded-full bg-[#0A66C2] text-white hover:bg-[#084f96] transition-colors flex-shrink-0"
+      aria-label={`LinkedIn de ${post.author}`}
+    >
+      <Linkedin size={22} />
+    </a>
+  )}
+</div>
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
               {formatDate(post.date)}

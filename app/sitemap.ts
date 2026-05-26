@@ -1,7 +1,8 @@
 import { MetadataRoute } from "next"
 import { successStories } from "@/lib/data"
+import { fetchBlogPosts } from "@/lib/storyblok"
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://unnic.ai"
 
   // Páginas estáticas principales
@@ -54,6 +55,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
   ]
 
   // Páginas de servicios
@@ -95,6 +102,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
+      url: `${baseUrl}/servicios/formacion/catalogo`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/servicios/cumplimiento-ria`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
@@ -132,6 +145,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  // Combinar todas las páginas
-  return [...staticPages, ...servicePages, ...legalPages, ...portfolioPages]
+  // Posts del blog desde Storyblok (dinámico)
+  const posts = await fetchBlogPosts() ?? []
+  const blogPages = posts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.date ? new Date(post.date) : new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
+  return [...staticPages, ...servicePages, ...legalPages, ...portfolioPages, ...blogPages]
 }

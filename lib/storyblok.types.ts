@@ -24,6 +24,8 @@ export type SBBlogPost = {
   category: string
   author: string
   authorImage?: string
+  author_position?: string
+  author_url?: string
   date: string
   readTime: number
   featured: boolean
@@ -42,6 +44,36 @@ export type SBTeamMember = {
   photo: SBAsset
   bio?: string
   linkedin?: SBLink
+}
+
+export type SBKpi = {
+  value: string
+  label: string
+}
+
+export type SBTrainingRef = {
+  uuid: string
+  slug: string
+  name: string
+}
+
+export type SBFormacion = {
+  slug: string
+  title: string
+  subtitle: string
+  categorySlug: string
+  categoryName: string
+  levelSlug: string
+  levelName: string
+  durationLabel: string
+  shortDescription: string
+  body?: string
+  topics?: string[]
+  fundable?: boolean
+  logo?: string
+  initials?: string
+  order?: number
+  isManual: boolean
 }
 
 export type SBCaseStudy = {

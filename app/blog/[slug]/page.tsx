@@ -31,8 +31,38 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   if (!post) notFound()
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.coverImage || undefined,
+    datePublished: post.date,
+    author: {
+      "@type": "Person",
+      name: post.author,
+      ...(post.author_url ? { url: post.author_url } : {}),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Unnic AI",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://unnic.ai/un-logo-azulamarillo.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://unnic.ai/blog/${slug}`,
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Navigation />
       <BlogPostContent post={post} />
     </>

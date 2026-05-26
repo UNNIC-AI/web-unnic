@@ -16,6 +16,38 @@ function formatDate(dateStr: string) {
   })
 }
 
+function AuthorMeta({ post, variant = "dark" }: { post: SBBlogPost; variant?: "dark" | "light" }) {
+  const isDark = variant === "dark"
+
+  return (
+    <div className="flex items-center gap-3">
+      {post.authorImage && (
+        <Image
+          src={post.authorImage}
+          alt={post.author}
+          width={36}
+          height={36}
+          className="rounded-full object-cover"
+        />
+      )}
+
+      <div className="min-w-0">
+        <div className="flex items-center gap-2">
+          <span className={`font-semibold text-sm ${isDark ? "text-white/85" : "text-[#031d40]"}`}>
+            {post.author}
+          </span>
+        </div>
+
+        {post.author_position && (
+          <p className={`text-xs ${isDark ? "text-white/55" : "text-gray-500"}`}>
+            {post.author_position}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
+
 interface BlogListContentProps {
   posts: SBBlogPost[] | null
 }
@@ -116,7 +148,7 @@ export function BlogListContent({ posts }: BlogListContentProps) {
                 <Clock size={14} />
                 {featured.readTime} {tb.min}
               </span>
-              <span className="font-medium text-white/80">{featured.author}</span>
+              <AuthorMeta post={featured} variant="dark" />
             </div>
             <div className="flex items-center gap-2 text-white/80 group-hover:text-[#bbbd26] transition-colors duration-300 text-sm font-semibold">
               {tb.readMore}{" "}
@@ -151,15 +183,18 @@ export function BlogListContent({ posts }: BlogListContentProps) {
                     {post.title}
                   </h3>
                   <p className="text-gray-500 text-sm line-clamp-3 flex-1 mb-4">{post.excerpt}</p>
-                  <div className="flex items-center justify-between text-xs text-gray-400 pt-4 border-t border-gray-100">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} />
-                      {formatDate(post.date)}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {post.readTime} {tb.min}
-                    </span>
+                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+                    <AuthorMeta post={post} variant="light" />
+                    <div className="flex flex-col items-end text-xs text-gray-400 shrink-0">
+                      <span className="flex items-center gap-1">
+                        <Calendar size={12} />
+                        {formatDate(post.date)}
+                      </span>
+                      <span className="flex items-center gap-1 mt-0.5">
+                        <Clock size={12} />
+                        {post.readTime} {tb.min}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>

@@ -12,6 +12,7 @@ const es = {
       "Nuestros formadores no son docentes: son profesionales que aplican IA en empresas reales cada día.",
     fundaeBadge:
       "Toda nuestra formación es subvencionable a través de FUNDAE",
+    catalog_button :"Ver catálogo de formaciones"
   },
   models: {
     title: "Dos modelos de formación",
@@ -112,6 +113,7 @@ const en: typeof es = {
       "Our trainers are not lecturers: they are professionals who apply AI in real companies every day.",
     fundaeBadge:
       "All our training is subsidizable through FUNDAE",
+    catalog_button :"View training catalog"
   },
   models: {
     title: "Two training models",
@@ -212,6 +214,7 @@ const ca: typeof es = {
       "Els nostres formadors no són docents: són professionals que apliquen IA en empreses reals cada dia.",
     fundaeBadge:
       "Tota la nostra formació és subvencionable a través de FUNDAE",
+    catalog_button :"Veure catàleg de formacions"
   },
   models: {
     title: "Dos models de formació",
