@@ -488,7 +488,6 @@ export async function fetchBlogPosts(): Promise<SBBlogPost[] | null> {
     )
 
     const posts = section?.blog ?? []
-    console.log(posts)
 
     if (!posts.length) return null
 
