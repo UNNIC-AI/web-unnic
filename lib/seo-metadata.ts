@@ -40,16 +40,16 @@ type PageMetadata = {
 // Page-specific metadata
 export const pageMetadata: Record<string, PageMetadata> = {
   home: {
-    title: "Unnic AI | Consultoría e Implementación de IA para Empresas",
+    title: "Unnic AI | Consultoría de Inteligencia Artificial en Barcelona",
     description:
-      "Transformamos empresas con Inteligencia Artificial. Consultoría, automatización e implementación con ROI demostrado. +50 empresas confían en nosotros. Agenda tu consulta gratuita.",
+      "Impulsamos tu empresa con soluciones de IA generativa y automatización de procesos en Barcelona. Ahorra tiempo, reduce costes y elimina tareas manuales. +50 empresas confían en nosotros.",
     keywords: [
-      "inteligencia artificial",
-      "IA empresas",
+      "consultoría inteligencia artificial Barcelona",
+      "IA empresas Barcelona",
+      "automatización procesos Barcelona",
+      "implementación IA Barcelona",
+      "transformación digital Barcelona",
       "consultoría IA",
-      "automatización IA",
-      "implementación IA",
-      "transformación digital",
     ],
   },
   servicios: {
