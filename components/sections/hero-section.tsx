@@ -80,23 +80,23 @@ export function HeroSection() {
       </div>
 
       {/* Yellow blurred backgrounds */}
-      <div className="absolute top-20 right-10 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-[#bbbd26]/20 rounded-full blur-[80px] md:blur-[120px]" />
-      <div className="absolute bottom-20 left-10 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#bbbd26]/25 rounded-full blur-[100px] md:blur-[140px]" />
-      <div className="absolute top-1/2 left-1/4 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-[#bbbd26]/15 rounded-full blur-[60px] md:blur-[100px]" />
+      <div className="hidden sm:block absolute top-20 right-10 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-[#bbbd26]/20 rounded-full blur-[80px] md:blur-[120px]" />
+      <div className="hidden sm:block absolute bottom-20 left-10 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-[#bbbd26]/25 rounded-full blur-[100px] md:blur-[140px]" />
+      <div className="hidden sm:block absolute top-1/2 left-1/4 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-[#bbbd26]/15 rounded-full blur-[60px] md:blur-[100px]" />
       <div className="hidden sm:block absolute top-1/3 right-1/3 w-[450px] h-[450px] bg-[#bbbd26]/18 rounded-full blur-[110px]" />
       <div className="hidden sm:block absolute bottom-1/4 left-1/2 w-[350px] h-[350px] bg-[#bbbd26]/22 rounded-full blur-[90px]" />
 
       {/* Gray shadows */}
-      <div className="absolute top-40 left-20 w-[150px] h-[150px] md:w-[300px] md:h-[300px] bg-gray-400/15 rounded-full blur-[50px] md:blur-[80px]" />
+      <div className="hidden sm:block absolute top-40 left-20 w-[150px] h-[150px] md:w-[300px] md:h-[300px] bg-gray-400/15 rounded-full blur-[50px] md:blur-[80px]" />
       <div className="hidden sm:block absolute bottom-32 right-32 w-[400px] h-[400px] bg-gray-500/12 rounded-full blur-[100px]" />
       <div className="hidden sm:block absolute top-1/4 right-1/4 w-[250px] h-[250px] bg-gray-600/10 rounded-full blur-[70px]" />
       <div className="hidden sm:block absolute bottom-1/2 left-1/3 w-[350px] h-[350px] bg-gray-400/14 rounded-full blur-[90px]" />
 
       {/* Blue blurred backgrounds */}
-      <div className="absolute top-20 right-10 w-[220px] h-[220px] md:w-[450px] md:h-[450px] bg-[#031d40]/12 rounded-full blur-[80px] md:blur-[120px]" />
+      <div className="hidden sm:block absolute top-20 right-10 w-[220px] h-[220px] md:w-[450px] md:h-[450px] bg-[#031d40]/12 rounded-full blur-[80px] md:blur-[120px]" />
       <div className="hidden sm:block absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-[#031d40]/10 rounded-full blur-[130px]" />
       <div className="hidden sm:block absolute top-1/2 right-1/2 w-[380px] h-[380px] bg-[#031d40]/8 rounded-full blur-[100px]" />
-      <div className="absolute bottom-20 left-20 w-[200px] h-[200px] md:w-[420px] md:h-[420px] bg-[#031d40]/14 rounded-full blur-[70px] md:blur-[110px]" />
+      <div className="hidden sm:block absolute bottom-20 left-20 w-[200px] h-[200px] md:w-[420px] md:h-[420px] bg-[#031d40]/14 rounded-full blur-[70px] md:blur-[110px]" />
       <div className="hidden sm:block absolute top-1/4 left-1/3 w-[350px] h-[350px] bg-[#031d40]/11 rounded-full blur-[95px]" />
 
       {/* Subtle noise texture */}
