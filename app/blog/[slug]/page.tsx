@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${post.title} | Unnic AI`,
     description: post.excerpt,
+    keywords: post.seoKeywords ? post.seoKeywords.split(',').map(k => k.trim()) : undefined,
     openGraph: {
       title: post.title,
       description: post.excerpt,

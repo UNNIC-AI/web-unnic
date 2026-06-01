@@ -82,6 +82,7 @@ type SBBlogPostContent = {
   date: string
   read_time: number
   featured?: boolean
+  seo_keywords?: string
 }
 
 type SBMetricContent = {
@@ -466,6 +467,7 @@ function mapBlogPost(
     date: c.date,
     readTime: c.read_time,
     featured: c.featured ?? false,
+    seoKeywords: c.seo_keywords || undefined,
     body: includeBody ? c.body : undefined,
   }
 }

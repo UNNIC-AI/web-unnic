@@ -29,6 +29,7 @@ export type SBBlogPost = {
   date: string
   readTime: number
   featured: boolean
+  seoKeywords?: string
   body?: any
 }
 
