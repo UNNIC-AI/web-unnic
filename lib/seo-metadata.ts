@@ -23,6 +23,7 @@ const pageRoutes: Record<string, string> = {
   contacto: "/contacto",
   industrias: "/industrias",
   recursos: "/recursos",
+  blog: "/blog",
   faq: "/preguntas-frecuentes",
   avisoLegal: "/aviso-legal",
   politicaPrivacidad: "/politica-privacidad",
@@ -183,6 +184,18 @@ export const pageMetadata: Record<string, PageMetadata> = {
     description:
       "¿Listo para transformar tu empresa con IA? Agenda una consultoría gratuita. Te ayudamos a identificar las mejores oportunidades para tu negocio. Respuesta en 24h.",
     keywords: ["contacto Unnic AI", "consultoría gratuita IA", "agendar llamada IA", "presupuesto IA"],
+  },
+  blog: {
+    title: "Blog de Inteligencia Artificial para Empresas | Unnic AI",
+    description:
+      "Artículos, guías y tendencias sobre IA empresarial. Aprende cómo implementar inteligencia artificial en tu empresa con casos reales y consejos prácticos.",
+    keywords: [
+      "blog IA",
+      "artículos inteligencia artificial",
+      "tendencias IA empresas",
+      "guías IA",
+      "noticias inteligencia artificial",
+    ],
   },
   recursos: {
     title: "Recursos de IA | Guías, Casos de Uso y Tendencias | Unnic AI",
