@@ -22,9 +22,11 @@ export function getOrganizationSchema(): WithContext<Organization> {
     email: "info@unnic.ai",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Avenida Can Fatjó dels Aurons, 9 - Planta 4 - Oficina D",
+      postalCode: "08174",
+      addressLocality: "Sant Cugat del Vallès",
+      addressRegion: "Barcelona",
       addressCountry: "ES",
-      addressLocality: "Barcelona",
-      addressRegion: "Cataluña",
     },
     sameAs: [
       // Redes sociales (añadir las URLs reales)

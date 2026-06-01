@@ -152,7 +152,10 @@ export function Footer() {
 
         {/* Barra Inferior */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-          <p>{t.footer.derechos}</p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+            <p>{t.footer.derechos}</p>
+            <p className="text-gray-500">Unnic AI · Av. Can Fatjó dels Aurons, 9 · Sant Cugat del Vallès, Barcelona</p>
+          </div>
           <div className="flex gap-6 items-center">
             <Link href="/aviso-legal" className="hover:text-[#bbbd26] transition-colors">
               {t.footer.avisoLegal}
