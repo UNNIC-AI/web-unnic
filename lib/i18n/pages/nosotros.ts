@@ -58,6 +58,8 @@ const es = {
     aplicar: "Aplicar ahora",
     cultura: "Conoce nuestra cultura",
     dudas: "¿Tienes dudas? Escríbenos a ",
+    ctaConsulta: "Reserva tu consultoría gratuita de IA",
+    ctaConsultaSecundario: "O si lo prefieres, escríbenos a ",
   },
 }
 
@@ -121,6 +123,8 @@ const en: typeof es = {
     aplicar: "Apply now",
     cultura: "Learn about our culture",
     dudas: "Have questions? Write to us at ",
+    ctaConsulta: "Book your free AI consultancy",
+    ctaConsultaSecundario: "Or if you prefer, write to us at ",
   },
 }
 
@@ -189,6 +193,8 @@ const ca: typeof es = {
     aplicar: "Aplicar ara",
     cultura: "Coneix la nostra cultura",
     dudas: "Tens dubtes? Escriu-nos a ",
+    ctaConsulta: "Reserva la teva consultoria gratuïta d'IA",
+    ctaConsultaSecundario: "O si ho prefereixes, escriu-nos a ",
   },
 }
 
