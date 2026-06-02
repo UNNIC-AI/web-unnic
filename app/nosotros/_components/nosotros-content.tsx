@@ -403,12 +403,21 @@ export function NosotrosContent({ sbTeamMembers }: Props) {
                   </a>
                 </Button>
               </div>
-              <p className="text-base text-gray-600 pt-4">
-                {t.cta.dudas}
-                <a href="mailto:hola@unnic.ai" className="font-semibold text-[#031d40] hover:underline">
-                  contacto@unnic.ai
-                </a>
-              </p>
+              <div className="pt-6 flex flex-col items-center gap-3">
+                <p className="text-lg font-semibold text-[#031d40]">¿Quieres llevar tu empresa al siguiente nivel?</p>
+                <Button asChild size="lg" className="text-base px-8 py-6 bg-[#bbbd26] hover:bg-[#bbbd26]/90 text-[#031d40] font-bold shadow-lg transition-all group">
+                  <Link href="/contacto">
+                    {t.cta.ctaConsulta}
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+                <p className="text-sm text-gray-500">
+                  {t.cta.ctaConsultaSecundario}
+                  <a href="mailto:hola@unnic.ai" className="font-semibold text-[#031d40] hover:underline">
+                    hola@unnic.ai
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </section>
