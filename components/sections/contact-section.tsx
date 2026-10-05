@@ -324,7 +324,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500 font-medium">{t.contact.info.oficinaLabel}</p>
-                    <p className="text-[#031d40] font-semibold">Carrer de Gomis 38, 08023 Barcelona</p>
+                    <p className="text-[#031d40] font-semibold">Av. Can Fatjó dels Aurons, 908174 Cerdanyola del Vallès, Barcelona</p>
                   </div>
                 </div>
               </div>

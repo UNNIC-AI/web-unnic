@@ -85,7 +85,7 @@ export function CTASection() {
               </a>
 
               {/* Email Button */}
-              <a href="mailto:contact@unnicai.com" className="group" title="Email">
+              <a href="mailto:contacto@unnic.ai" className="group" title="Email">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-[#bbbd26] bg-transparent flex items-center justify-center hover:bg-[#bbbd26] hover:scale-110 transition-[transform,background-color] duration-300 shadow-lg">
                   <svg
                     className="w-7 h-7 text-[#bbbd26] group-hover:text-[#031d40] transition-colors"

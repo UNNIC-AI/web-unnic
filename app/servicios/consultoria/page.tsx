@@ -533,7 +533,7 @@ export default function ConsultoriaPage() {
                   </a>
 
                   {/* Email Button */}
-                  <a href="mailto:contact@unnicai.com" className="group" title="Email">
+                  <a href="mailto:contacto@unnic.ai" className="group" title="Email">
                     <div className="w-14 h-14 rounded-full border-2 border-[#bbbd26] bg-transparent flex items-center justify-center hover:bg-[#bbbd26] hover:scale-110 transition-all shadow-lg">
                       <svg
                         className="w-7 h-7 text-[#bbbd26] group-hover:text-[#031d40] transition-colors"
